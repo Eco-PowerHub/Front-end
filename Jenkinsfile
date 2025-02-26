@@ -32,7 +32,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    sh 'ng test'
+                    sh 'ng test --watch=false --browsers=ChromeHeadless'
                 }
             }
         }
