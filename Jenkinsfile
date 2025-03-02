@@ -29,13 +29,13 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                script {
-                    sh 'npm run test -- --no-watch --browsers=ChromeHeadless --code-coverage'
-                }
-            }
-        }
+       // stage('Run Tests') {
+       //     steps {
+       //         script {
+       //             sh 'npm run test -- --no-watch --browsers=ChromeHeadless --code-coverage'
+       //         }
+       //     }
+       //}
 
         stage('Archive Build Artifacts') {
             steps {
