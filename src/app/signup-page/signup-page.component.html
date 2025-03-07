@@ -1,0 +1,81 @@
+<div class="signup-container" >
+    <nav class="navbar">
+      <a href="/" class="home-link">الصفحة الرئيسية</a>
+      <span class="title">Welcome To Eco Powerhup</span>
+    </nav>
+  
+    <div class="signup-card">
+      <h2>إنشاء حساب</h2>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
+        <div class="checkboxdiv">
+          <label>
+            <input type="radio" formControlName="role" [value]="2"> عميل
+          </label>
+          <label>
+            <input type="radio" formControlName="role" [value]="3"> شركة
+          </label>
+          
+      </div>
+  
+      <div class="input-group">
+        <label for="firstName">الاسم الأول</label>
+        <input id="firstName" class="input1" formControlName="firstName" type="text" placeholder="ادخل الاسم الأول" />
+        <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="error">
+          الاسم الأول مطلوب.
+        </div>
+      </div>
+  
+        <div  class="Left"  >
+          <label for="lastName" class="label2" >الاسم الأخير</label>
+          <input id="lastName" class="input2" formControlName="lastName" type="text" placeholder="ادخل الاسم الأخير"  />
+        </div>
+  
+        <div class="input-group">
+          <label for="phone" >رقم الهاتف</label>
+          <input id="phone"  class="input1" formControlName="phone" type="tel" placeholder="ادخل رقم الهاتف" />
+          <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="error">
+            <span *ngIf="signupForm.get('phone')?.errors?.['required']">رقم الهاتف مطلوب</span>
+            <span *ngIf="signupForm.get('phone')?.errors?.['pattern']">ادخل رقم هاتف صحيح</span>
+          </div>
+        </div>
+        <div class="Left">
+          <label for="email" class="label2" style="margin-right: 30px;">البريد الإلكتروني</label>
+          <input id="email" class="input2" formControlName="email"  type="email" placeholder="example@gmail.com" />
+        </div>
+  
+  
+  
+        <div class="input-group">
+          <label for="password">كلمة المرور</label>
+          <input id="password" class="input1" formControlName="password" type="password" placeholder="@/#%*" />
+          <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error">
+            <span *ngIf="signupForm.get('password')?.errors?.['required']">كلمة المرور مطلوبة.</span>
+            <span *ngIf="signupForm.get('password')?.errors?.['minlength']">يجب أن تكون 8 أحرف على الأقل.</span>
+            <span *ngIf="signupForm.get('password')?.errors?.['pattern']">يجب أن تحتوي على رقم وحرف كبير ورمز خاص.</span>
+          </div>
+        </div>
+  
+        <div class="Left">
+          <label for="confirmPassword" class="label2" style="margin-right: 40px;">تأكيد كلمة المرور</label>
+          <input id="confirmPassword" class="input2" formControlName="confirmPassword" type="password" placeholder="@/#%*" />
+          <div *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched" class="error">
+            تأكيد كلمة المرور لا يطابق كلمة المرور.
+          </div>
+        </div>
+  
+        <div  class="adrs" >
+          <label for="address" >العنوان</label>
+          <textarea id="address" formControlName="address" placeholder="ادخل عنوانك بالتفصيل"></textarea>
+        </div>
+  
+        <button type="submit" [disabled]="signupForm.invalid"  [ngClass]="{'filled': signupForm.valid}" >
+          <span >انشاء حساب</span>
+    
+  
+        </button>
+      </form>
+  
+      <p class="login-link">لديك حساب بالفعل؟ <a href="/login">تسجيل الدخول</a></p>
+    </div>
+  </div>
+  
