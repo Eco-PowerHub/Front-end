@@ -1,10 +1,14 @@
 <div class="backhome">
+  <div class="arrowimg">
+<a href="/signup"> <img src=" /right-arrow.png" alt=""></a>
+</div>
     <h1>العودة الي الصفحة الرئيسية</h1>
   </div>
+
   <div class="container">
       <h2>أدخل رمز التحقق</h2>
       <form [formGroup]="codeForm" (ngSubmit)="verifyCode()">
         <input type="text" formControlName="code" placeholder="123456" required>
         <button type="submit" [disabled]="isSubmitting">تحقق</button>
       </form>
-    </div>`
+    </div>

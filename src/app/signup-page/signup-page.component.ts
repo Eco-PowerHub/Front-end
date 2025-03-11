@@ -60,7 +60,8 @@ export class SignupPageComponent {
       this.authservice.register(formData ).subscribe({
         next: (response :any) => {
           console.log('✅ تم التسجيل بنجاح:', response);
-          this.router.navigate(['/sendotp'], { queryParams: { email: formData.email } });
+          localStorage.setItem('otpExpiry', response.data.otpExpiry);
+          this.router.navigate(['/sendotp'], { queryParams: { email: formData.email ,otpExpiry: response.data.otpExpiry } });
         },
         error: (err :any) => {
           console.error('❌ فشل التسجيل:', err);
@@ -71,4 +72,4 @@ export class SignupPageComponent {
       console.log('⚠ هناك خطأ في الفورم!');
     }
   }
-}
+} 
