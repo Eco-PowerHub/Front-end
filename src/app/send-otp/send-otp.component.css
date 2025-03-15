@@ -19,88 +19,24 @@ body::before {
   filter: blur(5px); /* طبق البلير هنا فقط */
   z-index: -1; /* ضع الخلفية في الخلف */
 }
-.backhome{
-  display: flex;
-  font-family: "Cairo", serif;
-  font-size: 9px;
-  margin-left: 20px;
-}
-.arrowimg img {
-  margin-top:19px;
-  width: 37px; 
-  height: auto; 
-}
-.arrowimg img:hover{
-  transform: scale(1.1) translateX(-5px);
-  transition: transform 0.3s ease;
-  margin-right: 3px;
-} 
-h1{
-  font-family: "Cairo", serif;
-  font-size: 20px;
-  margin-top: 20px;
-  margin-left: 10px;
-  color: #051C2F;
-  font-weight: lighter;
-}
-h2{
-  font-family: "Cairo", serif;
-  font-size: 18px;
-  margin-top: 20px;
-  margin-left: 10px;
-  color: #051C2F;
-
-}
 
 
-.otp-container {
-    text-align: center;
-    max-width: 300px;
-    margin: auto;
-  }
-  h2{
-    margin-top: -10px;
-    font-size:large;
-  }
-  .container input{
-    margin-left: -10px;
-  width: 100%;
-    height: 30%;
-background-color: #F5F5F5;
-    padding: 8px;
-margin-top: -20px; 
-margin-right: 10px;
- border: 1px solid #ccc;
-    border-radius: 15px;
-    cursor: pointer;
-  
-  }
+ 
 
   .container{
-    margin-top: 9%;
-    margin-left: 35%;
+margin-top: 150px;
     background-color:white ;
-    height: 30%;
-    width: 30%;
-    display: flex;
-    font-family: "Cairo", serif;
-    border-radius:20px ;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.5px;
-    flex-direction: column;
-   box-shadow: #031f35;
+    
   }
   
   button {
     background: #051C2F;
     color: white;
+    margin-top: 3px;
     border: none;
     border-radius: 50px;
-    width: 50%;
+    width: 40%;
     font-family: "Cairo", serif;
-    margin-top: 16px;
     font-size: 16px;
     cursor: pointer;
     color: white;
@@ -118,21 +54,4 @@ margin-right: 10px;
   .message {
     margin-top: 10px;
     font-weight: bold;
-  }
-  @media (max-width: 768px) {
-    .container {
-      width: 30%; /* تكبير حجم البوكس على الموبايل */
-      min-width: 250px;
-      justify-content: center;
-     margin-top: 40px;
-    }
-  
-    .container input {
-      width: 80%; 
-      margin-left: 10px;
-    }
-  
-    button {
-      width: 80%; /* تكبير حجم الزر على الشاشات الصغيرة */
-    }
   }

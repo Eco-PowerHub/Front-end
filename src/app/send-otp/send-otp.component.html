@@ -1,14 +1,22 @@
-<div class="backhome">
-  <div class="arrowimg">
-<a href="/signup"> <img src=" /right-arrow.png" alt=""></a>
-</div>
-    <h1>العودة الي الصفحة الرئيسية</h1>
-  </div>
+<nav class="bg-[#051C2F] text-white px-6 py-4 flex justify-between items-center relative">
+  <!-- رابط الصفحة الرئيسية -->
+  <a href="/signup" class="text-lg font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
+    الصفحة الرئيسية
+  </a>
+  
+  <!-- العنوان في المنتصف -->
+  <span class="absolute inset-x-0 text-center text-lg md:text-xl font-semibold  hidden sm:block">
+    Welcome to Eco PowerHub
 
-  <div class="container">
-      <h2>أدخل رمز التحقق</h2>
-      <form [formGroup]="codeForm" (ngSubmit)="verifyCode()">
-        <input type="text" formControlName="code" placeholder="123456" required>
-        <button type="submit" [disabled]="isSubmitting">تحقق</button>
-      </form>
-    </div>
+  </span>
+</nav>
+<div class="container mx-auto px-4  py-6 flex flex-col  justify-center  rounded-xl items-center shadow-2xl max-w-xs sm:max-w-sm md:max-w-md  w-full">
+  <h2 class="text-center text-lg md:text-xl font-semibold mb-4 "  >أدخل رمز التحقق</h2>
+  <form [formGroup]="codeForm" (ngSubmit)="verifyCode()" class="space-y-4 w-sm flex flex-col">
+    <input type="text" formControlName="code" placeholder="123456" required 
+    class="sm:w-full max-w-lg  md:max-w-lg lg:max-w-xl  mx-auto  px-2 py-3 bg-[#F5F5F5] shadow-lg border-[1px] border-gray-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-[#051C2F] text-center cursor-pointer">
+      <button type="submit" [disabled]="isSubmitting" class="w-full bg-[#499DCA] mt-4 md:mt-4 text-white py-3  rounded-lg hover:bg-[#3b7a94] flex flex-col   justify-center  mx-auto  max-w-xs sm:max-w-sm transition-all duration-300 focus:outline-none disabled:bg-gray-400">
+      تحقق
+    </button>
+  </form>
+</div>

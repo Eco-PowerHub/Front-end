@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component ,ViewEncapsulation} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
@@ -10,9 +10,12 @@ import { AuthService } from '../auth/auth.service';
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule, RouterModule],
     templateUrl: './signup-page.component.html',
-    styleUrls: ['./signup-page.component.css']
+    styleUrls: ['./signup-page.component.css'],
+   encapsulation: ViewEncapsulation.None
+    
 })
 export class SignupPageComponent {
+
   signupForm: FormGroup;
   loading = false;
 
