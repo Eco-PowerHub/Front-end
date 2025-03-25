@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
 body {
   background-color: #396991;
   margin: 0;
   font-family: "Cairo", serif;
   position: relative;
+
   height: 100vh;
   caret-color: transparent;
 }
@@ -17,23 +21,34 @@ body::before {
   filter: blur(5px); /* طبق البلير هنا فقط */
   z-index: -2; /* ضع الخلفية في الخلف */
 }
+.labl{
+  margin-left: 20px;
+}
 .home-link{
+  font-family: "Calibri", sans-serif;
   cursor: pointer;
 }
-  .homeLink:hover{
-color: #499DCA;
+.homeLink {
+  transition: color 0.3s ease-in-out;
+}
 
-  }
+.homeLink:hover {
+  color: #499DCA;
+}
 
+.welcome{
+  font-family: "DM Sans", serif;
+}
   .signup-container {
    margin-top: 20px;
    text-align: center;
+   font-family:"calibri" ,serif ;
   }
   h2{
-    font-size:30px;
+    font-size:23px;
     font-family: "Cairo", serif;
-    margin-top: 2px;
-    margin-bottom: -5px;
+  
+
     color: #051C2F;
   }
 
@@ -41,7 +56,7 @@ color: #499DCA;
     width: 17px;  /* زيادة العرض */
     height: 17px; /* زيادة الطول */
     cursor: pointer;
-  
+  font-family:"calibri" ,serif ;
     transform: scale(1.25); /* تكبير الحجم */
     margin-right: 5px;
   }
@@ -53,33 +68,7 @@ color: #499DCA;
   }
   
   
-  .input-group {
-    display: block;
-    align-items: center;
-    text-align: right;
-    
-    margin-left: -50px;
-    width: 100%;
-  }
   
-  .Left{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: right;
-  margin-top: -69px;
-  margin-left: -135px;
-    width: 100%;
-  }
-  .adrs{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: right;
-    margin-bottom: 15px;
-    margin-left: 1px;
-    width: 100%;
-  }
   .checkboxdiv{
   font-size: 22px;
   color: #051C2F;
@@ -186,18 +175,18 @@ color: #499DCA;
     color: #777;
   }
   button {
-    width: 28%;
-    height: 18%;
-    padding: 7px;
+   
+   
     background: #051C2F;
     color: white;
     border: none;
     border-radius: 50px;
     font-family: "Cairo", serif;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     letter-spacing: 1px;
+    margin-top: -40px;
     transition: background 0.3s ease;
   }
   
@@ -246,53 +235,16 @@ color: #499DCA;
   
   }
   
-  @media (max-width: 768px) {
-    .signup-card {
-      width: 90%;
-      padding: 20px;
-    }
-  
-    .navbar {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .title {
-      margin-top: 5px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .signup-card {
-      padding: 15px;
-    }
-  
-    .navbar {
-      height: 7%;  }
-  
-    .title {
-      margin-top: 3px;
-      font-size: 15px;
-      margin-right: 18px;
-  
-    }
-    .home-link{
-  text-align: center;
-  margin-left: 4px;
-  font-size: 15px;
-  }
-    .input-group input,
-    .input-group textarea {
-      padding: 8px;
-      font-size: 10px;
-    }
-  
-    button {
-      font-size: 10px;
-    }
-  }
+
   .error {
     color: rgb(243, 36, 36);
-    font-size: 14px;
+    font-size: 5px;
     margin-top: 5px;
+  }
+  .role{
+    margin-top: -20px;
+    margin-left: 320px;
+  }
+  .row2{
+    margin-top: -9px;
   }

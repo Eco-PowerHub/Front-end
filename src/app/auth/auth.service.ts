@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 private  Register='http://157.175.182.159:8080/api/Account/Register';
 private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
+ private forgetpass='http://157.175.182.159:8080/api/Account/ResetPassword';
 
   constructor(private http:HttpClient) { }
   register(userData: any): Observable<any> {
@@ -17,4 +18,8 @@ private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
   verifyCode(email: string,otp: string): Observable<any> {
     return this.http.post(`${this.verifyotp}`, {email,otp } , { headers: { 'Content-Type': 'application/json' }});
   }
+  sendResetEmail(email: string): Observable<any> {
+    return this.http.post(this.forgetpass, { email });
+  }
+
 }
