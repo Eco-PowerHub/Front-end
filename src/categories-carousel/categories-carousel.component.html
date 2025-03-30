@@ -1,0 +1,32 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+
+<!-- العنوان خارج الكاروسيل مع خلفية غير بيضاء -->
+<div class="section-header">
+  <h2 class="title">الأقسام</h2>
+</div>
+<app-dropdown-list></app-dropdown-list>
+
+
+<!-- الكاروسيل مع توزيع متساوٍ للعناصر -->
+<div class="container">
+  <p-carousel 
+    [value]="categories"
+    [numVisible]="3"
+    [numScroll]="1"
+    [circular]="true"
+    class="custom-carousel"
+  >
+    <ng-template let-category pTemplate="item">
+      <div class="category-item">
+        <img [src]="category.img" class="category-image" />
+        <h3 class="category-title">{{ category.name }}</h3>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>

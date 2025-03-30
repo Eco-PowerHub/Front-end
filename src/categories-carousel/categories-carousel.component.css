@@ -1,0 +1,55 @@
+/* خلفية العنوان مع التوسيط */
+.section-header {
+  background-color: #eff5fa; /* لون هادئ للخلفية */
+  padding: 0;
+  text-align: center;
+}
+
+ .title {
+  font-size: 46px;
+  font-weight: bold;
+  color: #022333; 
+  margin: 0;
+} 
+
+.container{
+  background-color: #fff;
+}
+
+/* لضبط الكاروسيل والعناصر */
+.custom-carousel .p-carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* تكبير الصور وجعلها متناسقة */
+.category-image {
+  width: 150px; /* زيادة حجم الصورة */
+  height: 150px;
+  object-fit: contain; /* يضمن عدم تمدد الصور */
+}
+
+/* تكبير النصوص وتحسين المحاذاة */
+.category-title {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #022333;
+}
+
+
+/* جعل الكاروسيل يعرض كل العناصر */
+.custom-carousel .p-carousel-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* تحسين النص */
+/* .category-title {
+  font-size: 22px;
+  text-align: center;
+  margin-top: 10px;
+} */
+

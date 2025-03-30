@@ -1,0 +1,33 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<!-- العنوان مع خلفية ممتدة -->
+<div class="section-header">
+    <h2 class="section-title">المنتجات</h2>
+  </div>
+  
+  <!-- محتوى القسم -->
+  <div class="product-display-container">
+    <div class="product-showcase">
+        <div class="product-box">
+            <h3>Eco PowerHub</h3>
+      
+            <div class="product-images">
+            <img src="assets/Pasted image.png" alt="Eco PowerHub Product 2">
+            <img src="assets/Pasted image (2).png" alt="Eco PowerHub Product 1">
+        </div>
+    </div>
+</div>
+
+<app-categories-carousel></app-categories-carousel>
+
+<div class="products-title">
+  <span class="title">كل المنتجات</span>
+</div>
+<div class="products-container">
+  @for (product of products; track product) {
+    <app-product-card [product]="product"></app-product-card>
+  }
+</div>

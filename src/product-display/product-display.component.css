@@ -1,0 +1,98 @@
+
+/* تمديد العنوان وجعله بنفس لون الهيدر */
+.section-header {
+    background-color: #022333; /* لون الهيدر */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+    margin: 0;
+    border-bottom: 2px solid #022333;
+}
+  
+.section-title {
+    font-size: 28px;
+    font-weight: normal;
+    margin: 0;
+}
+  
+/* الحاوية الرئيسية */
+.product-display-container {
+    text-align: center;
+    background-color: #eff5fa;
+    padding: 40px 0 0;
+    /* border-radius: 32px; */
+}
+  
+/* بوكس يحتوي على العنوان والصور مع ظل */
+.product-box {
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    margin: 10px auto; /* تقليل المسافة العلوية */
+    position: relative;
+    top: -30px; /* رفع البوكس للأعلى */
+}
+
+  
+/* تنسيق العنوان داخل البوكس */
+.product-box h3 {
+    font-size: 36px; /* تكبير العنوان */
+    font-weight: normal;
+    font-family: DM Sans;
+    margin-bottom: 25px;
+    color: #022333;
+}
+  
+/* الصور */
+.product-images {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* توسيع المسافة بين الصور */
+    flex-wrap: wrap;
+}
+  
+.product-images img {
+    width: 500px; /* تكبير الصور أكثر */
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+  
+.product-images img:hover {
+    transform: scale(1.07);
+}
+  
+/* تحسين التصميم للهواتف */
+@media (max-width: 768px) {
+    .product-box {
+        padding: 30px;
+    }
+    .product-images img {
+        width: 90%; /* جعل الصور أكبر على الشاشات الصغيرة */
+    }
+}
+
+.products-container {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 20px; /* Space between cards */ /* توسيط العناصر */
+    padding-bottom: 50px;
+  }
+.products-title{
+    padding: 40px 0;
+    text-align: right;
+}
+
+.title{
+    color: white;
+    background-color: #022333;
+    border-radius: 10px;
+    font-size: 24px;
+    margin: 20px;
+    padding:0 20px;
+  }

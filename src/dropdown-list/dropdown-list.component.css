@@ -1,0 +1,157 @@
+
+.dropdown-menu a:hover {
+    background-color: #1b263b;
+}
+
+ul {
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+  }
+  
+  ul:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* button:hover {
+    background-color: #444;
+    transform: scale(1.05);
+  } */
+  
+  /* Dropdown Menu Animation */
+  .hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    visibility: hidden;
+  }
+  
+  ul {
+    transition: opacity 0.3s ease, transform 0.2s ease;
+  }
+  
+  ul:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+  
+  
+  /* Improve List Items */
+  li {
+    color: #fff;
+    transition: background-color 0.2s ease;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  li:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* لتظهر تحت الزر مباشرة */
+    right: 0; /* تثبيت القائمة على اليمين */
+    background-color: #022333; /* لون القائمة */
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* لضمان ظهورها فوق باقي العناصر */
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    right: 0;
+  }
+
+  .dropdown-container {
+    display: flex;
+    justify-content: flex-end; /* يجعل القائمة تظهر في اليمين */
+}
+  /* .dropdown-button img{
+    width: 20px;
+    height: 20px;
+  } */
+  
+  .dropdown-button {
+    background-color: #022333; /* تغيير لون الزر ليتماشى مع الخلفية */
+    color: white;
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Cairo;
+    width: 270px;
+    border: none;
+    border-radius: 5px; /* إزالة الحواف */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* يجعل القائمة تبدأ مباشرة بعد الزر */
+    /* left: 0; */
+    background-color: #022333; /* نفس لون الزر */
+    width: 270px;
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* display: none; */
+    border-radius: 5px;
+  }
+  
+  .dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown-menu li {
+    padding: 5px;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* خطوط فاصلة خفيفة */
+    color: white;
+    transition: background 0.3s;
+    text-align: center;
+  }
+  
+  .dropdown-menu li:hover {
+    color: #022333;
+    background-color: #fff;
+}
+  
+.dropdown-container:hover .dropdown-menu{
+    display: block;
+}

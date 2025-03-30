@@ -1,0 +1,35 @@
+.categories-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .categories {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .category {
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .category img {
+    width: 100px;
+    height: auto;
+  }
+  
+  .category p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #0d1b2a;
+  }
+  
