@@ -1,0 +1,11 @@
+[x-cloak] { display: none !important; }
+button span {
+    color: white;
+}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sora:wght@100..800&display=swap');
+
+.dark {
+    background-color: #1a202c; /* لون الخلفية الداكن */
+    color: white;
+  }
+  
