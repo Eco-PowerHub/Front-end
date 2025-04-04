@@ -51,7 +51,8 @@ export class SignupPageComponent {
       const formData = {
         firstName: this.signupForm.value.firstName,
         lastName: this.signupForm.value.lastName,
-        userName: this.signupForm.value.email, // يمكن استخدام البريد كاسم مستخدم
+        userName: this.signupForm.value.firstName + this.signupForm.value.lastName, 
+        // يمكن استخدام البريد كاسم مستخدم
         email: this.signupForm.value.email,
         password: this.signupForm.value.password,
         confirmNewPassword: this.signupForm.value.confirmPassword,

@@ -63,11 +63,7 @@ export class SendOtpComponent {
     }
        
       },
-      error: (error) => {
-        console.error('❌ خطأ أثناء التحقق:', error);
-        alert(`❌ كود غير صحيح: ${error.error?.message || 'حدثت مشكلة غير معروفة'}`);
-        this.isSubmitting = false;
-      }
+  
     });
   }
 }

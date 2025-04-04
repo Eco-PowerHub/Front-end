@@ -16,12 +16,12 @@ export class PasswordReset1Component {
 
   constructor(private authService: AuthService) {}
 
-  sendResetEmail() {
+  sendResetemail() {
     if (!this.email.trim()) {
       alert('❌ Please enter a valid email address.');
       return;
     }
-
+console.log(this.email);
     this.isLoading = true;
     this.authService.sendResetEmail(this.email).subscribe({
       next: (response) => {
