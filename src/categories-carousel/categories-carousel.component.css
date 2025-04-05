@@ -1,3 +1,24 @@
+/* Optional custom CSS */
+[dir="rtl"] .flex {
+  flex-direction: row-reverse;
+}
+
+
+
+swiper {
+  display: flex;
+  align-items: center;
+}
+
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 /* خلفية العنوان مع التوسيط */
 .section-header {
   background-color: #eff5fa; /* لون هادئ للخلفية */

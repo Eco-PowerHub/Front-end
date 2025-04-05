@@ -14,7 +14,7 @@
 
 h3{
   text-align: left;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 22px;
   margin: 0;
 }
@@ -85,4 +85,5 @@ h3{
 }
 p{
   margin: 0;
+  font-weight: bold;
 }

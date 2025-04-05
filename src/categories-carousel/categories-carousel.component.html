@@ -14,19 +14,41 @@
 
 
 <!-- الكاروسيل مع توزيع متساوٍ للعناصر -->
-<div class="container">
-  <p-carousel 
-    [value]="categories"
-    [numVisible]="3"
-    [numScroll]="1"
-    [circular]="true"
-    class="custom-carousel"
+<!-- categories-carousel.component.html -->
+<div class="relative overflow-hidden px-8" dir="rtl">
+  <!-- Navigation Arrows -->
+  <button 
+    (click)="prev()"
+    [disabled]="currentSlide === 0"
+    class="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-gray-200 p-2 hover:bg-gray-300 disabled:opacity-50"
   >
-    <ng-template let-category pTemplate="item">
-      <div class="category-item">
-        <img [src]="category.img" class="category-image" />
-        <h3 class="category-title">{{ category.name }}</h3>
+    ←
+  </button>
+  <button 
+    (click)="next()"
+    [disabled]="currentSlide >= totalSlides - visibleSlides"
+    class="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-gray-200 p-2 hover:bg-gray-300 disabled:opacity-50"
+  >
+    →
+  </button>
+
+  <!-- Carousel Track -->
+  <div class="overflow-hidden">
+    <div 
+      class="flex transition-transform duration-300 gap-4"
+      [style.transform]="'translateX(' + (currentSlide * slideWidth) + '%)'"
+    >
+      <div 
+        *ngFor="let category of categories"
+        class="flex-shrink-0 w-[calc(33.33%-16px)] p-4 bg-white border rounded-lg text-center"
+      >
+        <h3 class="text-lg font-semibold text-gray-800">{{ category }}</h3>
       </div>
-    </ng-template>
-  </p-carousel>
+    </div>
+  </div>
 </div>
+
+
+
+
+
