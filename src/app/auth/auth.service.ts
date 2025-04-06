@@ -15,8 +15,8 @@ private loginUrl='http://157.175.182.159:8080/api/Account/Login';
     console.log('بيانات التسجيل:', userData);
     return this.http.post(`${this.Register}`, userData);
   }
-  verifyCode(email: string , otp: string): Observable<any> {
-    return this.http.post(`${this.verifyotp}`, {email,otp } , );
+  verifyCode(RequestData:any): Observable<any> {
+    return this.http.post(`${this.verifyotp}`,RequestData );
   }
   login(loginData: { email: string, password: string }) {
     const headers = { 'Content-Type': 'application/json' };
@@ -33,6 +33,10 @@ private loginUrl='http://157.175.182.159:8080/api/Account/Login';
       { headers }
     );
   }
+  resetPassword(data: any) {
+    return this.http.post('http://157.175.182.159:8080/api/Account/ResetPassword', data);
+  }
+  
   
 
 }
