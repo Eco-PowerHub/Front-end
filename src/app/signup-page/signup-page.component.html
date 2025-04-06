@@ -1,4 +1,4 @@
-<nav class="bg-[#051C2F] text-white px-6 py-4 flex justify-between items-center relative">
+<nav class="bg-[#022333] text-white px-6 py-4 flex justify-between items-center relative">
   <!-- رابط الصفحة الرئيسية -->
   <a href="" class=" homeLink text-lg font-semibold">
     الصفحة الرئيسية
@@ -44,7 +44,7 @@
         </div>
         <div>
           <label for="phone" class=" text-[15px] block text-right mb-1  mr-28  sm:mr-3">رقم الهاتف</label>
-          <input id="phone" class="w-[230px]  sm:w-[210px] pt-2 pb-2  text-[13px] rounded-2xl text-right bg-[#F5F5F5]" formControlName="phone" type="tel" placeholder="ادخل رقم الهاتف" />
+          <input id="phone" class="w-[230px]  sm:w-[210px] pt-2 pb-2  text-[13px] rounded-2xl text-right bg-[#F5F5F5]" formControlName="phoneNumber" type="tel" placeholder="ادخل رقم الهاتف" />
           <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-red-500 text-sm">
             <span class="text-xs"  *ngIf="signupForm.get('phone')?.errors?.['required']">رقم الهاتف مطلوب</span>
             <span class="text-xs"  *ngIf="signupForm.get('phone')?.errors?.['pattern']">ادخل رقم هاتف صحيح</span>
@@ -96,6 +96,6 @@
       </button>
     </form>
     <!-- رابط تسجيل الدخول -->
-    <p class="text-center text-[13px] w-sm  ml-10 pb-2">لديك حساب بالفعل؟ <a href="/resetpassword" class="text-[#045988] hover-underline">تسجيل الدخول</a></p>
+    <p class="text-center text-[13px] w-sm  ml-10 pb-2">لديك حساب بالفعل؟ <a href="/login" class="text-[#045988] hover-underline">تسجيل الدخول</a></p>
   </div>
 </div>

@@ -1,31 +1,52 @@
-<nav class="bg-[#051C2F] text-white px-6 py-4 flex justify-between items-center relative">
-    <!-- رابط الصفحة الرئيسية -->
-    <a href="/" class="text-lg font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
-      الصفحة الرئيسية
-    </a>
-    
-    <!-- العنوان في المنتصف -->
-    <span class="absolute inset-x-0 text-center text-lg md:text-xl font-semibold  hidden sm:block">
-      Welcome to Eco PowerHub
-  
-    </span>
-  </nav>
+<div class="container">
+  <!-- الهيدر -->
+  <header class="header">
+    <span> مرحباً بكم في <strong>Eco PowerHub</strong></span>
+    <span class="home-link">الصفحة الرئيسية</span>
+  </header>
 
-<div class="{{ containerClass }}">
-    <div class="{{ cardClass }}">
-      <h2 class="{{ titleClass }}">تسجيل الدخول</h2>
-      <form class="{{ formClass }}">
-        <div class="{{ inputGroupClass }}">
-          <label for="email" class="{{ labelClass }}">البريد الإلكتروني</label>
-          <input type="email" id="email" placeholder="example@gmail.com" class="{{ inputClass }}" required>
+  <!-- الصورة كخلفية -->
+  <div class="background-container">
+    <img src="/image.png" class="background-img" alt="background" />
+
+    <!-- صندوق تسجيل الدخول فوق الصورة -->
+    <div class="login-box">
+      <h2>تسجيل الدخول</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+        <!-- حقل البريد الإلكتروني -->
+        <label class="email">البريد الإلكتروني</label>
+        <input type="email" formControlName="email" placeholder="example@gmail.com" />
+
+        <!-- حقل كلمة المرور -->
+        <label class="password">كلمة المرور</label>
+        <div class="password-container">
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="@#*%" />
+          <!-- زر إظهار/إخفاء كلمة المرور -->
+          <button type="button" (click)="togglePassword()">
+          </button>
         </div>
-        <div class="{{ inputGroupClass }}">
-          <label for="password" class="{{ labelClass }}">كلمة المرور</label>
-          <input type="password" id="password" placeholder="@#*%" class="{{ inputClass }} text-right" required>
+
+        <!-- رابط استرجاع كلمة المرور -->
+        <div class="forgot">
+          <a href="#">نسيت كلمة المرور؟</a>
         </div>
-        <button type="submit" class="{{ buttonClass }} ">تسجيل الدخول</button>
+
+        <!-- اختيار الدور -->
+        <div class="roles">
+          <label><input type="radio" formControlName="role" value="admin" /> مسؤول</label>
+          <label><input type="radio" formControlName="role" value="client" /> عميل</label>
+          <label><input type="radio" formControlName="role" value="company" /> شركة</label>
+        </div>
+
+        <!-- زر تسجيل الدخول -->
+        <button type="submit" class="login-btn">تسجيل الدخول</button>
+
+        <!-- رابط لإنشاء حساب جديد -->
+        <p class="register">
+          ليس لديك حساب؟ <a href="signup">إنشاء حساب</a>
+        </p>
       </form>
-      <p class="{{ footerClass }}">ليس لديك حساب؟ <a href="#" class="{{ linkClass }}">إنشاء حساب</a></p>
     </div>
   </div>
-  
+</div>
