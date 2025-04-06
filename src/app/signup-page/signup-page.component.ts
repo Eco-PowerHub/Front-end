@@ -25,7 +25,7 @@ export class SignupPageComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]], // يجب أن يكون رقم هاتف صحيح
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]], // يجب أن يكون رقم هاتف صحيح
       password: ['', [
         Validators.required,
         Validators.minLength(8),
@@ -52,7 +52,7 @@ export class SignupPageComponent {
         firstName: this.signupForm.value.firstName,
         lastName: this.signupForm.value.lastName,
         userName: this.signupForm.value.firstName + this.signupForm.value.lastName, 
-        // يمكن استخدام البريد كاسم مستخدم
+        phoneNumber: this.signupForm.value.phoneNumber,
         email: this.signupForm.value.email,
         password: this.signupForm.value.password,
         confirmNewPassword: this.signupForm.value.confirmPassword,

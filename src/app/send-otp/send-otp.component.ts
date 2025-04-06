@@ -45,17 +45,20 @@ export class SendOtpComponent {
     const requestData = { email: this.email, otp };
   console.log('البيانات المرسلة إلى الاندبوينت:', JSON.stringify(requestData));
     this.isSubmitting = true;
-    console.log('📤 إرسال OTP:', { email: this.email, otp });//بعرض الداتا المبعوة للاندبوينت
+   // console.log('📤 إرسال OTP:', { email: this.email, otp });//بعرض الداتا المبعوة للاندبوينت
 
-    this.authService.verifyCode(this.email, otp).subscribe({
-      next: (response) => {
+    this.authService.verifyCode(requestData).subscribe({
+     next: (response) => {
+      
          console.log( response);
          const currentTime=new Date();
     const otpexpireDate =new Date(this.otpExpiry);
+    console.log(otpexpireDate);
     const timeLeft=otpexpireDate.getTime()-currentTime.getTime();
     if(timeLeft>0){
 
       console.log(`${Math.floor(timeLeft/1000)} seconds`);
+ 
       this.router.navigate(['/signup-success']);
     }
     else{

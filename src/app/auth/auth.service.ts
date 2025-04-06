@@ -8,14 +8,13 @@ import { Observable } from 'rxjs';
 export class AuthService {
 private  Register='http://157.175.182.159:8080/api/Account/Register';
 private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
- private forgetpass='http://157.175.182.159:8080/api/Account/ForgetPassword';
   constructor(private http:HttpClient) { }
   register(userData: any): Observable<any> {
     console.log('بيانات التسجيل:', userData);
     return this.http.post(`${this.Register}`, userData);
   }
-  verifyCode(email: string , otp: string): Observable<any> {
-    return this.http.post(`${this.verifyotp}`, {email,otp } , );
+  verifyCode(RequestData:any): Observable<any> {
+    return this.http.post(`${this.verifyotp}`,RequestData );
   }
   sendResetEmail(email: string) {
     const headers = { 'Content-Type': 'application/json' };
@@ -24,6 +23,10 @@ private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
       { headers }
     );
   }
+  resetPassword(data: any) {
+    return this.http.post('http://157.175.182.159:8080/api/Account/ResetPassword', data);
+  }
+  
   
 
 }
