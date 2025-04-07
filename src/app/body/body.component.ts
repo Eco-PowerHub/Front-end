@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';  // تأكدي من استيراده
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-body',
-  standalone: true,  // إذا كنتِ تستخدمين Standalone Components
-  imports: [CommonModule],  // استيراد CommonModule لدعم ngStyle
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
-export class BodyComponent {
+export class BodyComponent implements OnInit {
   backgrounds: string[] = [
     '/homeTwo.png',
     '/back1.jpg',
@@ -17,6 +19,8 @@ export class BodyComponent {
   currentIndex: number = 0;
   autoSlideInterval: any;
   userInteractionTimeout: any;
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.startAutoSlide();
@@ -45,11 +49,33 @@ export class BodyComponent {
     this.currentIndex = (this.currentIndex - 1 + this.backgrounds.length) % this.backgrounds.length;
     this.stopAutoSlideTemporarily();
   }
-  open: boolean = false; // حالة القائمة
 
-  // دالة التبديل لإظهار أو إخفاء القائمة
+  open: boolean = false;         // للقائمة الجانبية
+  showLogout: boolean = false;  // لزر تسجيل الخروج
   toggleMenu() {
     this.open = !this.open;
+  
+    // لو فتحت القائمة، اقفلي زر تسجيل الخروج
+    if (this.open) {
+      this.showLogout = false;
+    }
   }
-    
+
+  
+
+
+  logout() {
+    this.authService.logout();
+    console.log('تم تسجيل الخروج');
+    this.router.navigate(['/login']);
+  }
+   // لو فتحت زر تسجيل الخروج، اقفلي القائمة
+   toggleLogoutButton() {
+    this.showLogout = !this.showLogout;
+  
+    // لو فتحت زر تسجيل الخروج، اقفلي القائمة الجانبية
+    if (this.showLogout) {
+      this.open = false;
+    }
+  }
 }

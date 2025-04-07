@@ -35,16 +35,33 @@
                         after:transition-all after:duration-300 hover:after:w-full font-cairo">المنتجات</a></li>
                     <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
                         after:transition-all after:duration-300 hover:after:w-full font-cairo">الصفحة الرئيسية</a></li>
-    
-                    <li class="flex items-center">
-                        <a href="#" class="p-2">
-                            <button class="w-32 p-2 rounded-[25px] bg-white font-bold text-black
-                             font-cairo transition duration-300 ease-in-out hover:bg-primary
-                              hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
-                                خالد محمود
-                            </button>
-                        </a>
-                    </li>
+                        <li class="flex flex-row md:block items-center relative">
+                          <button (click)="toggleLogoutButton()" 
+                          class="p-2 w-32 rounded-[25px] bg-white font-bold text-black
+                                 font-cairo transition duration-300 ease-in-out hover:bg-primary
+                                 hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
+                                 خالد محمود
+                                 <svg xmlns="http://www.w3.org/2000/svg" 
+                         class="ml-2 h-3 w-3 text-gray-500" 
+                         fill="none" viewBox="0 0 20 20" 
+                         stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7l7 7 7-7" />
+                    </svg>                                   
+                   
+                  </button>
+                  
+                          
+                            <!-- زر تسجيل الخروج -->
+                            <div *ngIf="showLogout" class="absolute top-full mt-2 text-center z-50 ">
+                            <button class="w-32 p-2 rounded-[16px] bg-primary bg-opacity-80 font-medium text-black
+                            font-cairo transition duration-300 ease-in-out hover:bg-primary
+                            hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
+                       تسجيل خروج  <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                            </div>
+                          </li>
+                          
+                          
                 </ul>
             </nav>
     
