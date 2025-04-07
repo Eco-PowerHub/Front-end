@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <header class="navbar bg-secondary p-4 shadow-md w-full z-60 relative" x-data="{ open: false }">
+        <div data-aos="fade-up" class="container mx-auto flex justify-between items-center">
+            <a href="#" class="max-w-[40px] md:max-w-[60px]"><img src="/eco-friendly.png" alt=""></a>
+    
+            <nav class="hidden md:flex items-center space-x-6">
+                <ul class="ull flex space-x-6 items-center">
+                    <li class="flex items-center">
+                        <div class="hidden md:block relative w-64">
+                            <input type="text"
+                                class="border-2 h-10 bg-white rounded-full px-4 py-2 pr-10 text-right 
+                                focus:ring-2 focus:ring-primary focus:outline-none w-full transition-all font-medium duration-300 font-cairo"
+                                placeholder="بتدور على ايه؟">
+                            <i class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[-270deg] text-gray-500 fa fa-search"></i>
+                        </div>
+                    </li>
+    
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                        after:transition-all after:duration-300 hover:after:w-full font-cairo">تواصل معنا</a></li>
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                        after:transition-all after:duration-300 hover:after:w-full font-cairo">من نحن</a></li>
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                        after:transition-all after:duration-300 hover:after:w-full font-cairo">الدعم</a></li>
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                        after:transition-all after:duration-300 hover:after:w-full font-cairo">المنتجات</a></li>
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                        after:transition-all after:duration-300 hover:after:w-full font-cairo">الصفحة الرئيسية</a></li>
+    
+                    <li class="flex items-center">
+                        <a href="#" class="p-2">
+                            <button class="w-32 p-2 rounded-[25px] bg-white font-bold text-black
+                             font-cairo transition duration-300 ease-in-out hover:bg-primary
+                              hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
+                                خالد محمود
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+    
+<!-- زر القائمة الجانبية -->
+<button (click)="toggleMenu()" 
+        class="md:hidden top-4 right-4 text-white px-4 py-2 rounded-md shadow-md hover:shadow-[0px_0px_10px_#678955] hover:scale-110 cursor-pointer text-2xl">
+  <span>{{ open ? '✕' : '☰' }}</span>
+</button>
+
+<!-- القائمة الجانبية -->
+<aside *ngIf="open" 
+       class="fixed top-11 right-0 w-80 h-full bg-secondary bg-opacity-95 text-white z-40 flex flex-col items-center justify-center space-y-6 transition-transform duration-300">
+  <ul lang="ar" dir="rtl" class="mt-6 space-y-4">
+    <li class="relative">
+      <input type="text" 
+             class="border-2 bg-white rounded-full px-4 py-2 pr-10 text-right 
+                    focus:ring-2 focus:ring-primary focus:outline-none w-full transition-all duration-300 font-cairo" 
+             placeholder="بتدور على ايه؟">
+      <i class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[-270deg] text-gray-500 fa fa-search"></i>
+    </li>
+    <li class="relative flex justify-center items-center">
+      <a href="#" class="p-2 w-full text-white text-center relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+      after:transition-all after:duration-300 hover:after:w-full font-cairo">
+        تواصل معنا
+      </a>
+    </li>
+    <li class="relative flex justify-center items-center">
+      <a href="#" class="p-2 w-full text-white text-center relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+          after:transition-all after:duration-300 hover:after:w-full font-cairo">من نحن</a>
+    </li>
+    <li class="relative flex justify-center items-center">
+      <a href="#" class="p-2 w-full text-white text-center relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+          after:transition-all after:duration-300 hover:after:w-full font-cairo">الدعم</a>
+    </li>
+    <li class="relative flex justify-center items-center">
+      <a href="#" class="p-2 w-full text-white text-center relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
+          after:transition-all after:duration-300 hover:after:w-full font-cairo">المنتجات</a>
+    </li>
+    <li class="relative flex justify-center items-center">
+      <a href="#" class="p-2 w-full text-white text-center relative font-bold border-b-2 border-blue-500 
+      after:block after:w-full after:h-[2px] after:transition-all after:duration-300 font-cairo">الصفحة الرئيسية</a>
+    </li>
+    <li class="relative flex justify-center items-center">
+      <button class="w-full p-2 rounded-[25px] bg-white font-bold text-black
+              font-cairo transition duration-300 ease-in-out hover:bg-primary
+              hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
+        <i class="fa-solid fa-right-from-bracket"></i> تسجيل خروج
+      </button>
+    </li>
+  </ul>
+</aside>
+        </div>
+
+    </header>
+    
+    <div class="part1 min-h-[600px] w-full flex flex-col items-center p-6 md:p-10 relative rtl bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden">
+  
+        <!-- الخلفيات المتحركة -->
+        <div 
+          *ngFor="let bg of backgrounds; let i = index"
+          class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+          [ngClass]="{'opacity-100': i === currentIndex, 'opacity-0': i !== currentIndex}"
+          [ngStyle]="{'background-image': 'url(' + bg + ')'}"
+        >
+        </div>
+      
+        <!-- زر السابق -->
+        <button 
+          (click)="prevBackground()" 
+          class="absolute left-8 top-1/2 transform -translate-y-1/2 
+                 bg-white bg-opacity-30 hover:bg-opacity-50 
+                 text-white w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center 
+                 rounded-full shadow-lg transition duration-300 backdrop-blur-md border border-white border-opacity-50
+                 hover:scale-110 active:scale-90"
+        >
+          <i class="fa-solid fa-chevron-left text-2xl sm:text-3xl"></i>
+        </button>
+      
+        <!-- زر التالي -->
+        <button 
+          (click)="nextBackground()" 
+          class="absolute right-8 top-1/2 transform -translate-y-1/2 
+                 bg-white bg-opacity-30 hover:bg-opacity-50 
+                 text-white w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center 
+                 rounded-full shadow-lg transition duration-300 backdrop-blur-md border border-white border-opacity-50
+                 hover:scale-110 active:scale-90"
+        >
+          <i class="fa-solid fa-chevron-right text-2xl sm:text-3xl"></i>
+        </button>
+        <div class="pra1 flex relative w-[90%] max-w-[220px] text-black mb-auto  ml-28 bottom-[3%]">
+        </div>
+        <!-- العنوان -->
+        <h1 class="text-white text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-center bg-[rgba(57,57,59,0.5)] shadow-lg px-5 py-2 font-cairo rounded-[35px] absolute top-[15%] left-1/2 transform -translate-x-1/2">
+            ECO POWERHUB
+        </h1>
+      
+        <!-- النص الرئيسي -->
+        <div class="pra2 flex flex-col items-center justify-center text-center  bg-[rgba(37,37,39,0.5)] shadow-lg p-4 rounded-[35px] w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] relative text-white -top-[50px] max-h-[120px] overflow-hidden">
+          <h4 class="text-[20px] sm:text-[28px] md:text-[32px] tracking-wide font-cairo font-medium  -mb-[10px]">
+            الطاقة الشمسية والمتجددة
+          </h4>
+          <p class="text-[20px] sm:text-[28px] md:text-[32px] tracking-wide font-medium font-cairo  mt-2">
+            الشمس تعمل من أجلك - استخدم طاقتها بكفاءة
+          </p>
+        </div>
+      
+      </div>
+    
+      
+    
+    <h2 lang="ar" dir="rtl" class="font-bold font-cairo text-2xl sm:text-3xl md:text-4xl  text-secondary text-center  mb-8 mt-10">
+        لماذا تستخدم Eco PowerHub؟
+    </h2>
+    <div lang="ar" dir="rtl" class="flex flex-col lg:grid lg:grid-cols-2 items-center font-cairo justify-center rtl gap-10 px-10 md:px-10">
+    
+        <!-- النص والمحتوى -->
+        <div class="w-full max-w-[600px]">
+      
+    
+            <ul class="list-none rtl">
+                <li class="flex items-start gap-4 p-3">
+                    <div class=" flex items-center justify-center text-[#73B0D1] sm:w-10 sm:h-10 w-8 h-8 sm:text-2xl rounded-full border-2 text-center border-[#73B0D1]">
+                    <i class="fas fa-clock "></i></div>
+                    <div>
+                        <h4 class="font-extrabold text-[#051C2F] mb-3 text-lg sm:text-xl font-cairo">توفير الوقت</h4>
+                        <p class="text-black font-semibold text-sm sm:text-base w-72 font-cairo">
+                            لا تضيع وقتك في البحث، سنوصلك بأفضل الموردين في دقائق قليلة.
+                        </p>
+                    </div>
+                </li>
+    
+                <li class="flex items-start gap-4 p-3">
+                    <div class=" flex items-center justify-center text-[#73B0D1] sm:text-2xl  sm:w-10 sm:h-10 w-8 h-8  rounded-full border-2 text-center border-[#73B0D1]">
+                        <i class="fas fa-wallet"></i></div>
+                    <div>
+                        <h4 class="font-extrabold text-[#051C2F] mb-3 text-lg sm:text-xl font-cairo">توفير المال</h4>
+                        <p class="text-black font-semibold text-sm sm:text-base w-72 font-cairo">
+                            احصل على أفضل العروض التنافسية من الموردين، ووفّر على نفسك التكاليف الزائدة.
+                        </p>
+                    </div>
+                </li>
+    
+                <li class="flex items-start gap-4 p-3">
+                    <div class=" flex items-center justify-center text-[#73B0D1] sm:text-2xl  sm:w-10 sm:h-10 w-8 h-8 rounded-full border-2 text-center border-[#73B0D1]">
+                        <i class="fas fa-hand-holding-usd "></i></div>
+                    <div>
+                        <h4 class="font-extrabold text-[#051C2F] mb-3 text-lg sm:text-xl font-cairo">مجاني وغير ملزم</h4>
+                        <p class="text-black font-semibold text-sm sm:text-base w-72 font-cairo">
+                            خدمتنا مجانية تمامًا، ويمكنك طلب العروض دون أي التزام بالشراء.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- الصورة -->
+        <div class="w-full flex justify-center lg:justify-end mt-2">
+            <img src="/homeOne.png" alt="img1" class="w-full max-w-[500px] h-auto rounded-[35px] shadow-lg"/>
+        </div>
+    
+    </div>
+    
+    <h2 lang="ar" dir="rtl" class="font-bold font-cairo text-2xl sm:text-3xl md:text-4xl  text-[#051C2F] text-center  mt-11">
+        انتج بيئتك النظيفة المتجددة الخاصة بك</h2>
+
+      <div lang="ar" dir="rtl" class="part3 block rtl text-center py-12 px-2">
+        <ul class="flex flex-col md:flex-row justify-center items-center gap-6">
+          <li class="flex flex-col items-center p-5 w-full sm:w-[300px] md:w-[300px]">
+            <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl hover:bg-secondary hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+            hover:scale-105 focus:outline-none border-none">
+              <i class="fas fa-battery-full text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
+              <h4 class="text-2xl font-semibold font-cairo  mb-2">حلول تخزين البطاريات</h4>
+              <p class=" text-base font-cairo leading-6">نستخدم أحدث تقنيات الطاقة المتجددة لتخزين الطاقة بكفاءة للشركات والمنازل.</p>
+            </div>
+            <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl hover:bg-secondary hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+            hover:scale-105 focus:outline-none border-none">
+              <i class="fas fa-solar-panel text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
+              <h4 class="text-2xl font-semibold font-cairo  mb-2">الطاقة الشمسية التجارية</h4>
+              <p class="text-base font-cairo leading-6">نقدم حلول طاقة شمسية مبتكرة لتوليد طاقة مستدامة بتكاليف منخفضة.</p>
+            </div>
+          </li>
+          <li class="flex flex-col md:flex-row gap-12 mt-8">
+            <div class="par flex flex-col items-center w-full max-w-[500px] text-center">
+              <img src="/homeThree.png" alt="حلول الطاقة الشمسية" class="w-full max-w-[350px] h-auto mb-10 top-10 rounded-[35px] shadow-lg ">
+              <div class="p flex flex-col sm:flex-row gap-8 justify-center items-center">
+                <div class="flex flex-col items-center p-5 w-full text-black bg-white shadow-md rounded-xl  hover:bg-secondary hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+                hover:scale-105 focus:outline-none border-none">
+                  <i class="fas fa-industry text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
+                  <h4 class="text-2xl font-semibold font-cairo  mb-2">الطاقة الشمسية الصناعية</h4>
+                  <p class=" text-base font-cairo leading-6">نساعد المصانع على تقليل الاعتماد على الوقود الأحفوري .</p>
+                </div>
+                <div class="flex flex-col items-center p-5 w-full text-black bg-white shadow-md rounded-xl  hover:bg-secondary hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+                hover:scale-105 focus:outline-none border-none">
+                  <i class="fas fa-chart-line text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
+                  <h4 class="text-2xl font-semibold font-cairo  mb-2">عائد استثماري مرتفع</h4>
+                  <p class=" text-base font-cairo leading-6">استثمارات الطاقة الشمسية تضمن لك توفيرًا كبيرًا على المدى الطويل.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="flex flex-col items-center p-5 w-full sm:w-[300px] md:w-[300px]">
+            <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl  hover:bg-secondary hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+            hover:scale-105 focus:outline-none border-none">
+              <i class="fas fa-leaf text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
+              <h4 class="text-2xl font-semibold font-cairo  mb-2">تعزيز أوراق الاعتماد الخضراء</h4>
+              <p class=" text-base font-cairo leading-6">استخدام الطاقة المتجددة يعزز صورتك البيئية ويقلل من بصمتك الكربونية.</p>
+            </div>
+            <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl  hover:bg-secondary hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+            hover:scale-105 focus:outline-none border-none">
+              <i class="fas fa-lightbulb text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
+              <h4 class="text-2xl font-semibold font-cairo  mb-2">التوسع باستخدام التقنيات الجديدة</h4>
+              <p class=" text-base font-cairo leading-6">نستخدم أحدث الابتكارات في الطاقة لضمان كفاءة وإنتاجية عالية.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <h2 lang="ar" dir="rtl" class="font-bold font-cairo text-2xl sm:text-3xl md:text-4xl  text-[#051C2F] text-center  -mt-8 mb-9">
+        ابدء رحلتك معنا </h2>
+      <div lang="ar" dir="rtl" class="part4 flex flex-col md:flex-row justify-center items-center gap-8 flex-nowrap mb-5">
+        <p class="md:w-[550px] w-[400px] text-2xl text-right mr-8 font-cairo text-gray-800">
+          نحن نؤمن بمستقبل مدعوم بالطاقة النظيفة والمتجددة، لهذا السبب نحن ملتزمون بتقديم حلول مبتكرة تجعل الانتقال إلى مصادر الطاقة المستدامة أسهل وبأسعار معقولة على الأفراد والشركات.
+        </p>
+        <img src="/img3.jpg" alt="img3" class="w-full max-w-[400px] rounded-[35px] bg-white shadow-xl">
+
+      </div>
+      
+      <div lang="ar" dir="rtl" class="part5 flex justify-center items-center gap-6 md:gap-8 mb-10 mt-8 text-center  px-4">
+    
+        <p class="w-[700px] sm:w-[850px] sm:text-[32px] text-[13px] font-medium sm:font-bold font-cairo text-gray-800">
+            إذا كنت مستعدًا لبدء رحلتك مع 
+            <span class="font-cairo text-blue-600">Eco PowerHub</span>، اضغط هنا
+        </p>
+        
+        <button type="submit" 
+            class=" w-[120px] sm:w-[150px] sm:h-[45px] h-[25px] sm:text-[24px] text-[12px] flex items-center ml-5 justify-center 
+                   bg-[#051C2F] text-white font-cairo font-medium 
+                   rounded-[25px] shadow-md transition-all 
+                   hover:bg-white hover:text-black hover:shadow-[0px_0px_20px_#499DCA] 
+                   hover:scale-105 focus:outline-none border-none">
+            ابدأ الآن
+        </button>
+    
+    </div>
+    
+      
+    </body>
+    </html>
+
