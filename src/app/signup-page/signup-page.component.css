@@ -9,6 +9,10 @@ body {
   height: 100vh;
   caret-color: transparent;
 }
+.welcome{
+  font-family: "Cairo", serif;
+
+}
 body::before {
   content: "";
   position: fixed;
@@ -35,9 +39,7 @@ body::before {
   color: #499DCA;
 }
 
-.welcome{
-  font-family: "DM Sans", serif;
-}
+
   .signup-container {
    margin-top: 34px;
    text-align: center;
@@ -101,7 +103,7 @@ body::before {
     text-align: right;
     border: 1px solid #ccc;
     border-radius: 50px; /* يخلي الحواف دا��رية */
-    font-size: 15px;
+   
   
   }
   .Left .label2{
@@ -179,7 +181,7 @@ body::before {
     background: #051C2F;
     color: white;
     border: none;
-    border-radius: 50px;
+    border-radius: 6px;
     font-family: "Cairo", serif;
     cursor: pointer;
     font-size: 17px;
@@ -189,12 +191,16 @@ body::before {
     transition: background 0.3s ease;
   }
   
-  
-  button:hover {
-    background-color: #003366;
-  
-  }
-  
+  .button:hover{
+    background-color: #499DCA;
+     transform: scale(1.05); 
+ }
+ 
+ .button:focus{
+     outline: none;
+     box-shadow: 0 0 5px #499DCA;
+ }
+ 
   .login-link {
     margin-top: 5px;
     font-size: 17px;
@@ -237,7 +243,7 @@ body::before {
 
   .error {
     color: rgb(243, 36, 36);
-    font-size: 5px;
+    font-size: 3px;
     margin-top: 5px;
   }
   .role{

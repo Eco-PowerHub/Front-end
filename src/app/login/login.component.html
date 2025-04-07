@@ -1,16 +1,25 @@
+<nav class="bg-[#051C2F] text-white px-6 py-4 flex justify-between items-center relative">
+  <!-- رابط الصفحة الرئيسية -->
+  <a href="/" class="homelink caret-transparent sm:text-xl text-md font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
+    الصفحة الرئيسية
+  </a>
+  
+  <!-- العنوان في المنتصف -->
+  <span class="caret-transparent absolute inset-x-0 text-right p-2 text-sm sm:text-xl font-semibold   sm:text-center">
+    إعادة تعيين كلمة المرور
+
+  </span>
+</nav>
 <div class="container">
   <!-- الهيدر -->
-  <header class="header">
-    <span> مرحباً بكم في <strong>Eco PowerHub</strong></span>
-    <span class="home-link">الصفحة الرئيسية</span>
-  </header>
+
 
   <!-- الصورة كخلفية -->
   <div class="background-container">
     <img src="/image.png" class="background-img" alt="background" />
 
     <!-- صندوق تسجيل الدخول فوق الصورة -->
-    <div class="login-box">
+    <div class="login-box mt-[-22px]">
       <h2>تسجيل الدخول</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         
@@ -29,7 +38,7 @@
 
         <!-- رابط استرجاع كلمة المرور -->
         <div class="forgot">
-          <a href="#">نسيت كلمة المرور؟</a>
+          <a href="/forgetpassword">نسيت كلمة المرور؟</a>
         </div>
 
         <!-- اختيار الدور -->
