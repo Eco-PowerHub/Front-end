@@ -1,46 +1,68 @@
-import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, NgModule, ViewChild, ViewEncapsulation } from '@angular/core';
-import Swiper from 'swiper';
-import 'swiper/css';
+// product-carousel.component.ts
+import { Component } from '@angular/core';
 import { DropdownListComponent } from "../dropdown-list/dropdown-list.component";
+
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+}
 
 @Component({
   selector: 'app-categories-carousel',
-  standalone: true,
-  imports: [CommonModule, DropdownListComponent], 
   templateUrl: './categories-carousel.component.html',
-  styleUrl: './categories-carousel.component.css',
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./categories-carousel.component.css'],
+  imports: [DropdownListComponent]
 })
-export class CategoriesCarouselComponent{
-
-  categories = [
-    { id:1, name: 'المحولات', img: 'assets/inverter.png' },
-    { id:2, name: 'البطاريات', img: 'assets/battery.jpeg' },
-    { id:3, name: 'الخلايا الشمسية', img: 'assets/solar.png' },
-    { id:4, name: 'نظام مراقبة', img: 'assets/camera.png' },
-    { id:5, name: 'كابلات وموصلات', img: 'assets/cables.png' },
-    { id:6, name: 'شواحن', img: 'assets/charger.png' },
+export class CategoriesCarouselComponent {
+  products: Product[] = [
+    { id: 1, name: 'المحولات', image: 'assets/inverter.png' },
+    { id: 2, name: 'البطاريات', image: 'assets/battery.jpeg' },
+    { id: 3, name: 'الخلايا الشمسية', image: 'assets/panel.png' },
+    { id: 4, name: 'شواحن', image: 'assets/charger.png' },
+    { id: 5, name: 'نظام مراقبة', image: 'assets/camera.png' },
+    { id: 6, name: 'كابلات وموصلات', image: 'assets/cables.png' }
   ];
 
-  currentSlide = 0;
-  visibleSlides = 3;
-  slideWidth = 100 / this.visibleSlides;
+  currentIndex = 0;
+  itemsPerPage = 3;
 
-  get totalSlides() {
-    return this.categories.length;
+  get visibleProducts() {
+    return this.products.slice(this.currentIndex, this.currentIndex + this.itemsPerPage);
   }
 
-  next() {
-    if (this.currentSlide < this.totalSlides - this.visibleSlides) {
-      this.currentSlide += 1;
+  nextSlide() {
+    if (this.currentIndex + this.itemsPerPage < this.products.length) {
+      this.currentIndex += this.itemsPerPage;
+    } else {
+      this.currentIndex = 0; // Loop back to the beginning
     }
   }
 
-  prev() {
-    if (this.currentSlide > 0) {
-      this.currentSlide -= 1;
+  prevSlide() {
+    if (this.currentIndex - this.itemsPerPage >= 0) {
+      this.currentIndex -= this.itemsPerPage;
+    } else {
+      // Go to the last set of items
+      const remainder = this.products.length % this.itemsPerPage;
+      this.currentIndex = remainder === 0 ? 
+        this.products.length - this.itemsPerPage : 
+        this.products.length - remainder;
     }
+  }
+
+  isDotActive(index: number): boolean {
+    const slideIndex = Math.floor(index / this.itemsPerPage);
+    const currentSlideIndex = Math.floor(this.currentIndex / this.itemsPerPage);
+    return slideIndex === currentSlideIndex;
+  }
+
+  getDotArray(): number[] {
+    const totalDots = Math.ceil(this.products.length / this.itemsPerPage);
+    return Array(totalDots).fill(0);
+  }
+
+  goToSlide(index: number) {
+    this.currentIndex = index * this.itemsPerPage;
   }
 }
-
