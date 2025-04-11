@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-private  Register='http://157.175.182.159:8080/api/Account/Register';
-private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
-private loginUrl='http://157.175.182.159:8080/api/Account/Login';
- private forgetpass='http://157.175.182.159:8080/api/Account/ForgetPassword';
+private  Register='http://ecoback-service.default.svc.cluster.local:8080/api/Account/Register';
+private  verifyotp='http://ecoback-service.default.svc.cluster.local:8080/api/Account/verify-otp';
+private loginUrl='http://ecoback-service.default.svc.cluster.local:8080/api/Account/Login';
+ private forgetpass='http://ecoback-service.default.svc.cluster.local:8080/api/Account/ForgetPassword';
   constructor(private http:HttpClient) { }
   register(userData: any): Observable<any> {
     console.log('بيانات التسجيل:', userData);
@@ -20,7 +20,7 @@ private loginUrl='http://157.175.182.159:8080/api/Account/Login';
   }
   login(loginData: { email: string, password: string }) {
     const headers = { 'Content-Type': 'application/json' };
-    return this.http.post('http://157.175.182.159:8080/api/Account/Login', 
+    return this.http.post('http://ecoback-service.default.svc.cluster.local:8080/api/Account/Login', 
       JSON.stringify(loginData), 
       { headers }
     );
@@ -28,13 +28,13 @@ private loginUrl='http://157.175.182.159:8080/api/Account/Login';
   
   sendResetEmail(email: string) {
     const headers = { 'Content-Type': 'application/json' };
-    return this.http.post('http://157.175.182.159:8080/api/Account/ForgetPassword', 
+    return this.http.post('http://ecoback-service.default.svc.cluster.local:8080/api/Account/ForgetPassword', 
       JSON.stringify({ email: email }), 
       { headers }
     );
   }
   resetPassword(data: any) {
-    return this.http.post('http://157.175.182.159:8080/api/Account/ResetPassword', data);
+    return this.http.post('http://ecoback-service.default.svc.cluster.local:8080/api/Account/ResetPassword', data);
   }
   
   
