@@ -4,6 +4,7 @@
 body{
     font-family: "Tajawal", sans-serif;
 }
+
 header {
     background-color: #051C2F;
     justify-content: space-between;
@@ -119,10 +120,14 @@ button:hover {
 }
 .txt1{
     margin-top: -80px;
-    font-family: "Tajawal", sans-serif;
+    font-family: "Calibri", sans-serif;
 }
 .txt{
  
     font-family: "Cairo", serif;
+
+}
+Font{
+    font-family: "Calibri", sans-serif;
 
 }
