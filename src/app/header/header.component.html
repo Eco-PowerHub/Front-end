@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+<header class="navbar bg-secondary p-4 shadow-md w-full z-60 relative">
+
+    
+    <div  data-aos="fade-up" class="container mx-auto flex justify-between items-center">
+        <a href="#" class="max-w-[40px] md:max-w-[60px]"><img src="/eco-friendly.png" alt=""></a>
+
+        <nav class="hidden md:flex items-center space-x-6">
+            <ul class="ull flex space-x-6 items-center">
+
+                <li class="flex items-center">
+                    <div class="hidden md:block relative w-64">
+                        <input type="text" 
+                            class="border-2 bg-white rounded-full px-4 py-2 pr-10 text-right 
+                            focus:ring-2 focus:ring-primary focus:outline-none w-full transition-all duration-300 font-cairo" 
+                            placeholder="بتدور على ايه؟">
+                        <i class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[-270deg] text-gray-500 fa fa-search"></i>
+                    </div>
+                    
+                </li> 
+                
+
+                <li class="flex items-center"><a href="#" class="p-2 text-white relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">تواصل معنا</a></li>
+                <li class="flex items-center"><a href="#" class="p-2 text-white relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">من نحن</a></li>
+                <li class="flex items-center"><a href="#" class="p-2 text-white relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">الدعم</a></li>
+                <li class="flex items-center"><a href="#" class="p-2 text-white relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">المنتجات</a></li>
+                <li class="flex items-center"><a href="#" class="p-2 text-white relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">الصفحة الرئيسية</a></li>
+                
+
+                <li class="flex items-center">
+                    <a href="#" class="p-2">
+                        <button class="w-32   p-2 rounded-[25px] bg-white text-black
+                         font-cairo transition duration-300 ease-in-out hover:bg-primary
+                          hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
+                            خالد محمود
+                        </button>
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+    <div   x-data="{ open: false }">
+        
+        <button  data-aos="fade-up" x-on:click="open = !open" 
+            class="md:hidden  top-4 right-4 text-white px-4 py-2 rounded-md shadow-md hover:shadow-[0px_0px_10px_#678955] hover:scale-110 cursor-pointer text-2xl">
+            <span x-text="open ? '✕' : '☰'"></span>
+        </button>
+    
+       
+        <aside  x-show="open"
+            x-transition
+            x-bind:class="open ? 'translate-x-0' : 'translate-x-full'"
+            class="fixed top-11 right-0 w-80 h-full bg-secondary bg-opacity-95 text-white z-40 flex flex-col items-center justify-center space-y-6 transform transition-transform duration-300">
+            <ul lang="ar" dir="rtl" class="mt-6 space-y-4 ">
+                <li class="relative">
+                    <input type="text" 
+                                        class="border-2 bg-white rounded-full px-4 py-2 pr-10 text-right 
+                                        focus:ring-2 focus:ring-primary focus:outline-none w-full transition-all duration-300 font-cairo" 
+                                        placeholder="بتدور على ايه؟">
+                                    <i class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[-270deg] text-gray-500 fa fa-search"></i>
+                </li> 
+                <li class="relative flex justify-center items-center">
+                    <a href="#" class="p-2 w-full text-white text-center relative border-b-2 border-blue-500 
+                    after:block after:w-full after:h-[2px]
+                    after:transition-all after:duration-300 font-cairo">
+                        تواصل معنا
+                    </a>
+                </li>
+                <li class="relative flex justify-center items-center"><a lang="ar" dir="rtl" href="#" class="p-2 w-full 
+                    focus:outline-none focus:ring-2 focus:ring-blue-400  text-white text-center relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">من نحن</a></li>
+                <li class="relative flex justify-center items-center"><a lang="ar" dir="rtl" href="#" class="p-2 w-full  text-white text-center relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">الدعم</a></li>
+                <li class="relative flex justify-center items-center"><a lang="ar" dir="rtl" href="#" class="p-2 w-full  text-white text-center relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">المنتجات</a></li>
+                <li class="relative flex justify-center items-center"><a lang="ar" dir="rtl" href="#" class="p-2 w-full  text-white text-center relative after:block after:w-0 after:h-[2px] after:bg-blue-500 
+                    after:transition-all after:duration-300 hover:after:w-full font-cairo">الصفحة الرئيسية</a></li>
+                <li class="relative flex justify-center items-center"> 
+                    <button class="w-full   p-2 rounded-[25px] bg-white text-black
+                    font-cairo transition duration-300 ease-in-out hover:bg-primary
+                     hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
+                   <i class="fa-solid fa-right-from-bracket"></i>  تسجيل خروج 
+                    </button>
+                    
+                </li>
+            </ul>
+        </aside>
+    </div>
+</header>
+
+
+</body>
+</html>

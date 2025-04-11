@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  @font-face {
+    font-family: 'Calibri';
+    src: url('/public/calibri.ttf') format('woff2'),
+         url('/public/calibrib.ttf') format('woff'),
+         url('/public/calibril.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sora:wght@100..800&display=swap');
