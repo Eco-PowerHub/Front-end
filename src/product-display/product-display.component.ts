@@ -3,10 +3,12 @@ import { CategoriesCarouselComponent } from "../categories-carousel/categories-c
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { IProduct } from '../models/iproduct';
 import { ProductService } from '../product.service';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-product-display',
-  imports: [CategoriesCarouselComponent, ProductCardComponent],
+  imports: [CategoriesCarouselComponent, ProductCardComponent, HeaderComponent, FooterComponent],
   templateUrl: './product-display.component.html',
   styleUrl: './product-display.component.css'
 })

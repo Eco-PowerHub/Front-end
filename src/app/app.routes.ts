@@ -7,19 +7,20 @@ import { AppPasswordResetComponent } from './app-password-reset/app-password-res
 import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PasswordReset1Component } from './password-reset1/password-reset1.component';
+import { ProductDisplayComponent } from '../product-display/product-display.component';
 
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/signup', pathMatch: 'full' },
+    { path: '', redirectTo: '/productdisplay', pathMatch: 'full' },
     {path: 'signup', component:SignupPageComponent},
     {path: 'signup-success', component:SuccessfulSignupComponent},
     {path: 'sendotp' , component:SendOtpComponent},
     {path: 'resetpassword', component:AppPasswordResetComponent},
     {path: 'login', component:LoginComponent},
     {path: 'aboutus', component:AboutUsComponent},
-    {path:'forgetpassword' , component:PasswordReset1Component}
-
+    {path:'forgetpassword' , component:PasswordReset1Component},
+    {path:'productdisplay' , component:ProductDisplayComponent }
 
 ];
 @NgModule({
