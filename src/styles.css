@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+<<<<<<< HEAD
 @font-face{
     font-family: "Tajawal";
     src: url('/src/asset/Tajawal-Light.ttf') format("truetype");
 }
+=======
+html, body { height: auto; }
+body { margin: 0; font-family: Cairo; background-color: #eff5fa;}
+>>>>>>> d9c8a66cc22f76597878192ab63581096e4973df

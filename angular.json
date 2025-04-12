@@ -27,8 +27,15 @@
               }
             ],
             "styles": [
+<<<<<<< HEAD
               "src/styles.css"
               
+=======
+              
+              "src/styles.css",
+              "node_modules/flowbite/dist/flowbite.min.css",
+              "node_modules/swiper/swiper-bundle.min.css"
+>>>>>>> d9c8a66cc22f76597878192ab63581096e4973df
             ],
             "scripts": [
              
