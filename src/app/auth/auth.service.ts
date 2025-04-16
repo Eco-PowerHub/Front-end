@@ -34,9 +34,14 @@ private loginUrl='http://157.175.182.159:8080/api/Account/Login';
     );
   }
   resetPassword(data: any) {
-    return this.http.post('http://157.175.182.159:8080/api/Account/ResetPassword', data);
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.post(
+      'http://157.175.182.159:8080/api/Account/ResetPassword',
+      JSON.stringify(data),
+      { headers }
+    );
   }
   
-  
+
 
 }
