@@ -11,7 +11,7 @@ import { PasswordReset1Component } from './password-reset1/password-reset1.compo
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/signup', pathMatch: 'full' },
+    { path: '', redirectTo: '/', pathMatch: 'full' },
     {path: 'signup', component:SignupPageComponent},
     {path: 'signup-success', component:SuccessfulSignupComponent},
     {path: 'sendotp' , component:SendOtpComponent},
