@@ -1,20 +1,20 @@
 /* Optional custom CSS */
-[dir="rtl"] .flex {
+/* [dir="rtl"] .flex {
   flex-direction: row-reverse;
-}
+} */
 
 
-.no-scrollbar::-webkit-scrollbar {
+/* .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
+} */
 
 
 
-swiper {
+/* swiper {
   display: flex;
   align-items: center;
 }
@@ -24,13 +24,13 @@ swiper {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 
 
 /* خلفية العنوان مع التوسيط */
 .section-header {
-  background-color: #eff5fa; /* لون هادئ للخلفية */
+  background-color: #eff5fa; 
   padding: 0;
   text-align: center;
 }
@@ -42,39 +42,39 @@ swiper {
   margin: 0;
 } 
 
-.container{
+/* .container{
   background-color: #fff;
-}
+} */
 
 /* لضبط الكاروسيل والعناصر */
-.custom-carousel .p-carousel-item {
+/* .custom-carousel .p-carousel-item {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 /* تكبير الصور وجعلها متناسقة */
-.category-image {
-  width: 150px; /* زيادة حجم الصورة */
+/* .category-image {
+  width: 150px; زيادة حجم الصورة
   height: 150px;
-  object-fit: contain; /* يضمن عدم تمدد الصور */
-}
+  object-fit: contain; يضمن عدم تمدد الصور
+} */
 
 /* تكبير النصوص وتحسين المحاذاة */
-.category-title {
+/* .category-title {
   margin-top: 22px;
   text-align: center;
   font-size: 28px;
   font-weight: bold;
   color: #022333;
-}
+} */
 
 
 /* جعل الكاروسيل يعرض كل العناصر */
-.custom-carousel .p-carousel-container {
+/* .custom-carousel .p-carousel-container {
   display: flex;
   justify-content: center;
-}
+} */
 
 /* تحسين النص */
 /* .category-title {

@@ -1,4 +1,4 @@
-import { Routes ,RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { SuccessfulSignupComponent } from './successful-signup/successful-signup.component';
@@ -7,24 +7,25 @@ import { AppPasswordResetComponent } from './app-password-reset/app-password-res
 import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PasswordReset1Component } from './password-reset1/password-reset1.component';
+
+import { CartComponent } from '../cart/cart.component';
 import { ProductDisplayComponent } from '../product-display/product-display.component';
 
-
-
 export const routes: Routes = [
-    { path: '', redirectTo: '/productdisplay', pathMatch: 'full' },
-    {path: 'signup', component:SignupPageComponent},
-    {path: 'signup-success', component:SuccessfulSignupComponent},
-    {path: 'sendotp' , component:SendOtpComponent},
-    {path: 'resetpassword', component:AppPasswordResetComponent},
-    {path: 'login', component:LoginComponent},
-    {path: 'aboutus', component:AboutUsComponent},
-    {path:'forgetpassword' , component:PasswordReset1Component},
-    {path:'productdisplay' , component:ProductDisplayComponent }
-
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: 'signup', component: SignupPageComponent },
+  { path: 'signup-success', component: SuccessfulSignupComponent },
+  { path: 'sendotp', component: SendOtpComponent },
+  { path: 'resetpassword', component: AppPasswordResetComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'aboutus', component: AboutUsComponent },
+  { path: 'forgetpassword', component: PasswordReset1Component },
+  { path: 'cart', component: CartComponent },
+  { path: 'products', component: ProductDisplayComponent },
 ];
+
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
-  })
-  export class AppRoutingModule {}
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
