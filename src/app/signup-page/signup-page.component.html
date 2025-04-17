@@ -63,13 +63,14 @@
           <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-500 ">
             <span class="text-xs" *ngIf="signupForm.get('password')?.errors?.['required']">كلمة المرور مطلوبة.</span>
             <span class="text-xs"  *ngIf="signupForm.get('password')?.errors?.['minlength']">يجب أن تكون 8 أحرف على الأقل.</span>
+            <br>
             <span class="text-xs"   *ngIf="signupForm.get('password')?.errors?.['pattern']">يجب أن تحتوي على رقم وحرف كبير ورمز خاص.</span>
           </div>
         </div>
         <div>
           <label for="confirmPassword" class="text-[#022333] text-[15px] block text-right mb-1 mr-28 font-bold  sm:mr-3" >تأكيد كلمة المرور</label>
           <input id="confirmPassword" class="w-[230px] border border-[#ccc]  sm:w-[210px] pt-2 pb-2  text-[13px] pr-3  rounded-lg text-right bg-[#F5F5F5]" formControlName="confirmPassword" type="password" placeholder="@/#%*" />
-          <div class="text-xs"  *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched" class="text-red-500 ">
+          <div class="conf"  *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched" class="text-red-500 ">
             تأكيد كلمة المرور لا يطابق كلمة المرور.
           </div>
         </div>
@@ -97,6 +98,6 @@
       </button>
     </form>
     <!-- رابط تسجيل الدخول -->
-    <p class="text-center text-[13px] w-sm font-bold ml-7 pb-6  pt-1">لديك حساب بالفعل؟ <a href="/resetpassword" class="text-[#045988] hover-underline">تسجيل الدخول</a></p>
+    <p class="text-center text-[13px] w-sm font-bold ml-7 pb-6  pt-1">لديك حساب بالفعل؟ <a href="/login" class="text-[#045988] hover-underline">تسجيل الدخول</a></p>
   </div>
 </div>
