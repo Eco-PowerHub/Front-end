@@ -1,0 +1,76 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+
+<!-- العنوان خارج الكاروسيل مع خلفية غير بيضاء -->
+<div class="section-header">
+  <h2 class="title">الأقسام</h2>
+</div>
+<app-dropdown-list></app-dropdown-list>
+
+
+<!-- الكاروسيل مع توزيع متساوٍ للعناصر -->
+<!-- product-carousel.component.html -->
+<div class="relative w-full overflow-hidden" dir="rtl">
+  <div class="bg-white py-8">
+    <div class="container mx-auto px-4 relative">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <!-- <h2 class="text-3xl font-bold text-right">الاقسام</h2> -->
+      </div>
+      
+      <!-- Product Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        @for (product of visibleProducts; track product.id) {
+          <div class="flex flex-col items-center p-4 border-b border-gray-200 transition-all duration-300 hover:shadow-lg">
+            <div class="w-32 h-32 mb-4 flex justify-center items-center">
+              <img [src]="product.image" [alt]="product.name" class="max-w-full max-h-full object-contain">
+            </div>
+            <h3 class="text-xl font-semibold text-center">{{ product.name }}</h3>
+          </div>
+        }
+      </div>
+      
+      <!-- Dots navigation -->
+      <div class="flex justify-center mt-6">
+        <div class="flex space-x-2">
+          @for (dot of getDotArray(); track $index) {
+            <button 
+              (click)="goToSlide($index)"
+              [class.bg-blue-800]="isDotActive($index)"
+              class="w-3 h-3 rounded-full bg-gray-300 mx-1">
+            </button>
+          }
+        </div>
+      </div>
+      
+      <!-- Arrow navigation positioned on sides -->
+      <button 
+        (click)="prevSlide()" 
+        class="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <button 
+        (click)="nextSlide()" 
+        class="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
