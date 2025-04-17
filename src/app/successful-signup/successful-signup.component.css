@@ -4,8 +4,8 @@ body {
     position: relative;
     height: 100vh;
     overflow: hidden;
-
-
+    position: relative;
+    font-family: "Cairo", serif;
   }
   body::before {
     content: "";
@@ -19,20 +19,17 @@ body {
     z-index: -1; /* ضع الخلفية في الخلف */
   }
   .success-container{
-    text-align: center;
-display: block;
+    background-color: white;
+
+border-radius: 10px;
     font-family: "Cairo", serif;
     font-size: 13px;
+    caret-color: transparent;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.6s ease-in-out;
   }
-  .check{
-    display: flex;
-    width: 75px;
-    margin: 40px auto;
-    margin-top: 160px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #051C2F;
-  }
+ 
+  
   h1{
     font-size: 22px;
     margin-top: -4px;
@@ -46,4 +43,14 @@ display: block;
     font-family: "Cairo", serif;
     text-decoration: none;
 }
-  
+.link:hover{
+  color: #499DCA;
+}
+
+
+.welcome{
+  font-family: "Cairo", serif;
+
+}
+
+

@@ -1,81 +1,102 @@
-<div class="signup-container" >
-    <nav class="navbar">
-      <a href="/" class="home-link">الصفحة الرئيسية</a>
-      <span class="title">Welcome To Eco Powerhup</span>
-    </nav>
+<nav class="bg-[#022333] text-white px-6 py-4 flex justify-between items-center relative">
+  <!-- رابط الصفحة الرئيسية -->
+  <a href="/" class="homelink caret-transparent sm:text-xl text-md font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
+    الصفحة الرئيسية
+  </a>
   
-    <div class="signup-card">
-      <h2>إنشاء حساب</h2>
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
-        <div class="checkboxdiv">
-          <label>
-            <input type="radio" formControlName="role" [value]="2"> عميل
-          </label>
-          <label>
-            <input type="radio" formControlName="role" [value]="3"> شركة
-          </label>
-          
-      </div>
   
-      <div class="input-group">
-        <label for="firstName">الاسم الأول</label>
-        <input id="firstName" class="input1" formControlName="firstName" type="text" placeholder="ادخل الاسم الأول" />
-        <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="error">
-          الاسم الأول مطلوب.
-        </div>
-      </div>
-  
-        <div  class="Left"  >
-          <label for="lastName" class="label2" >الاسم الأخير</label>
-          <input id="lastName" class="input2" formControlName="lastName" type="text" placeholder="ادخل الاسم الأخير"  />
-        </div>
-  
-        <div class="input-group">
-          <label for="phone" >رقم الهاتف</label>
-          <input id="phone"  class="input1" formControlName="phone" type="tel" placeholder="ادخل رقم الهاتف" />
-          <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="error">
-            <span *ngIf="signupForm.get('phone')?.errors?.['required']">رقم الهاتف مطلوب</span>
-            <span *ngIf="signupForm.get('phone')?.errors?.['pattern']">ادخل رقم هاتف صحيح</span>
+  <!-- العنوان في المنتصف -->
+  <span class="welcome mr-4 absolute inset-x-0 p-2 sm:text-center text-sm sm:text-xl font-bold text-right">
+    <span class="welcome font-bold  text-sm sm:text-2xl ">Eco Power Hub </span> مرحبًا بكم في 
+</span>
+
+</nav>
+
+
+<div class="signup-container bg-white   rounded-xl shadow-3xl w-xs sm:w-[510px]  shadow-2xl  mx-auto flex justify-center items-center  ">
+  <div class="signup-card   ">
+    <h2 class="text-center text-[9px] sm:text-[14px] font-bold  mt-2  pt-1 text-[#022333]">إنشاء حساب</h2>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-4">
+   
+      
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-[10px] sm:flex sm:flex-row-reverse">
+       
+        <div>
+          <label for="firstName" class="text-[#022333] text-[15px] block text-right mb-1 font-bold mr-28 sm:mr-3" >الاسم الأول</label>
+          <input id="firstName" class="w-[230px] sm:w-[210px] pt-2 pb-2  text-[13px] border border-[#ccc] rounded-lg pr-3 text-right   bg-[#F5F5F5]" formControlName="firstName" type="text" placeholder="ادخل الاسم الأول" />
+          <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="text-red-500 text-sm">
+            الاسم الأول مطلوب.
           </div>
         </div>
-        <div class="Left">
-          <label for="email" class="label2" style="margin-right: 30px;">البريد الإلكتروني</label>
-          <input id="email" class="input2" formControlName="email"  type="email" placeholder="example@gmail.com" />
+        <div>
+          <label for="lastName" class="text-[#022333] text-[15px] block text-right mb-1 font-bold mr-28  sm:mr-3 ">الاسم الأخير</label>
+          <input id="lastName" class=" w-[230px] sm:w-[210px] pt-2 pb-2 border border-[#ccc] rounded-lg text-right pr-3 text-[13px]  bg-[#F5F5F5]" formControlName="lastName" type="text" placeholder="ادخل الاسم الأخير" />
         </div>
-  
-  
-  
-        <div class="input-group">
-          <label for="password">كلمة المرور</label>
-          <input id="password" class="input1" formControlName="password" type="password" placeholder="@/#%*" />
-          <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error">
-            <span *ngIf="signupForm.get('password')?.errors?.['required']">كلمة المرور مطلوبة.</span>
-            <span *ngIf="signupForm.get('password')?.errors?.['minlength']">يجب أن تكون 8 أحرف على الأقل.</span>
-            <span *ngIf="signupForm.get('password')?.errors?.['pattern']">يجب أن تحتوي على رقم وحرف كبير ورمز خاص.</span>
+      </div>
+
+      <!-- الهاتف والبريد الإلكتروني -->
+      <div class="row2 grid grid-cols-1 sm:grid-cols-2 gap-4  ">
+      
+        <div>
+          <label for="email" class=" text-[15px] text-[#022333] block text-right mb-1 font-bold  mr-28  sm:mr-3">البريد الإلكتروني</label>
+          <input id="email" class="w-[230px]  sm:w-[210px] pt-2 pb-2  border border-[#ccc] text-[13px] rounded-lg pl-3 bg-[#F5F5F5]" formControlName="email" type="email" placeholder="example@gmail.com" />
+        </div>
+        <div>
+          <label for="phone" class=" text-[15px] text-[#022333] block text-right mb-1  mr-28 font-bold sm:mr-3">رقم الهاتف</label>
+          <input id="phone" class="w-[230px]  sm:w-[210px] pt-2 pb-2 border border-[#ccc] text-[13px] rounded-lg pr-3 text-right bg-[#F5F5F5]" formControlName="phoneNumber" type="tel" placeholder="ادخل رقم الهاتف" />
+          <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-red-500 text-sm">
+            <span class="text-xs"  *ngIf="signupForm.get('phone')?.errors?.['required']">رقم الهاتف مطلوب</span>
+            <span class="text-xs"  *ngIf="signupForm.get('phone')?.errors?.['pattern']">ادخل رقم هاتف صحيح</span>
           </div>
         </div>
-  
-        <div class="Left">
-          <label for="confirmPassword" class="label2" style="margin-right: 40px;">تأكيد كلمة المرور</label>
-          <input id="confirmPassword" class="input2" formControlName="confirmPassword" type="password" placeholder="@/#%*" />
-          <div *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched" class="error">
+      </div>
+
+      <!-- كلمة المرور وتأكيدها -->
+      <div class=" row2 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:flex sm:flex-row-reverse">
+       
+       
+        <div>
+          <label for="password" class="text-[#022333] text-[15px] block  text-right mb-1  mr-28 font-bold  sm:mr-3">كلمة المرور</label>
+          <input id="password" class="w-[230px] border border-[#ccc] sm:w-[210px] pt-2 pb-2  text-[13px] pr-3 rounded-lg text-right bg-[#F5F5F5]" formControlName="password" type="password" placeholder="@/#%*" />
+          <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-red-500 ">
+            <span class="text-xs" *ngIf="signupForm.get('password')?.errors?.['required']">كلمة المرور مطلوبة.</span>
+            <span class="text-xs"  *ngIf="signupForm.get('password')?.errors?.['minlength']">يجب أن تكون 8 أحرف على الأقل.</span>
+            <span class="text-xs"   *ngIf="signupForm.get('password')?.errors?.['pattern']">يجب أن تحتوي على رقم وحرف كبير ورمز خاص.</span>
+          </div>
+        </div>
+        <div>
+          <label for="confirmPassword" class="text-[#022333] text-[15px] block text-right mb-1 mr-28 font-bold  sm:mr-3" >تأكيد كلمة المرور</label>
+          <input id="confirmPassword" class="w-[230px] border border-[#ccc]  sm:w-[210px] pt-2 pb-2  text-[13px] pr-3  rounded-lg text-right bg-[#F5F5F5]" formControlName="confirmPassword" type="password" placeholder="@/#%*" />
+          <div class="text-xs"  *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched" class="text-red-500 ">
             تأكيد كلمة المرور لا يطابق كلمة المرور.
           </div>
         </div>
-  
-        <div  class="adrs" >
-          <label for="address" >العنوان</label>
-          <textarea id="address" formControlName="address" placeholder="ادخل عنوانك بالتفصيل"></textarea>
-        </div>
-  
-        <button type="submit" [disabled]="signupForm.invalid"  [ngClass]="{'filled': signupForm.valid}" >
-          <span >انشاء حساب</span>
-    
-  
-        </button>
-      </form>
-  
-      <p class="login-link">لديك حساب بالفعل؟ <a href="/login">تسجيل الدخول</a></p>
-    </div>
+      </div>
+
+      <!-- العنوان -->
+      <div class="row2">
+        <label for="address" class="text-[#022333] text-[15px] block text-right mb-1 mr-28 font-bold sm:mr-3">العنوان</label>
+        <textarea id="address" class=" sm:w-full border border-[#ccc]  w-[230px] h-[55px] pr-3 text-[15] rounded-lg text-right  bg-[#F5F5F5]  " formControlName="address" placeholder="ادخل عنوانك بالتفصيل"></textarea>
+      </div>
+   <!-- اختيار الدور -->
+      <div class="ml-6 sm:role flex justify-center gap-4   ">
+        <label class="flex items-center space-x-2   ">
+          <input type="radio" formControlName="role" [value]="2" class="accent-blue-500 "> 
+          <span class="text-[#022333]">عميل</span> 
+        </label>
+        <label class="flex items-center space-x-2  ">
+          <input type="radio" formControlName="role" [value]="3" class="accent-blue-500"> 
+          <span class="text-[#022333] ">شركة</span>
+        </label> 
+      </div>
+      <!-- زر التسجيل -->
+      <button type="submit" [disabled]="signupForm.invalid" class="  w-[180px] sm:w-[200px] h-[36px] sm:h-[38px] text-center bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition ">
+        إنشاء حساب
+      </button>
+    </form>
+    <!-- رابط تسجيل الدخول -->
+    <p class="text-center text-[13px] w-sm font-bold ml-7 pb-6  pt-1">لديك حساب بالفعل؟ <a href="/resetpassword" class="text-[#045988] hover-underline">تسجيل الدخول</a></p>
   </div>
-  
+</div>

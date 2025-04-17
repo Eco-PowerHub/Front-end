@@ -27,12 +27,14 @@
               }
             ],
             "styles": [
-              
-              "src/styles.css",
-              "node_modules/flowbite/dist/flowbite.min.css",
-              "node_modules/swiper/swiper-bundle.min.css"
+"src/styles.css",
+"node_modules/flowbite/dist/flowbite.min.css",
+"node_modules/swiper/swiper-bundle.min.css"
+
             ],
-            "scripts": []
+            "scripts": [
+             
+            ]
           },
           "configurations": {
             "production": {
@@ -44,8 +46,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "25kB",
+                  "maximumError": "25kB"
                 }
               ],
               "outputHashing": "all"

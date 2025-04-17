@@ -1,0 +1,60 @@
+<nav class="bg-[#051C2F] text-white px-6 py-4 flex justify-between items-center relative">
+  <!-- رابط الصفحة الرئيسية -->
+  <a href="/" class="homelink caret-transparent sm:text-xl text-md font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
+    الصفحة الرئيسية
+  </a>
+  
+  <!-- العنوان في المنتصف -->
+  <span class="welcome absolute inset-x-0 p-2 sm:text-center text-sm sm:text-xl font-bold text-right">
+    <span class="welcome font-bold  text-sm sm:text-2xl ">Eco Power Hub </span> مرحبًا بكم في 
+</span>
+</nav>
+<div class="container">
+  <!-- الهيدر -->
+
+
+  <!-- الصورة كخلفية -->
+  <div class="background-container">
+    <img src="/image.png" class="background-img" alt="background" />
+
+    <!-- صندوق تسجيل الدخول فوق الصورة -->
+    <div class="login-box mt-[-22px]">
+      <h2>تسجيل الدخول</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+        <!-- حقل البريد الإلكتروني -->
+        <label class="email">البريد الإلكتروني</label>
+        <input type="email" formControlName="email" placeholder="example@gmail.com" />
+
+        <!-- حقل كلمة المرور -->
+        <label class="password">كلمة المرور</label>
+        <div class="password-container">
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="@#*%" />
+          <!-- زر إظهار/إخفاء كلمة المرور -->
+          <button type="button" (click)="togglePassword()">
+          </button>
+        </div>
+
+        <!-- رابط استرجاع كلمة المرور -->
+        <div class="forgot">
+          <a href="/forgetpassword">نسيت كلمة المرور؟</a>
+        </div>
+
+        <!-- اختيار الدور -->
+        <div class="roles">
+          <label><input type="radio" formControlName="role" value="admin" /> مسؤول</label>
+          <label><input type="radio" formControlName="role" value="client" /> عميل</label>
+          <label><input type="radio" formControlName="role" value="company" /> شركة</label>
+        </div>
+
+        <!-- زر تسجيل الدخول -->
+        <button type="submit" class="login-btn">تسجيل الدخول</button>
+
+        <!-- رابط لإنشاء حساب جديد -->
+        <p class="register">
+          ليس لديك حساب؟ <a href="signup">إنشاء حساب</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

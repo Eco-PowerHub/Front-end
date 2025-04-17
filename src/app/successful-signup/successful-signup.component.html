@@ -1,9 +1,23 @@
-<div class="success-container">
-    <div class="check"></div>
-      <h2>تم التسجيل بنجاح</h2>
-    <h1>  اذهب 
-      <a href="#" class="link" routerLink="['/signup']" routerLinkActive="router-link-active" >للصفحة الرئيسية </a>
-    </h1>
-     
+<nav class="bg-[#051C2F] text-white px-6 py-4 flex justify-between items-center relative">
+  <!-- رابط الصفحة الرئيسية -->
+  <a href="/" class="homelink caret-transparent sm:text-xl text-md font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
+    الصفحة الرئيسية
+  </a>
   
-    </div>
+  <!-- العنوان في المنتصف -->
+  <span class="welcome absolute inset-x-0 p-2 sm:text-center text-md sm:text-xl font-bold text-right">
+    <span class="welcome font-bold  text-md sm:text-2xl ">Eco Power Hub </span> مرحبًا بكم في 
+</span>
+
+</nav>
+
+<div class="flex items-center justify-center min-h-screen relative  ">
+  <img src="your-background-image.jpg" class="absolute inset-0 w-full h-full object-cover blur-md" alt="background">
+  
+  <div class="relative bg-white dark:bg-card rounded-2xl shadow-2xl p-10 w-[200px] sm:w-[260px] text-center mt-[-80px]">
+    <img aria-hidden="true" alt="check-icon" src="/check (1).png" class="mx-auto w-11 h-11 sm:w-13 sm:h-13 mb-6" />
+    <h2 class="text-md sm:text-[22px] font-bold text-primary pb-3 ">تم التسجيل بنجاح</h2>
+<p class="text-muted-foreground  bg-[#051C2F] rounded-[16px] py-2  ">
+  <a href="/login" class="text-[16px]  sm:text-[18px] text-white font-bold decoration-underline hover:underline">سجل دخولك الآن</a>
+</p>  </div>
+</div>
