@@ -10,12 +10,14 @@
   
     <!-- Dropdown Menu -->
     <ul [class.hidden]="!menuOpen" class="dropdown-menu absolute right-0 mt-2 w-64 bg-gray-900 text-white rounded-md shadow-lg overflow-hidden">
-      <a href="#"><li>الخلايا الشمسية</li></a>
-      <a href="#"><li>البطاريات</li></a>
-      <a href="#"><li>المحولات</li></a>
-      <a href="#"><li>شواحن</li></a>
-      <a href="#"><li>كابلات وموصلات</li></a>
-      <a href="#"><li>نظام مراقبة</li></a>
+      <a [routerLink]="['/products']" [queryParams]="{ categoryName: 'all' }"><li>كل المنتجات</li></a>
+      <a [routerLink]="['/products']" [queryParams]="{ categoryName: 'SolarPanel' }"><li>الخلايا الشمسية</li></a>
+      <a [routerLink]="['/products']" [queryParams]="{ categoryName: 'Batteries' }"><li>البطاريات</li></a>
+      <a [routerLink]="['/products']" [queryParams]="{ categoryName: 'Inverters' }"><li>المحولات</li></a>
+      <a [routerLink]="['/products']" [queryParams]="{ categoryName: 'Chargers' }"><li>شواحن</li></a>
+      <a [routerLink]="['/products']" [queryParams]="{ categoryName: 'CablesConductors' }"><li>كابلات وموصلات</li></a>
+      <a [routerLink]="['/products']" [queryParams]="{ categoryName: 'controlSystem' }"><li>نظام مراقبة</li></a>
+
     </ul>
   </div>
 </div>
