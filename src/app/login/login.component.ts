@@ -37,7 +37,8 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const loginData = {
         email: this.loginForm.value.email,
-        password: this.loginForm.value.password
+        password: this.loginForm.value.password,
+        role: this.loginForm.value.role
       };
       // استدعاء دالة login من الـ service لعمل الاتصال بـ API
       this.authService.login(loginData).subscribe({
