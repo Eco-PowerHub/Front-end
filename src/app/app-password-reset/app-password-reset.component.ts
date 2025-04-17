@@ -13,12 +13,11 @@ import { AuthService } from '../auth/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 export class AppPasswordResetComponent implements OnInit {
-  containerClasses = 'flex items-center justify-center min-h-screen  px-4 bg-cover bg-center bg-no-repeat sm:ml-10';
+  containerClasses = 'flex items-center bg-white justify-center min-h-screen  px-4 bg-cover bg-center bg-no-repeat  mx-auto overflow-hidden';
   cardClasses = 'p-5 rounded-xl max-w-[280px] sm:max-w-xs md:max-w-sm w-full bg-white mx-auto ';
   titleClasses = 'text-sm font-semibold text-foreground text-center mb-4';
   labelClasses = 'block font-semibold  text-muted-foreground text-right mr-7 mb-2';
   inputClasses = 'border border-blue-400 rounded-xl p-2.5 w-[280px]  sm:w-[320px] focus:outline-none focus:ring-2 focus:ring-blue-400 text-right';
-
   resetForm: FormGroup;
   email: string = '';
   token: string = '';
