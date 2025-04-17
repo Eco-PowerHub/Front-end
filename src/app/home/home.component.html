@@ -168,18 +168,21 @@
             <p class="text-[20px] sm:text-[28px] md:text-[32px] tracking-wide font-medium font-cairo mt-2">
               الشمس تعمل من أجلك - استخدم طاقتها بكفاءة
             </p>
-            <button type="submit"
-            class="w-[120px] sm:w-[150px] sm:h-[45px] h-[25px] sm:text-[24px] text-[12px] flex items-center ml-5 justify-center gap-2
-                   bg-[#051C2F] text-white font-cairo font-medium 
-                   rounded-[25px] shadow-md transition-all 
-                   hover:bg-[rgba(255,255,255,0.9)] hover:text-black hover:shadow-[0px_0px_20px_#499DCA] 
-                   hover:scale-105 focus:outline-none border-none">
-                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transform scale-x-[-1]" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                  </svg>
-            ابدأ الآن
            
-          </button>
+              <button (click)="scrollToSection()"
+              type="button"
+              class="w-[120px] sm:w-[150px] sm:h-[45px] h-[25px] sm:text-[24px] text-[12px] flex items-center ml-5 justify-center gap-2
+                     bg-[#051C2F] text-white font-cairo font-medium 
+                     rounded-[25px] shadow-md transition-all 
+                     hover:bg-[rgba(255,255,255,0.9)] hover:text-black hover:shadow-[0px_0px_20px_#499DCA] 
+                     hover:scale-105 focus:outline-none border-none">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transform scale-x-[-1]" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+              ابدأ الآن
+             
+            </button>
+          
           
           </div>
           
@@ -297,7 +300,7 @@
       
       <h2 lang="ar" dir="rtl" class="font-bold font-cairo text-2xl sm:text-3xl md:text-4xl  text-[#022333] text-center  -mt-8 mb-9">
         ابدء رحلتك معنا </h2>
-      <div lang="ar" dir="rtl" class="part4 flex flex-col md:flex-row justify-center items-center gap-8 flex-nowrap mb-5">
+      <div  #targetSection  lang="ar" dir="rtl" class="part4 flex flex-col md:flex-row justify-center items-center gap-8 flex-nowrap mb-5">
         <p class="md:w-[550px] w-[400px] text-2xl text-right mr-8 font-cairo text-[#022333]">
           نحن نؤمن بمستقبل مدعوم بالطاقة النظيفة والمتجددة، لهذا السبب نحن ملتزمون بتقديم حلول مبتكرة تجعل الانتقال إلى مصادر الطاقة المستدامة أسهل وبأسعار معقولة على الأفراد والشركات.
         </p>
