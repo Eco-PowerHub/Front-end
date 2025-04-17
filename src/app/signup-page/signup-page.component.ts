@@ -55,6 +55,7 @@ export class SignupPageComponent {
         phoneNumber: this.signupForm.value.phoneNumber,
         email: this.signupForm.value.email,
         password: this.signupForm.value.password,
+        address:this.signupForm.value.address,
         confirmNewPassword: this.signupForm.value.confirmPassword,
         role: this.signupForm.value.role // يجب أن يكون String لأنه كذلك في API
       };
