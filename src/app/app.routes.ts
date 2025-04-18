@@ -8,11 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { PasswordReset1Component } from './password-reset1/password-reset1.component';
 import { ProductDisplayComponent } from '../product-display/product-display.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/productdisplay', pathMatch: 'full' },
+    { path: '', redirectTo: '/Home', pathMatch: 'full' },
+    {path: 'Home', component:HomeComponent},
     {path: 'signup', component:SignupPageComponent},
     {path: 'signup-success', component:SuccessfulSignupComponent},
     {path: 'sendotp' , component:SendOtpComponent},

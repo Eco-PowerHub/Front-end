@@ -20,10 +20,11 @@ export class HomeComponent implements OnInit {
   autoSlideInterval: any;
   userInteractionTimeout: any;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.startAutoSlide();
+    console.log('isLoggedIn:', this.authService.isLoggedIn());
   }
 
   startAutoSlide() {
@@ -92,7 +93,7 @@ export class HomeComponent implements OnInit {
   
 
 
-  logout() {
+  logoutt() {
     this.authService.logout();
     console.log('تم تسجيل الخروج');
     this.router.navigate(['/login']);
@@ -106,5 +107,17 @@ export class HomeComponent implements OnInit {
       this.open = false;
     }
   }
+
+
+  goTologin() {
+    this.router.navigate(['/login']); // غير "signup" لاسم الصفحة اللي رايحاها
+  }
+  
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
+  
 
 }
