@@ -7,7 +7,7 @@
 <section class=" p-2 flex justify-between items-center">
   <div class="ml-4  mt-4">
     <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>
-    <div class="w-40 border-t-3  bg-[#001F2D] my-4"></div>
+    <div class="w-40 border-t-4  bg-[#001F2D] my-4"></div>
 
   </div>
   <div>
@@ -19,7 +19,7 @@
 
 
   </div>
-  <div class="w-35 border-t-3  bg-[#001F2D] my-3  ml-25 mt-[1px]"></div>
+  <div class="w-35 border-t-4  bg-[#001F2D]  ml-25 mt-[1px]"></div>
 
 </div>
 </section>
@@ -39,8 +39,10 @@
 <app-categories-carousel></app-categories-carousel>
 
 <div class="products-title">
-  <span class="title">كل المنتجات</span>
+  <span class="title">{{ selectedCategoryName }}</span>
 </div>
+
+
 <div class="products-container">
   @for (product of products; track product) {
     <app-product-card [product]="product"></app-product-card>

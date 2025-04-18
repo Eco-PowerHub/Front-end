@@ -37,14 +37,15 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const loginData = {
         email: this.loginForm.value.email,
-        password: this.loginForm.value.password
+        password: this.loginForm.value.password,
+        role: this.loginForm.value.role
       };
       // استدعاء دالة login من الـ service لعمل الاتصال بـ API
       this.authService.login(loginData).subscribe({
         next: (response) => {
           console.log('تم تسجيل الدخول بنجاح:', response);
           // بعد تسجيل الدخول بنجاح، يمكنك التوجيه إلى صفحة تانية
-          this.router.navigate(['/dashboard']);  // هذا مثال، حطي هنا الرابط المناسب
+          this.router.navigate(['/home']);  // هذا مثال، حطي هنا الرابط المناسب
         },
         error: (err) => {
           console.error('فشل تسجيل الدخول:', err);
