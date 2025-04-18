@@ -10,9 +10,10 @@ import { PasswordReset1Component } from './password-reset1/password-reset1.compo
 
 import { CartComponent } from '../cart/cart.component';
 import { ProductDisplayComponent } from '../product-display/product-display.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'signup', component: SignupPageComponent },
   { path: 'signup-success', component: SuccessfulSignupComponent },
   { path: 'sendotp', component: SendOtpComponent },
@@ -22,6 +23,8 @@ export const routes: Routes = [
   { path: 'forgetpassword', component: PasswordReset1Component },
   { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductDisplayComponent },
+  { path: 'home', component: HomeComponent},
+
 ];
 
 @NgModule({

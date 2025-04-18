@@ -45,7 +45,7 @@ export class LoginComponent {
         next: (response) => {
           console.log('تم تسجيل الدخول بنجاح:', response);
           // بعد تسجيل الدخول بنجاح، يمكنك التوجيه إلى صفحة تانية
-          this.router.navigate(['/products']);  // هذا مثال، حطي هنا الرابط المناسب
+          this.router.navigate(['/home']);  // هذا مثال، حطي هنا الرابط المناسب
         },
         error: (err) => {
           console.error('فشل تسجيل الدخول:', err);
