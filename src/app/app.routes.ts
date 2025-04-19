@@ -16,7 +16,7 @@ import { SupportComponent } from './support/support.component';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/support', pathMatch: 'full' },
+    { path: '', redirectTo: '/Home', pathMatch: 'full' },
     {path: 'Home', component:HomeComponent},
     {path: 'support', component:SupportComponent},
     {path: 'signup', component:SignupPageComponent},
