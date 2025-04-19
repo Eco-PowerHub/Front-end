@@ -16,8 +16,8 @@ import { SupportComponent } from './support/support.component';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/Home', pathMatch: 'full' },
-    {path: 'Home', component:HomeComponent},
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    {path: 'home', component:HomeComponent},
     {path: 'support', component:SupportComponent},
     {path: 'signup', component:SignupPageComponent},
     {path: 'signup-success', component:SuccessfulSignupComponent},
@@ -26,7 +26,7 @@ export const routes: Routes = [
     {path: 'login', component:LoginComponent},
     {path: 'aboutus', component:AboutUsComponent},
     {path:'forgetpassword' , component:PasswordReset1Component},
-    {path:'productdisplay' , component:ProductDisplayComponent }
+    {path:'products' , component:ProductDisplayComponent }
 
 ];
 
