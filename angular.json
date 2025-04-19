@@ -27,10 +27,9 @@
               }
             ],
             "styles": [
-"src/styles.css",
-"node_modules/flowbite/dist/flowbite.min.css",
-"node_modules/swiper/swiper-bundle.min.css"
-
+                "src/styles.css",
+                "node_modules/flowbite/dist/flowbite.min.css",
+                "node_modules/swiper/swiper-bundle.min.css"
             ],
             "scripts": [
              
@@ -41,7 +40,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "750kB",
                   "maximumError": "1MB"
                 },
                 {
