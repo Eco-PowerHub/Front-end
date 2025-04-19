@@ -1,57 +1,54 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators,  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';  // لو عايزة تروحِ لصفحة تانية بعد التسجيل
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports:[
-    ReactiveFormsModule
-  ]
+  standalone: true,
+  imports: [ReactiveFormsModule]
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  showPassword = false; // عشان تظهري أو تخفي كلمة المرور
+  showPassword = false;
+  errorMessage: string = ''; // لعرض رسالة الخطأ
 
   constructor(
-    private fb: FormBuilder,       // لعمل الفورم
-    private authService: AuthService,  // استيراد الـ AuthService
-    private router: Router         // لو عايزة ترشي المستخدم بعد الدخول
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],  // التأكد من أن الإيميل صحيح
-      password: ['', Validators.required],  // التأكد من أن كلمة المرور مش فارغة
-      role: ['', Validators.required]  // إضافة role إذا كنتِ محتاجاها
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      role: ['', Validators.required]
     });
   }
 
-  // دالة لتبديل إظهار/إخفاء كلمة المرور
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
-  // دالة لتقديم البيانات إلى الـ API عند الضغط على زر تسجيل الدخول
   onSubmit() {
-    if (this.loginForm.valid) {
-      const loginData = {
-        email: this.loginForm.value.email,
-        password: this.loginForm.value.password,
-        role: this.loginForm.value.role
-      };
-      // استدعاء دالة login من الـ service لعمل الاتصال بـ API
-      this.authService.login(loginData).subscribe({
-        next: (response) => {
-          console.log('تم تسجيل الدخول بنجاح:', response);
-          // بعد تسجيل الدخول بنجاح، يمكنك التوجيه إلى صفحة تانية
-          this.router.navigate(['/dashboard']);  // هذا مثال، حطي هنا الرابط المناسب
-        },
-        error: (err) => {
-          console.error('فشل تسجيل الدخول:', err);
-          // ممكن تضيفي هنا رسالة خطأ للمستخدم
-        }
-      });
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
+
+    const loginData = this.loginForm.value;
+
+    this.authService.login(loginData).subscribe({
+      next: (response) => {
+        console.log('تم تسجيل الدخول بنجاح:', response);
+        this.errorMessage = '';
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        console.error('فشل تسجيل الدخول:', err);
+        this.errorMessage = 'فشل تسجيل الدخول. يرجى التحقق من البيانات والمحاولة مرة أخرى.';
+      }
+    });
   }
 }

@@ -29,7 +29,7 @@ export class SignupPageComponent {
       password: ['', [
         Validators.required,
         Validators.minLength(8),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/) // كلمة مرور قوية
+        Validators.pattern(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])/) // كلمة مرور قوية
       ]],
       confirmPassword: ['', Validators.required],
       address: ['']

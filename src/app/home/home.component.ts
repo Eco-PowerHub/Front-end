@@ -93,11 +93,12 @@ export class HomeComponent implements OnInit {
   
 
 
-  logoutt() {
+  logoutt() {}
+  /*logout() {
     this.authService.logout();
     console.log('تم تسجيل الخروج');
     this.router.navigate(['/login']);
-  }
+  }*/
    // لو فتحت زر تسجيل الخروج، اقفلي القائمة
    toggleLogoutButton() {
     this.showLogout = !this.showLogout;

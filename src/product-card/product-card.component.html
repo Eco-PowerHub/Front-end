@@ -2,7 +2,7 @@
   <h3>{{ product.name }}</h3>
 
   <div class="img-container">
-    <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
+    <img [src]="product.image" alt="{{ product.name }}" class="product-image" />
   </div>
 
   <p class="reviews">
@@ -10,14 +10,14 @@
     <span>({{ product.reviews }}) مراجعات الشركة المصنعة</span>
   </p>
 
-  <p>الرقم التسلسلي: <span class="text">{{ product.seriesNumber }}</span></p>
-  <p>الموديل: <span class="text">{{ product.model }} وات</span></p>
+  <!-- <p>الرقم التسلسلي: <span class="text">{{ product.id }}</span></p> -->
+  <p>الموديل: <span class="text">{{ product.model }}</span></p>
   <p>الكفاءة: <span class="text">%{{ product.efficiency }}</span></p>
-  <p>الطاقة المقدرة: <span class="text">{{ product.power }} وات</span></p>
+  <p>الطاقة المقدرة: <span class="text">{{ product.estimatedPower }} وات</span></p>
   <p>السعر: <span class="text">{{ product.price }} ج.م</span></p>
 
   <div class="button-container">
-    <button class="btn">شراء</button>
+    <button class="btn"><a href="/cart"> أضف إلى السلة </a></button>
   </div>
 </div>
 

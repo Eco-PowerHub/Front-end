@@ -1,14 +1,17 @@
-<nav class="bg-[#051C2F] text-white px-6 py-4 flex justify-between items-center relative">
+<nav class="bg-[#022333] text-white px-6 py-4 flex justify-between items-center relative">
   <!-- رابط الصفحة الرئيسية -->
-  <a href="/signup" class="text-lg font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
+  <a href="/" class="homelink caret-transparent sm:text-xl text-md font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 ease-in-out hover:text-[#499DCA]">
     الصفحة الرئيسية
   </a>
   
+  
   <!-- العنوان في المنتصف -->
-  <span class="welcome absolute inset-x-0 p-2 sm:text-center text-lg sm:text-xl font-semibold text-right">
-    <span class="font-bold">Eco PowerHub </span> مرحبًا بكم في 
-</span> 
+  <span class="welcome mr-4 absolute inset-x-0 p-2 sm:text-center text-sm sm:text-xl font-bold text-right">
+    <span class="welcome font-bold  text-sm sm:text-2xl ">Eco Power Hub </span> مرحبًا بكم في 
+</span>
+
 </nav>
+
 <div class="container mx-auto px-4  py-6 flex flex-col  justify-center  rounded-xl items-center shadow-2xl max-w-xs sm:max-w-sm md:max-w-md  w-full">
   <h2 class="text-center text-lg md:text-xl font-semibold mb-4 "  >أدخل رمز التحقق</h2>
   <form [formGroup]="codeForm" (ngSubmit)="verifyCode()" class="space-y-4 w-sm flex flex-col">
