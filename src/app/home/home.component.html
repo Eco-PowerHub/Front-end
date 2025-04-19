@@ -17,40 +17,51 @@
     
             <nav class="hidden md:flex items-center space-x-6">
                 <ul class="ull flex space-x-6 items-center">
-                    <li class="flex items-center">
-                        <div class="hidden md:block relative w-64">
-                            <input type="text"
-                                class="border-2 h-10 bg-white rounded-full px-4 py-2 pr-10 text-right 
-                                focus:ring-2 focus:ring-[#499DCA] focus:outline-none w-full transition-all font-medium duration-300 font-cairo"
-                                placeholder="بتدور على ايه؟">
-                            <i class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[-270deg] text-gray-500 fa fa-search"></i>
-                        </div>
+                    <li class="flex items-center h-16">
+                      <div class="hidden md:block relative w-64">
+                        <i class="fa fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 rotate-[-270deg]"></i>
+                        <input type="text"
+                            class="border-2 h-10 bg-white rounded-full pl-4 pr-10 text-right
+                            focus:ring-2 focus:ring-[#499DCA] placeholder:mr-5 placeholder:text-[14px] focus:outline-none w-full transition-all font-medium duration-300 font-cairo"
+                            placeholder="بتدور على ايه؟">
+                    </div>
+                    
                     </li>
     
-                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
+                    <li class="flex items-center"><a (click)="scrollToFooter()" class="cursor-pointer p-2 text-white relative font-bold after:block after:mt-2  after:w-0 after:h-[2px] after:bg-blue-500 
                         after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">تواصل معنا</a></li>
-                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
-                        after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">من نحن</a></li>
-                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
-                        after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">الدعم</a></li>
-                    <li class="flex items-center"><a href="/products" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
+                        <li class="flex items-center">
+                          <span (click)="goToAbout()" class="cursor-pointer p-2 text-white relative font-bold after:block after:mt-2 after:w-0 after:h-[2px] after:bg-blue-500 
+                                              after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">
+                            من نحن
+                          </span>
+                        </li>
+                        
+                        <li class="flex items-center">
+                          <span (click)="goToAbout()" class="cursor-pointer p-2 text-white relative font-bold after:block after:mt-2 after:w-0 after:h-[2px] after:bg-blue-500 
+                                              after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">
+                            الدعم 
+                          </span>
+                        </li>
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:mt-2  after:w-0 after:h-[2px] after:bg-blue-500 
                         after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">المنتجات</a></li>
-                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA]
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:mt-2  after:w-0 after:h-[2px] after:bg-blue-500 
                         after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">الصفحة الرئيسية</a></li>
                         <li class="flex flex-row md:block items-center relative">
-                          <button (click)="toggleLogoutButton()" 
-                          class="p-2 w-32 rounded-[25px] bg-white font-bold text-black
-                                 font-cairo transition duration-300 ease-in-out hover:bg-[#499DCA]
-                                 hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
-                                 خالد محمود
-                                 <svg xmlns="http://www.w3.org/2000/svg" 
-                         class="ml-2 h-3 w-3 text-gray-500" 
-                         fill="none" viewBox="0 0 20 20" 
-                         stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7l7 7 7-7" />
-                    </svg>                                   
-                   
-                  </button>
+<!-- زر تسجيل الدخول -->
+<button  (click)="goTologin()"  
+  class="p-2 w-32 rounded-[25px] mb-2 text-[12px] bg-white font-bold text-black
+         font-cairo transition duration-300 ease-in-out hover:bg-[#499DCA]
+         hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
+  تسجيل الدخول
+  <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-3 w-3 text-gray-500" 
+       fill="none" viewBox="0 0 20 20" stroke="currentColor" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7l7 7 7-7" />
+  </svg>                                   
+</button>
+
+
+
                   
                           
                             <!-- زر تسجيل الخروج -->
@@ -78,11 +89,13 @@
        class="fixed top-11 right-0 w-80 h-full bg-[#022333] bg-opacity-95 text-white z-40 flex flex-col items-center justify-center space-y-6 transition-transform duration-300">
   <ul lang="ar" dir="rtl" class="mt-6 space-y-4">
     <li class="relative">
-      <input type="text" 
-             class="border-2 bg-white rounded-full px-4 py-2 pr-10 text-right 
-                    focus:ring-2 focus:ring-[#499DCA] focus:outline-none w-full transition-all duration-300 font-cairo" 
-             placeholder="بتدور على ايه؟">
-      <i class="absolute right-4 top-1/2 transform -translate-y-1/2 rotate-[-270deg] text-gray-500 fa fa-search"></i>
+  
+        <i class="fa fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 rotate-[-270deg]"></i>
+        <input type="text"
+            class="border-2 h-10 bg-white rounded-full pl-4 pr-10 text-right
+            focus:ring-2 focus:ring-[#499DCA] placeholder:mr-5 focus:outline-none w-full transition-all font-medium duration-300 font-cairo"
+            placeholder="بتدور على ايه؟">
+
     </li>
     <li class="relative flex justify-center items-center">
       <a href="#" class="p-2 w-full text-white text-center relative font-bold after:block after:w-0 after:h-[2px] after:bg-blue-500 
@@ -248,7 +261,7 @@
 
       <div lang="ar" dir="rtl" class="part3 block rtl text-center py-12 px-2">
         <ul class="flex flex-col md:flex-row justify-center items-center gap-6">
-          <li class="flex flex-col items-center p-5 w-full sm:w-[300px] md:w-[300px]">
+          <li class="flex flex-col  items-center p-5 sm:w-[500px]">
             <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
             hover:scale-105 focus:outline-none border-none">
               <i class="fas fa-battery-full text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
@@ -262,11 +275,10 @@
               <p class="text-base font-cairo leading-6">نقدم حلول طاقة شمسية مبتكرة لتوليد طاقة مستدامة بتكاليف منخفضة.</p>
             </div>
           </li>
-          <li class="flex flex-col md:flex-row gap-12 mt-8">
-            <div class="par flex flex-col items-center w-full max-w-[500px] text-center">
-              <img src="/homeThree.png" alt="حلول الطاقة الشمسية" class="w-full max-w-[350px] h-auto mb-10 top-10 rounded-[35px] shadow-lg ">
-              <div class="p flex flex-col sm:flex-row gap-8 justify-center items-center">
-                <div class="flex flex-col items-center p-5 w-full text-black bg-white shadow-md rounded-xl  hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+          <li class="flex flex-col  items-center p-5 sm:w-[800px]">
+              <img src="/homeThree.png" alt="حلول الطاقة الشمسية" class="w-full max-w-[450px] h-auto mb-10 top-10 rounded-[35px] shadow-lg ">
+              <div class="p flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div class="flex flex-col items-center  p-5 w-full  text-black bg-white shadow-md rounded-xl  hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
                 hover:scale-105 focus:outline-none border-none">
                   <i class="fas fa-industry text-[#499DCA] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
                   <h4 class="text-2xl font-semibold font-cairo  mb-2">الطاقة الشمسية الصناعية</h4>
@@ -279,9 +291,9 @@
                   <p class=" text-base font-cairo leading-6">استثمارات الطاقة الشمسية تضمن لك توفيرًا كبيرًا على المدى الطويل.</p>
                 </div>
               </div>
-            </div>
+
           </li>
-          <li class="flex flex-col items-center p-5 w-full sm:w-[300px] md:w-[300px]">
+          <li class="flex flex-col  items-center p-5 sm:w-[500px]">
             <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl  hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
             hover:scale-105 focus:outline-none border-none">
               <i class="fas fa-leaf text-[#499DCA] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
@@ -312,7 +324,7 @@
     
         <p class="w-[700px] sm:w-[850px] sm:text-[32px] text-[13px] font-medium sm:font-bold font-cairo text-[#022333]">
             إذا كنت مستعدًا لبدء رحلتك مع 
-            <span class="font-cairo text-blue-600">Eco PowerHub</span>، اضغط هنا
+            <span class="font-cairo font-bold text-[#051C2F]">Eco PowerHub</span>، اضغط هنا
         </p>
         
         <button type="submit"
@@ -329,10 +341,10 @@
       </button>
     </div>
     
-    <footer   lang="ar" dir="rtl" class="bg-[#022333] py-10 items-center font-cairo">
-        <div data-aos="fade-up" class="container mx-auto grid md:grid-cols-3 gap-8 flex-wrap items-center justify-between ml-4 w-[90%] rtl">
+    <footer  #footerSection lang="ar" dir="rtl" class="bg-[#022333] py-10 items-center font-cairo">
+        <div data-aos="fade-up" class="container mx-auto grid md:grid-cols-3 gap-8 flex-wrap items-center justify-between mr-20 w-[90%] rtl">
               <!-- عن الشركة -->
-              <div  class="hadr mt-11 mr-11">
+              <div  class="hadr mt-11 mr-24">
                 <h2 class="text-3xl font-bold font-Sora text-white">ECO POWERHUB</h2>
                 <p class="pra">التكنولوجيا المتجددة</p>
                 <p class="text-gray-400 mt-10 w-[95%] ">تعنى التاّزر الاستثنائى للطاقة الشمسية مع تخزين الطاقة،  والمركبات الكهربائية،والشبكات الذكية.ان الصناعة تعمل فى طليعة تكنولوجيا الانظمة لتحقيق ذلك.</p>
@@ -345,7 +357,7 @@
          
           
           <!-- معلومات الاتصال -->
-          <div class="mt-11 mr-11">
+          <div class="mt-11 mr-24">
             <h3 class="text-3xl font-bold mb-14 text-white font-cairo">
               <span class="border-b-4 border-[#499DCA] pb-1">معلومات</span> الاتصال
           </h3>
@@ -369,7 +381,7 @@
                 قنا - مصر        </a>       </div>
           </div>
            <!-- لينكات مفيدة -->
-           <div class="footer-section mt-11 mr-10">
+           <div class="footer-section mt-11 mr-20">
             <h3 class="text-3xl font-bold mb-28 text-white font-cairo">
               <span class="border-b-4 border-[#499DCA] pb-1">لينكات</span> مفيدة
             </h3>
@@ -447,7 +459,7 @@
       
       
       <div class="footer-end flex flex-col md:flex-row justify-between items-start rtl sm:mr-0 mr-20 mt-10">
-        <div class="par1 relative right-0 md:right-[150px] mt-5 flex-col flex flex-wrap gap-5">
+        <div class="par1 relative right-0 sm:mr-32 md:right-[150px] mt-5 flex-col flex flex-wrap gap-5">
           <p class="text-right text-[16px] font-sora text-white">
             حقوق الطبع والنشر Eco PowerHub 2025.
           </p>

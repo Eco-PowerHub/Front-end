@@ -11,19 +11,22 @@ import { PasswordReset1Component } from './password-reset1/password-reset1.compo
 import { CartComponent } from '../cart/cart.component';
 import { ProductDisplayComponent } from '../product-display/product-display.component';
 import { HomeComponent } from './home/home.component';
+import { SupportComponent } from './support/support.component';
+
+
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'signup', component: SignupPageComponent },
-  { path: 'signup-success', component: SuccessfulSignupComponent },
-  { path: 'sendotp', component: SendOtpComponent },
-  { path: 'resetpassword', component: AppPasswordResetComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'aboutus', component: AboutUsComponent },
-  { path: 'forgetpassword', component: PasswordReset1Component },
-  { path: 'cart', component: CartComponent },
-  { path: 'products', component: ProductDisplayComponent },
-  { path: 'home', component: HomeComponent},
+    { path: '', redirectTo: '/support', pathMatch: 'full' },
+    {path: 'Home', component:HomeComponent},
+    {path: 'support', component:SupportComponent},
+    {path: 'signup', component:SignupPageComponent},
+    {path: 'signup-success', component:SuccessfulSignupComponent},
+    {path: 'sendotp' , component:SendOtpComponent},
+    {path: 'resetpassword', component:AppPasswordResetComponent},
+    {path: 'login', component:LoginComponent},
+    {path: 'aboutus', component:AboutUsComponent},
+    {path:'forgetpassword' , component:PasswordReset1Component},
+    {path:'productdisplay' , component:ProductDisplayComponent }
 
 ];
 

@@ -5,10 +5,12 @@ import { ProductDisplayComponent } from "../product-display/product-display.comp
 import { CategoriesCarouselComponent } from "../categories-carousel/categories-carousel.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ProductCardComponent } from "../product-card/product-card.component";
+import { HomeComponent } from './home/home.component';
+import {  OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

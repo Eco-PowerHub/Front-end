@@ -27,10 +27,9 @@
               }
             ],
             "styles": [
-"src/styles.css",
-"node_modules/flowbite/dist/flowbite.min.css",
-"node_modules/swiper/swiper-bundle.min.css"
-
+                "src/styles.css",
+                "node_modules/flowbite/dist/flowbite.min.css",
+                "node_modules/swiper/swiper-bundle.min.css",
             ],
             "scripts": [
              
