@@ -53,7 +53,7 @@ pipeline {
             }
         }
 
-        stage('Dockerizing .NET') {
+        stage('Dockerizing Angular App') {
             steps {
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
             }
