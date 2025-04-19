@@ -148,5 +148,7 @@ export class HomeComponent implements OnInit {
   goToAbout() {
     this.router.navigate(['/aboutus']);
   }
-
+  goToٍSupport() {
+    this.router.navigate(['/support']);
+  }
 }
