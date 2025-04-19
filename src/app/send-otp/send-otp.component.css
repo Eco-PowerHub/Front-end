@@ -2,6 +2,8 @@ body {
   background-color: #396991;
   color: #051C2F;
   position: relative;
+  font-family: "Cairo", serif;
+
   height: 100vh;
   overflow: hidden;
   caret-color: transparent;

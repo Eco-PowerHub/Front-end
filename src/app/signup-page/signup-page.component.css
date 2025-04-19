@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: "Cairo", serif;
   position: relative;
-
+overflow: hidden;
 
   caret-color: transparent;
 }
@@ -12,6 +12,8 @@ body {
   
 
 }
+
+
 body::before {
   content: "";
   position: fixed;
@@ -26,22 +28,36 @@ body::before {
 .labl{
   margin-left: 20px;
 }
-.home-link{
-  font-family: "Cairo", sans-serif;
-  cursor: pointer;
-}
-.homeLink {
-  transition: color 0.3s ease-in-out;
-}
 
-.homeLink:hover {
-  color: #499DCA;
-}
 
+
+.home-link {
+      font-family: "Cairo", sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+      background-color: transparent;
+      border: none; /* Removes any border if present */
+  box-shadow: none; 
+  font-size: 20px;
+      transition: all 0.3s ease;
+      padding: 15px 20px;
+    }
+    .home-link:hover {
+      color: #499DCA;
+      background: transparent;
+    }
+.direction-ltr {
+  direction: ltr;
+  text-align: left;
+}
 
   .signup-container {
    margin-top: 34px;
-   text-align: center;
+   text-align: center; 
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+
+
    font-family: "Cairo", serif;
   }
   h2{
@@ -78,25 +94,10 @@ body::before {
   
   }
 
+ 
   
-  .input-group .password-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 40%;
-  }
-  
-  .input-group .password-container input {
-    width: 100%;
-    padding-right: 40px;
-  }
-  
-  .input-group .password-container .toggle-password {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    color: #777;
-  }
+
+
   button {
    
    
@@ -165,7 +166,6 @@ body::before {
 
   .error {
     color: rgb(243, 36, 36);
-    font-size: 3px;
     margin-top: 5px;
   }
   .role{
