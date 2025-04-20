@@ -17,7 +17,7 @@ import { SolarPropertyComponent } from './solar-property/solar-property.componen
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/property', pathMatch: 'full' },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     {path: 'home', component:HomeComponent},
     {path: 'support', component:SupportComponent},
     {path: 'signup', component:SignupPageComponent},
