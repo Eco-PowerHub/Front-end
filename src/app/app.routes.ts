@@ -16,17 +16,17 @@ import { SupportComponent } from './support/support.component';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    {path: 'home', component:HomeComponent},
-    {path: 'support', component:SupportComponent},
-    {path: 'signup', component:SignupPageComponent},
-    {path: 'signup-success', component:SuccessfulSignupComponent},
-    {path: 'sendotp' , component:SendOtpComponent},
-    {path: 'resetpassword', component:AppPasswordResetComponent},
-    {path: 'login', component:LoginComponent},
-    {path: 'aboutus', component:AboutUsComponent},
-    {path:'forgetpassword' , component:PasswordReset1Component},
-    {path:'products' , component:ProductDisplayComponent }
+    { path: '', redirectTo: '/home', pathMatch: 'full',data: { title: ' Home' } },
+    {path: 'home', component:HomeComponent,data: { title: ' Home' }},
+    {path: 'support', component:SupportComponent,data: { title: ' Support' }},
+    {path: 'signup', component:SignupPageComponent,data: { title: ' Signup' }},
+    {path: 'signup-success', component:SuccessfulSignupComponent,data: { title: ' Signup-success' }},
+    {path: 'sendotp' , component:SendOtpComponent,data: { title: ' Sendotp' }},
+    {path: 'resetpassword', component:AppPasswordResetComponent,data: { title: ' Resetpassword' }},
+    {path: 'login', component:LoginComponent,data: { title: ' Login' }},
+    {path: 'aboutus', component:AboutUsComponent,data: { title: ' Aboutus' }},
+    {path:'forgetpassword' , component:PasswordReset1Component,data: { title: ' Forgetpassword' }},
+    {path:'products' , component:ProductDisplayComponent,data: { title: ' Products' } }
 
 ];
 
