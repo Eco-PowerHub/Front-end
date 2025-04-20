@@ -12,6 +12,7 @@ import { CartComponent } from '../cart/cart.component';
 import { ProductDisplayComponent } from '../product-display/product-display.component';
 import { HomeComponent } from './home/home.component';
 import { SupportComponent } from './support/support.component';
+import { SolarPropertyComponent } from './solar-property/solar-property.component';
 
 
 
@@ -27,6 +28,7 @@ export const routes: Routes = [
     {path: 'aboutus', component:AboutUsComponent,data: { title: ' Aboutus' }},
     {path:'forgetpassword' , component:PasswordReset1Component,data: { title: ' Forgetpassword' }},
     {path:'products' , component:ProductDisplayComponent,data: { title: ' Products' } }
+
 
 ];
 
