@@ -15,7 +15,7 @@ interface Goal {
 
 @Component({
   selector: 'app-about-us',
-  imports: [CommonModule ],  // إضافة المكونات الجديدة هنا
+  imports: [CommonModule,HeaderComponent,FooterComponent ],  // إضافة المكونات الجديدة هنا
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css'
 })
