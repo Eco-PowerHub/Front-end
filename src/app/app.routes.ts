@@ -13,7 +13,7 @@ import { ProductDisplayComponent } from '../product-display/product-display.comp
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'signup', component: SignupPageComponent },
   { path: 'signup-success', component: SuccessfulSignupComponent },
   { path: 'sendotp', component: SendOtpComponent },
