@@ -6,18 +6,25 @@
   </div>
 
   <p class="reviews">
-    <span class="stars">★  ★  ★  ★  ★ </span>
+    <span class="stars">★ ★ ★ ★ ★</span>
     <span>({{ product.reviews }}) مراجعات الشركة المصنعة</span>
   </p>
 
-  <!-- <p>الرقم التسلسلي: <span class="text">{{ product.id }}</span></p> -->
-  <p>الموديل: <span class="text">{{ product.model }}</span></p>
-  <p>الكفاءة: <span class="text">%{{ product.efficiency }}</span></p>
-  <p>الطاقة المقدرة: <span class="text">{{ product.estimatedPower }} وات</span></p>
+  @if (product.model && product.model !== 'string') {
+    <p>الموديل: <span class="text">{{ product.model }}</span></p>
+  }
+
+  @if (product.efficiency && product.efficiency !== 'string') {
+    <p>الكفاءة: <span class="text">{{ product.efficiency }}</span></p>
+  }
+
+  @if (product.estimatedPower && product.estimatedPower !== 'string') {
+    <p>الطاقة المقدرة: <span class="text">{{ product.estimatedPower }}</span></p>
+  }
+
   <p>السعر: <span class="text">{{ product.price }} ج.م</span></p>
 
   <div class="button-container">
-    <button class="btn"><a href="/cart"> أضف إلى السلة </a></button>
+    <button class="btn">إضافة إلى السلة</button>
   </div>
 </div>
-

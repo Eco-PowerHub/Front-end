@@ -9,6 +9,7 @@
 
     <title>Document</title>
 </head>
+<app-header></app-header>
 <body>
     
     <header class="navbar bg-[#022333] p-4 shadow-md w-full z-60 relative" x-data="{ open: false }">
@@ -29,7 +30,7 @@
     
                     <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
                         after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">تواصل معنا</a></li>
-                    <li class="flex items-center"><a href="/aboutus" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
+                    <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
                         after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">من نحن</a></li>
                     <li class="flex items-center"><a href="#" class="p-2 text-white relative font-bold after:block after:w-0 after:h-[2px] after:bg-[#499DCA] 
                         after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">الدعم</a></li>
@@ -156,23 +157,23 @@
         <div class="pra1 flex relative w-[90%] max-w-[220px] text-black mb-auto  ml-28 bottom-[3%]">
         </div>
         <!-- العنوان -->
-        <h1 class="text-white text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-center bg-[rgba(57,57,59,0.8)] shadow-lg px-5 py-2 font-cairo rounded-[35px] absolute top-[15%] left-1/2 transform -translate-x-1/2">
+        <h1 class="text-white text-[24px] sm:text-[28px] md:text-[32px] font-bold text-center bg-[rgba(57,57,59,0.8)] shadow-lg px-5 py-2 font-cairo rounded-[35px] absolute top-[15%] left-1/2 transform -translate-x-1/2">
             ECO POWERHUB
         </h1>
       
         <!-- النص الرئيسي -->
         <div class="pra2 flex flex-col items-center justify-center text-center bg-[rgba(37,37,39,0.8)] shadow-lg p-4 rounded-[35px] w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] relative text-white -bottom-5 max-h-[160px] overflow-hidden">
-            <h4 class="text-[20px] sm:text-[28px] md:text-[32px] tracking-wide font-cairo font-medium -mb-[10px]">
+            <h4 class="text-[20px] sm:text-[28px] md:text-[32px] tracking-wide font-cairo font-bold -mb-[10px]">
               الطاقة الشمسية والمتجددة
             </h4>
-            <p class="text-[20px] sm:text-[28px] md:text-[32px] tracking-wide font-medium font-cairo mt-2">
+            <p class="text-[20px] sm:text-[28px] md:text-[32px] tracking-wide font-bold font-cairo mt-2">
               الشمس تعمل من أجلك - استخدم طاقتها بكفاءة
             </p>
            
               <button (click)="scrollToSection()"
               type="button"
               class="w-[120px] sm:w-[150px] sm:h-[45px] h-[25px] sm:text-[24px] text-[12px] flex items-center ml-5 justify-center gap-2
-                     bg-[#051C2F] text-white font-cairo font-medium 
+                     bg-[#051C2F] text-white font-cairo font-bold
                      rounded-[25px] shadow-md transition-all 
                      hover:bg-[rgba(255,255,255,0.9)] hover:text-black hover:shadow-[0px_0px_20px_#499DCA] 
                      hover:scale-105 focus:outline-none border-none">
@@ -248,7 +249,7 @@
 
       <div lang="ar" dir="rtl" class="part3 block rtl text-center py-12 px-2">
         <ul class="flex flex-col md:flex-row justify-center items-center gap-6">
-          <li class="flex flex-col items-center p-5 w-full sm:w-[300px] md:w-[300px]">
+          <li class="flex flex-col  items-center p-5 sm:w-[500px]">
             <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
             hover:scale-105 focus:outline-none border-none">
               <i class="fas fa-battery-full text-[#007bff] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
@@ -262,11 +263,10 @@
               <p class="text-base font-cairo leading-6">نقدم حلول طاقة شمسية مبتكرة لتوليد طاقة مستدامة بتكاليف منخفضة.</p>
             </div>
           </li>
-          <li class="flex flex-col md:flex-row gap-12 mt-8">
-            <div class="par flex flex-col items-center w-full max-w-[500px] text-center">
-              <img src="/homeThree.png" alt="حلول الطاقة الشمسية" class="w-full max-w-[350px] h-auto mb-10 top-10 rounded-[35px] shadow-lg ">
-              <div class="p flex flex-col sm:flex-row gap-8 justify-center items-center">
-                <div class="flex flex-col items-center p-5 w-full text-black bg-white shadow-md rounded-xl  hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
+          <li class="flex flex-col  items-center p-5 sm:w-[800px]">
+              <img src="/homeThree.png" alt="حلول الطاقة الشمسية" class="w-full max-w-[450px] h-auto mb-10 top-10 rounded-[35px] shadow-lg ">
+              <div class="p flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div class="flex flex-col items-center  p-5 w-full  text-black bg-white shadow-md rounded-xl  hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
                 hover:scale-105 focus:outline-none border-none">
                   <i class="fas fa-industry text-[#499DCA] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
                   <h4 class="text-2xl font-semibold font-cairo  mb-2">الطاقة الشمسية الصناعية</h4>
@@ -279,9 +279,9 @@
                   <p class=" text-base font-cairo leading-6">استثمارات الطاقة الشمسية تضمن لك توفيرًا كبيرًا على المدى الطويل.</p>
                 </div>
               </div>
-            </div>
+
           </li>
-          <li class="flex flex-col items-center p-5 w-full sm:w-[300px] md:w-[300px]">
+          <li class="flex flex-col  items-center p-5 sm:w-[500px]">
             <div class="pp p-5 w-full mb-6 text-black bg-white shadow-md rounded-xl  hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
             hover:scale-105 focus:outline-none border-none">
               <i class="fas fa-leaf text-[#499DCA] text-3xl bg-white rounded-full shadow-lg p-3 mb-4"></i>
@@ -312,12 +312,12 @@
     
         <p class="w-[700px] sm:w-[850px] sm:text-[32px] text-[13px] font-medium sm:font-bold font-cairo text-[#022333]">
             إذا كنت مستعدًا لبدء رحلتك مع 
-            <span class="font-cairo text-blue-600">Eco PowerHub</span>، اضغط هنا
+            <span class="font-cairo font-bold text-[#051C2F]">Eco PowerHub</span>، اضغط هنا
         </p>
         
         <button type="submit"
         class="w-[120px] sm:w-[150px] sm:h-[45px] h-[25px] sm:text-[24px] text-[10px] flex items-center ml-5 justify-center gap-2
-               bg-[#051C2F] text-white font-cairo font-medium 
+               bg-[#051C2F] text-white font-cairo font-bold 
                rounded-[25px] shadow-md transition-all 
                hover:bg-[rgba(255,255,255,0.9)] hover:text-black hover:shadow-[0px_0px_20px_#499DCA] 
                hover:scale-105 focus:outline-none border-none">
@@ -387,12 +387,12 @@
                     </a>
                   </li>
                   <li class="relative">
-                    <a href="/login" class=" inline-block relative pr-6">
+                    <a href="#" class=" inline-block relative pr-6">
                       تسجيل الدخول
                     </a>
                   </li>
                   <li class="relative">
-                    <a href="/signup" class=" inline-block relative pr-6">
+                    <a href="#" class=" inline-block relative pr-6">
                       إنشاء حساب
                     </a>
                   </li>
@@ -466,4 +466,5 @@
       
       </footer>   
     </body>
+    <app-footer></app-footer>
     </html>

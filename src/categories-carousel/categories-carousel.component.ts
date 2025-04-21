@@ -25,7 +25,7 @@ export class CategoriesCarouselComponent {
     { id: 3, name: 'المحولات', image: 'assets/inverter.png', slug: 'Inverters' },
     { id: 4, name: 'شواحن', image: 'assets/charger.png', slug: 'Chargers' },
     { id: 5, name: 'نظام مراقبة', image: 'assets/camera.png', slug: 'controlSystem' },
-    { id: 6, name: 'كابلات وموصلات', image: 'assets/cables.png', slug: 'CablesConductors' }
+    { id: 6, name: 'كابلات وموصلات', image: 'assets/cables.png', slug: 'CablesAndConductors' }
   ];
 
   visibleProducts: Product[] = [];

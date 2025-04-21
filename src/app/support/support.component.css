@@ -1,14 +1,23 @@
-[x-cloak] { display: none !important; }
-button span {
-    color: white;
-}
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Sora:wght@100..800&display=swap');
+
 html, body {
     overflow: visible !important;
     font-family: "Cairo", serif;
 }
 
+nav, ul, li {
+    pointer-events: auto;
+}
 
+.navbar {
+    z-index: 9999 !important;
+}
+
+.hadr .pra {
+    font-size: 12px;
+    font-family: "Cairo", sans-serif;
+    color: #727171;
+}
 .footer-section ul {
  
     font-family: "Cairo", sans-serif;

@@ -11,20 +11,23 @@ import { PasswordReset1Component } from './password-reset1/password-reset1.compo
 import { CartComponent } from '../cart/cart.component';
 import { ProductDisplayComponent } from '../product-display/product-display.component';
 import { HomeComponent } from './home/home.component';
+import { SupportComponent } from './support/support.component';
+import { SolarPropertyComponent } from './solar-property/solar-property.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'signup', component: SignupPageComponent },
-  { path: 'signup-success', component: SuccessfulSignupComponent },
-  { path: 'sendotp', component: SendOtpComponent },
-  { path: 'resetpassword', component: AppPasswordResetComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'aboutus', component: AboutUsComponent },
-  { path: 'forgetpassword', component: PasswordReset1Component },
-  { path: 'cart', component: CartComponent },
-  { path: 'products', component: ProductDisplayComponent },
-  { path: 'home', component: HomeComponent},
-
+  { path: '', redirectTo: '/home', pathMatch: 'full', data: { title: 'Home' } },
+  { path: 'home', component: HomeComponent, data: { title: 'Home' } },
+  { path: 'support', component: SupportComponent, data: { title: 'Support' } },
+  { path: 'signup', component: SignupPageComponent, data: { title: 'Signup' } },
+  { path: 'signup-success', component: SuccessfulSignupComponent, data: { title: 'Signup-success' } },
+  { path: 'sendotp', component: SendOtpComponent, data: { title: 'Sendotp' } },
+  { path: 'resetpassword', component: AppPasswordResetComponent, data: { title: 'Resetpassword' } },
+  { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  { path: 'aboutus', component: AboutUsComponent, data: { title: 'Aboutus' } },
+  { path: 'forgetpassword', component: PasswordReset1Component, data: { title: 'Forgetpassword' } },
+  { path: 'cart', component: CartComponent, data: { title: 'Cart' } },
+  { path: 'products', component: ProductDisplayComponent, data: { title: 'Products' } },
+  { path: 'solar-property', component: SolarPropertyComponent, data: { title: 'Solar Property' } }
 ];
 
 @NgModule({

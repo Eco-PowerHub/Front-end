@@ -21,40 +21,70 @@
     <div class="login-box mt-[-22px]">
       <h2>تسجيل الدخول</h2>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        
-        <!-- حقل البريد الإلكتروني -->
+
+        <!-- البريد الإلكتروني -->
         <label class="email">البريد الإلكتروني</label>
         <input type="email" formControlName="email" placeholder="example@gmail.com" />
-
-        <!-- حقل كلمة المرور -->
-        <label class="password">كلمة المرور</label>
+      
+        @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+          <div class="text-red-600 text-sm mt-1">
+            @if (loginForm.get('email')?.errors?.['required']) {
+              <div>البريد الإلكتروني مطلوب</div>
+            }
+            @if (loginForm.get('email')?.errors?.['email']) {
+              <div>البريد الإلكتروني غير صحيح</div>
+            }
+          </div>
+        }
+      
+        <!-- كلمة المرور -->
+        <label class="password mt-4 block">كلمة المرور</label>
         <div class="password-container">
           <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="@#*%" />
-          <!-- زر إظهار/إخفاء كلمة المرور -->
-          <button type="button" (click)="togglePassword()">
-          </button>
+          <button type="button" (click)="togglePassword()"></button>
         </div>
-
+      
+        @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+          <div class="text-red-600 text-sm mt-1">
+            كلمة المرور مطلوبة
+          </div>
+        }
+      
         <!-- رابط استرجاع كلمة المرور -->
-        <div class="forgot">
+        <div class="forgot mt-2">
           <a href="/forgetpassword">نسيت كلمة المرور؟</a>
         </div>
-
+      
         <!-- اختيار الدور -->
-        <div class="roles">
+        <div class="roles mt-4">
           <label><input type="radio" formControlName="role" [value]="1" /> مسؤول</label>
           <label><input type="radio" formControlName="role" [value]="2" /> عميل</label>
           <label><input type="radio" formControlName="role" [value]="3" /> شركة</label>
         </div>
-
+      
+        @if (loginForm.get('role')?.touched && loginForm.get('role')?.invalid) {
+          <div class="text-red-600 text-sm mt-1">
+            يجب اختيار الدور
+          </div>
+        }
+      
         <!-- زر تسجيل الدخول -->
-        <button type="submit" class="login-btn">تسجيل الدخول</button>
-
-        <!-- رابط لإنشاء حساب جديد -->
-        <p class="register">
+        <button type="submit" class="login-btn mt-4" [disabled]="loginForm.invalid">تسجيل الدخول</button>
+      
+        <!-- رسالة فشل تسجيل الدخول -->
+        @if (errorMessage) {
+          <div class="text-red-600 text-sm mt-2">
+            {{ errorMessage }}
+          </div>
+        }
+      
+        <!-- إنشاء حساب -->
+        <p  (click)="changeTitle('SignUp')" class="register mt-2">
           ليس لديك حساب؟ <a href="signup">إنشاء حساب</a>
         </p>
+      
       </form>
+      
     </div>
   </div>
 </div>

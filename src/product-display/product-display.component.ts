@@ -25,7 +25,7 @@ export class ProductDisplayComponent implements OnInit {
     SolarPanel: 'الخلايا الشمسية',
     controlSystem: 'نظام مراقبة',
     Chargers: 'الشواحن',
-    CablesConductors: 'الكابلات والموصلات',
+    CablesAndConductors: 'الكابلات والموصلات',
     all: 'كل المنتجات'
   };
   

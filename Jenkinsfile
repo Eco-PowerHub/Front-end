@@ -25,7 +25,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh 'npm install'
+                    sh 'npm install --legacy-peer-deps'
+                    // Ignoring dependencies conflicts 
                 }
             }
         }
@@ -52,7 +53,7 @@ pipeline {
             }
         }
 
-        stage('Dockerizing .NET') {
+        stage('Dockerizing Angular App') {
             steps {
                 sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
             }
