@@ -24,7 +24,7 @@ export class SignupPageComponent {
       role: [2, Validators.required], // قيمة افتراضية للـ role
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email, this.customEmailValidator]], // إضافة الفاليديشن المخصص
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]], // يجب أن يكون رقم هاتف صحيح
       password: ['', [
         Validators.required,
@@ -42,7 +42,13 @@ export class SignupPageComponent {
     const confirmPassword = control.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
-
+  private customEmailValidator(control: AbstractControl): ValidationErrors | null {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (control.value && !emailRegex.test(control.value)) {
+      return { invalidEmail: true }; // إذا البريد الإلكتروني غير صحيح
+    }
+    return null;
+  }
   // دالة إرسال البيانات عند الضغط على "تسجيل"
   onSubmit() {
     if (this.signupForm.valid) {
@@ -65,16 +71,27 @@ export class SignupPageComponent {
       this.authservice.register(formData ).subscribe({
         next: (response :any) => {
           console.log('✅ تم التسجيل بنجاح:', response);
+          if (response.message === 'Email or User Name already exists!!') {
+            alert(response.message); // عرض الرسالة كـ alert
+            this.loading = false;
+            return; // إيقاف بقية التنفيذ
+          }
           localStorage.setItem('otpExpiry', response.data.otpExpiry);
           this.router.navigate(['/sendotp'], { queryParams: { email: formData.email ,otpExpiry: response.data.otpExpiry } });
         },
-        error: (err :any) => {
+        error: (err: any) => {
           console.error('❌ فشل التسجيل:', err);
           this.loading = false;
+  
+          // عرض رسالة الخطأ للمستخدم
+          const errorMessage = err.error?.message || 'حدث خطأ غير متوقع. حاول مرة أخرى.';
+          alert(errorMessage);
         }
       });
     } else {
       console.log('⚠ هناك خطأ في الفورم!');
-    }
+      this.signupForm.markAllAsTouched(); // ✅ خلي الحقول تظهر أخطاءها
+      return; // ✅ د
   }
+}
 } 

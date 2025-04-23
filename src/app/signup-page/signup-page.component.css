@@ -12,7 +12,11 @@ overflow: hidden;
   
 
 }
-
+@media (max-width: 639px) {
+ body{
+    overflow: auto; /* يفتح السكرول في الشاشات الصغيرة فقط */
+  }
+}
 
 body::before {
   content: "";

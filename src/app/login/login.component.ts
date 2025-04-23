@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-page',
@@ -18,7 +19,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -26,7 +28,9 @@ export class LoginComponent {
       role: ['', Validators.required]
     });
   }
-
+  changeTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
@@ -39,16 +43,18 @@ export class LoginComponent {
 
     const loginData = this.loginForm.value;
 
-    this.authService.login(loginData).subscribe({
-      next: (response) => {
-        console.log('تم تسجيل الدخول بنجاح:', response);
-        this.errorMessage = '';
-        this.router.navigate(['/home']);
+    this.authService.login(this.loginForm.value).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token); // أو حسب ما يرجع الـ API
+        localStorage.setItem('userName', res.userName); // لو عندك الاسم في الرد
+        this.router.navigate(['/']); // يرجع للـ home بعد الدخول
       },
-      error: (err) => {
-        console.error('فشل تسجيل الدخول:', err);
-        this.errorMessage = 'فشل تسجيل الدخول. يرجى التحقق من البيانات والمحاولة مرة أخرى.';
+      err => {
+        console.log(err);
       }
-    });
+    );
   }
+  
+  
+  
 }

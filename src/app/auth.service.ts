@@ -1,32 +1,41 @@
+// auth.service.ts
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
-  providedIn: 'root',  // هذه الخاصية تضمن أن الخدمة متاحة على مستوى التطبيق بأكمله
+  providedIn: 'root',
 })
 export class AuthService {
-  private loggedIn = false;
-  private userName = '';
-
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  private userNameSubject = new BehaviorSubject<string>('');
 
   constructor() {
-    // استرجاع حالة تسجيل الدخول من localStorage إذا كانت موجودة
-    this.loggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    this.userName = localStorage.getItem('userName') || '';
+    const storedLogin = localStorage.getItem('isLoggedIn') === 'true';
+    const storedName = localStorage.getItem('userName') || '';
+
+    this.loggedIn.next(storedLogin);
+    this.userNameSubject.next(storedName);
   }
- 
- 
+
+  login(userName: string) {
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userName', userName);
+    this.loggedIn.next(true);
+    this.userNameSubject.next(userName);
+  }
+
   logout() {
-    this.loggedIn = false;
-    this.userName = '';
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userName');
+    this.loggedIn.next(false);
+    this.userNameSubject.next('');
   }
 
-  isLoggedIn(): boolean {
-    return this.loggedIn;
+  isLoggedIn() {
+    return this.loggedIn.asObservable();
   }
 
-  getUserName(): string {
-    return this.userName;
+  getUserName() {
+    return this.userNameSubject.asObservable();
   }
 }

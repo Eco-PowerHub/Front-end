@@ -1,20 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { filter, map, mergeMap } from 'rxjs/operators';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "../header/header.component";
-import { ProductDisplayComponent } from "../product-display/product-display.component";
-import { CategoriesCarouselComponent } from "../categories-carousel/categories-carousel.component";
-import { FooterComponent } from "../footer/footer.component";
-import { ProductCardComponent } from "../product-card/product-card.component";
-import { HomeComponent } from './home/home.component';
-import {  OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet ],
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'eco-powerhubb';
-products: any;
+export class AppComponent implements OnInit {
+  title = 'eco-powerhub';
+  products: any;
+
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title
+  ) {}
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => this.activatedRoute),
+        map((route) => {
+          while (route.firstChild) route = route.firstChild;
+          return route;
+        }),
+        filter((route) => route.outlet === 'primary'),
+        mergeMap((route) => route.data)
+      )
+      .subscribe((data) => {
+        const pageTitle = data['title'];
+        if (pageTitle) {
+          this.titleService.setTitle(pageTitle);
+        }
+      });
+  }
 }
