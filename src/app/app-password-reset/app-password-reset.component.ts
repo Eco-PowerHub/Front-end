@@ -63,7 +63,7 @@ export class AppPasswordResetComponent implements OnInit {
       confirmNewPassword
     };
 
-    console.log('📤 البيانات المرسلة:', requestData);
+    console.log('🔍 typeof البيانات:', typeof requestData, requestData);
 
     this.authService.resetPassword(requestData).subscribe({
       next: (response) => {
