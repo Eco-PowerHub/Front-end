@@ -26,7 +26,7 @@ export class AboutUsComponent {
     {
       id: 1,
       title: 'طاقة متجددة',
-      image: 'طاقة متجددة.png',
+      image: 'طاقة متجددة .png',
       icon: 'icon.png',
       size: 'large'
     },
