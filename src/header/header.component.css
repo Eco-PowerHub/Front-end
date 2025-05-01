@@ -14,8 +14,3 @@ html, body {
     background-color: #1a202c; /* لون الخلفية الداكن */
     color: white;
   }
-  .hadr .pra {
-    font-size: 12px;
-    font-family: "Cairo", sans-serif;
-    color: #727171;
-}
