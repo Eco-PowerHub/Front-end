@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <title>Eco Power Hub</title>
 </head>
 <body>
-<app-header></app-header>
+  <app-header></app-header>
 
+  <!-- Header Section -->
+  
 
-
-<section class="bg-white p-2 flex  justify-center sm:justify-between items-center">
-  <div class="ml-4  mt-4 hidden sm:block">
+<html class="bg-white p-2 flex  justify-center sm:justify-between items-center">
+  <body class="ml-4  mt-4 hidden sm:block">
 <section class="bg-white p-2 flex justify-between items-center">
   <div class="ml-4  mt-4">
     <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>
@@ -27,160 +26,148 @@
     <span class=" w-5 h-5 mt-5 mr-4 cursor-pointer hidden sm:block "><img  src="/image 156.png" alt=""></span>
     <span class="txt font-bold text-black  tracking-tight pb-3 sm:pb-0 text-[30px] sm:text-[40px] text-center ">من نحن</span>
 
-
+   
   </div>
-  <div class="w-35 border-t-3  bg-[#001F2D] my-3 hidden sm:block ml-9 mt-[1px]  "></div>
+  <div class="w-35 border-t-3  bg-[#001F2D] my-3 hidden sm:block ml-9 mt-[1px] "></div>
 
 </div>
 </section>
-
-<section class="flex flex-col sm:flex-row items-center mt-[-35px] gap-9 sm:gap-12 p-4 sm:p-5 bg-white">
-  <!-- صورة المشروع -->
-  <div class="w-full sm:w-1/2 order-2 sm:order-1 flex justify-center items-center">
-    <img class="w-[400px] sm:w-[540px] h-auto sm:ml-10 mt-6 rounded-3xl" 
-         src="/image 28 (2).png" 
-         alt="ألواح شمسية">
-  </div>
-
-  <!-- نص المشروع -->
-  <div class="w-full sm:w-1/2 order-1 sm:order-2 flex justify-end sm:ml-50 sm:mt-[-70px]" dir="rtl">
-    <div class="text-right w-full max-w-[500px]">
-      <h2 class="text-[30px] sm:text-[35px] mr-2 text-[#051C2F]">
-        نظرة عامة على المشروع
-      </h2>
-      <p class="Font mt-2 text-[19px] md:text-[22px] font-semibold sm:font-bold mr-4 text-[#051C2F]">
-        هي منصة رقمية تهدف إلى تعزيز استخدام الطاقة الشمسية 
-        وتوفير مصدر دائم للطاقة كحل مستدام لانقطاع التيار الكهربائي.
-      </p>
-    </div>
-  </div>
-</section>
-
-<div class="container mx-auto my-8" dir="rtl">
-  <h2 class="text-3xl font-bold mb-8">الأهداف</h2>
-  
-  <div class="grid grid-cols-12 gap-4">
-    <!-- الطاقة المتجددة - صورة كبيرة -->
-    <div class="col-span-12 md:col-span-7 relative rounded-2xl overflow-hidden h-123.5 shadow-lg">
-      <img 
-        [src]="goals[0].image" 
-        [alt]="goals[0].title"
-        class="w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-[#17195A]/40 bg-opacity-4 z-10"></div>
-
-      <div class="absolute top-4 left-4 w-18 h-18 bg-blue-400/80 rounded-full flex items-center justify-center z-20">
-        <img [src]="goals[0].icon" alt="أيقونة" class="w-18 h-18 ">
+  <!-- Project Overview -->
+  <section class="bg-white py-10">
+    <div class="container mx-auto px-4 flex flex-col sm:flex-row items-center gap-10">
+      <div class="w-full sm:w-1/2">
+        <img src="/image 28 (2).png" alt="ألواح شمسية" class="w-full max-w-md mx-auto rounded-3xl" />
       </div>
-      <div class="absolute bottom-4 right-4 z-20">
-        <div class="font-bold text-2xl text-white  px-3 py-1 rounded-lg">
-          {{ goals[0].title }}
-        </div>
-        <div class="text-md text-white">حماية بيئتنا لا يجب أن تكلف الكثير.</div>
+      <div class="w-full sm:w-1/2">
+        <h2 class="text-[30px] sm:text-[35px] text-[#051C2F] font-bold mb-4">نظرة عامة على المشروع</h2>
+        <p class="text-[19px] md:text-[22px] font-semibold text-[#051C2F]">
+          هي منصة رقمية تهدف إلى تعزيز استخدام الطاقة الشمسية وتوفير مصدر دائم للطاقة كحل مستدام لانقطاع التيار الكهربائي.
+        </p>
       </div>
     </div>
+  </section>
+  <div class="container mx-auto my-8" dir="rtl">
+    <h2 class="text-3xl font-bold mb-8">الأهداف</h2>
     
-    <!-- تخزين البطارية -->
-    <div class="col-span-12 md:col-span-5 grid grid-cols-1 gap-4  ">
-      <!-- تخزين البطارية -->
-      <div class="relative rounded-2xl overflow-hidden h-60 shadow-lg">
+    <div class="grid grid-cols-12 gap-4">
+      <!-- الطاقة المتجددة - صورة كبيرة -->
+      <div class="col-span-12 md:col-span-7 relative rounded-2xl overflow-hidden h-123.5 shadow-lg">
         <img 
-          [src]="goals[1].image" 
-          [alt]="goals[1].title"
+          [src]="goals[0].image" 
+          [alt]="goals[0].title"
           class="w-full h-full object-cover"
         />
-        <div class="absolute inset-0 bg-[#0C0C0C]/40 bg-opacity-4 z-10"></div>
-
-        <div class="absolute top-3 left-3 w-18 h-18 bg-blue-400/80 rounded-full z-20  flex items-center justify-center">
-          <img [src]="goals[1].icon" alt="أيقونة" class="w-18 h-18">
+        <div class="absolute inset-0 bg-[#17195A]/40 bg-opacity-4 z-10"></div>
+  
+        <div class="absolute top-4 left-4 w-18 h-18 bg-blue-400/80 rounded-full flex items-center justify-center z-20">
+          <img [src]="goals[0].icon" alt="أيقونة" class="w-18 h-18 ">
         </div>
-        <div class="absolute bottom-3 right-3 z-20">
-          <div class="font-bold text-xl text-white">{{ goals[1].title }}</div>
+        <div class="absolute bottom-4 right-4 z-20">
+          <div class="font-bold text-2xl text-white  px-3 py-1 rounded-lg">
+            {{ goals[0].title }}
+          </div>
+          <div class="text-md text-white">حماية بيئتنا لا يجب أن تكلف الكثير.</div>
         </div>
       </div>
       
-      <!-- المحول وطاقة الرياح -->
-      <div class="grid grid-cols-2 gap-4">
+      <!-- تخزين البطارية -->
+      <div class="col-span-12 md:col-span-5 grid grid-cols-1 gap-4  ">
+        <!-- تخزين البطارية -->
         <div class="relative rounded-2xl overflow-hidden h-60 shadow-lg">
           <img 
-            [src]="goals[2].image" 
-            [alt]="goals[2].title"
+            [src]="goals[1].image" 
+            [alt]="goals[1].title"
             class="w-full h-full object-cover"
           />
-          <div class="absolute inset-0 bg-[#0C0C0C]/50 bg-opacity-4 z-10"></div>
-
-          <div class="absolute top-3 left-3 w-18 h-18 bg-blue-400/80 z-20 rounded-full flex items-center justify-center">
-            <img [src]="goals[2].icon" alt="أيقونة" class="w-18 h-18">
+          <div class="absolute inset-0 bg-[#0C0C0C]/40 bg-opacity-4 z-10"></div>
+  
+          <div class="absolute top-3 left-3 w-18 h-18 bg-blue-400/80 rounded-full z-20  flex items-center justify-center">
+            <img [src]="goals[1].icon" alt="أيقونة" class="w-18 h-18">
           </div>
           <div class="absolute bottom-3 right-3 z-20">
-            <div class="font-bold text-xl text-white">{{ goals[2].title }}</div>
+            <div class="font-bold text-xl text-white">{{ goals[1].title }}</div>
           </div>
         </div>
         
-        <div class="relative rounded-2xl overflow-hidden h-60 shadow-lg">
-          <img 
-            [src]="goals[3].image" 
-            [alt]="goals[3].title"
-            class="w-full h-full object-cover"
-          />
-          <div class="absolute inset-0 bg-[#0C0C0C]/45 bg-opacity-4 z-10"></div>
-
-          <div class="absolute top-3 left-3 w-18 h-18 z-20 bg-blue-400/80 rounded-full flex items-center justify-center">
-            <img [src]="goals[3].icon" alt="أيقونة" class="w-18 h-18">
+        <!-- المحول وطاقة الرياح -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="relative rounded-2xl overflow-hidden h-60 shadow-lg">
+            <img 
+              [src]="goals[2].image" 
+              [alt]="goals[2].title"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-[#0C0C0C]/50 bg-opacity-4 z-10"></div>
+  
+            <div class="absolute top-3 left-3 w-18 h-18 bg-blue-400/80 z-20 rounded-full flex items-center justify-center">
+              <img [src]="goals[2].icon" alt="أيقونة" class="w-18 h-18">
+            </div>
+            <div class="absolute bottom-3 right-3 z-20">
+              <div class="font-bold text-xl text-white">{{ goals[2].title }}</div>
+            </div>
           </div>
-          <div class="absolute bottom-3 right-3 z-20">
-            <div class="font-bold text-xl text-white">{{ goals[3].title }}</div>
+          
+          <div class="relative rounded-2xl overflow-hidden h-60 shadow-lg">
+            <img 
+              [src]="goals[3].image" 
+              [alt]="goals[3].title"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-[#0C0C0C]/45 bg-opacity-4 z-10"></div>
+  
+            <div class="absolute top-3 left-3 w-18 h-18 z-20 bg-blue-400/80 rounded-full flex items-center justify-center">
+              <img [src]="goals[3].icon" alt="أيقونة" class="w-18 h-18">
+            </div>
+            <div class="absolute bottom-3 right-3 z-20">
+              <div class="font-bold text-xl text-white">{{ goals[3].title }}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  
 
+  <!-- Vision -->
+  <section class="text-center py-10 px-4">
+    <h2 class="text-3xl font-bold mb-4">الرؤية</h2>
+    <p class="text-xl font-semibold text-gray-600 max-w-md mx-auto">
+      تمكن الأفراد والشركات من الانتقال إلى الطاقة الشمسية بطريقة سهلة وفعالة من حيث التكلفة
+    </p>
+  </section>
 
-<section>
-  <div class="text-center p-4 mx-auto">
-    <h2 class="text-3xl font-bold text-primary pb-4">الرؤية</h2>
-    <div class="w-[350px] mx-auto">
-    <p class="mt-2 text-xl font-semibold text-muted-foreground">تمكن الأفراد والشركات من الانتقال إلى الطاقة الشمسية بطريقة سهلة وفعالة من حيث التكلفة</p>
-  </div>
-  </div>
-</section>
+  <!-- Achievements -->
+  <section class="container mx-auto px-4 py-12">
+    <h2 class="text-3xl font-bold mb-6">إنجازاتنا</h2>
+    <img src="/image 22.png" alt="إنجازاتنا" class="w-full rounded-lg shadow-lg" />
+  </section>
 
-<section>
-  <div class="container mx-auto my-12 px-4" dir="rtl">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-3xl font-bold text-gray-800">إنجازاتنا</h2>
+  <div class=" bg-white text-right mr-9 pb-4" dir="rtl">
+    <h2 class="text-3xl font-bold  ">مميزاتنا</h2>
     </div>
-  <img src="/image 22.png" alt="">
-    
-   </div>
-</section>
-<div class=" bg-white text-right mr-9 pb-4" dir="rtl">
-<h2 class="text-3xl font-bold  ">مميزاتنا</h2>
-</div>
-<section class="flex flex-col sm:flex-row items-center mt-[-35px] gap-5 sm:gap-12 p-4 sm:p-5 bg-white">
-  <!-- صورة المشروع -->
-  <div class="w-full sm:w-1/2 order-2 sm:order-1 flex justify-center items-center">
-<img class="w-[400px] sm:w-[540px]  h-auto sm:ml-10 mt-2 rounded-3xl"
-         src="/image 27.png"
-         alt="ألواح شمسية">
-  </div>
-
-  <!-- نص المشروع -->
-  <div class="w-full sm:w-1/2 order-1 sm:order-2  flex justify-end">
-    <div class="p-6 rounded-lg text-right" dir="rtl">
-      <ul class="list-disc list-inside text-muted-foreground pt-9">
-        <li class="text-lg sm:text-xl font-semibold pb-3">واجهات المستخدم التفاعلية وإمكانية الوصول</li>
-        <li class="text-lg sm:text-xl font-semibold pb-3">حاسبات التكلفة والتوفير المتقدمة</li>
-        <li class="text-lg sm:text-xl font-semibold pb-3">حلول الطاقة الشمسية الشخصية</li>
-        <li class="text-lg sm:text-xl font-semibold pb-3">المميزات التثقيفية والتوعوية</li>
-        <li class="text-lg sm:text-xl font-semibold pb-3">دعم التوسع المستقبلي</li>
-        <li class="text-lg sm:text-xl font-semibold pb-3">خيارات دفع مرنة</li>
-      </ul>
+  <!-- Features -->
+  <section class="flex flex-col sm:flex-row items-center mt-[-35px] gap-5 sm:gap-12 p-4 sm:p-5 bg-white">
+    <!-- صورة المشروع -->
+    <div class="w-full sm:w-1/2 order-2 sm:order-1 flex justify-center items-center">
+  <img class="w-[400px] sm:w-[540px]  h-auto sm:ml-10 mt-2 rounded-3xl"
+           src="/image 27.png"
+           alt="ألواح شمسية">
     </div>
-  </div>
-</section>
-
-
+  
+    <!-- نص المشروع -->
+    <div class="w-full sm:w-1/2 order-1 sm:order-2  flex justify-end">
+      <div class="p-6 rounded-lg text-right" dir="rtl">
+        <ul class="list-disc list-inside text-muted-foreground pt-9">
+          <li class="text-lg sm:text-xl font-semibold pb-3">واجهات المستخدم التفاعلية وإمكانية الوصول</li>
+          <li class="text-lg sm:text-xl font-semibold pb-3">حاسبات التكلفة والتوفير المتقدمة</li>
+          <li class="text-lg sm:text-xl font-semibold pb-3">حلول الطاقة الشمسية الشخصية</li>
+          <li class="text-lg sm:text-xl font-semibold pb-3">المميزات التثقيفية والتوعوية</li>
+          <li class="text-lg sm:text-xl font-semibold pb-3">دعم التوسع المستقبلي</li>
+          <li class="text-lg sm:text-xl font-semibold pb-3">خيارات دفع مرنة</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 <app-footer></app-footer>
+</body>
+</html>

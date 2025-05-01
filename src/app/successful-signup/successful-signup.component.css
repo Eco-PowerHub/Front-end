@@ -52,5 +52,20 @@ border-radius: 10px;
   font-family: "Cairo", serif;
 
 }
-
+.home-link {
+  font-family: "Cairo", sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+  border: none; /* Removes any border if present */
+box-shadow: none; 
+font-size: 20px;
+  transition: all 0.3s ease;
+  padding: 15px 20px;
+}
+.home-link:hover {
+  color: #499DCA;
+  background: transparent;
+}
 
