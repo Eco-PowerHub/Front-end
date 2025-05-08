@@ -216,11 +216,53 @@
     
     <!-- Submit Button -->
     <div class="flex justify-center">
-      <button type="submit" class="text-4xl font-bold bg-[#022333] text-white py-5 px-20 rounded-4xl hover:bg-[#499DCA]">
+      <button type="submit" class="text-4xl font-bold bg-[#022333] text-white py-5 px-20 rounded-4xl transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
         تأكيد
       </button>
     </div>
   </form>
+
+
+  <!-- Rejection Report Section (conditionally shown) -->
+  <div *ngIf="showReport" id="reportSection" class="mt-12 mb-8">
+    <div class="flex items-center justify-center gap-8 mb-6">
+      <h3 class="text-6xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+    </div>
+    
+    <div class="border-[3px] m-16 border-black">
+      <!-- Report Header with Error -->
+      <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
+        <div class="bg-red-500 rounded-full p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+        <h4 class="text-[40px] font-bold text-right">نأسف لعدم مطابقة بيانات العقار لمتطلبات إنشاء المحطة الشمسية</h4>
+      </div>
+      
+      <!-- Report Content -->
+      <div class="p-6 text-right text-[31px]/13 font-bold">
+        <p class="mb-4 font-bold">،عزيزنا العميل</p>
+        
+        <p class="mb-4">نود أن نشكرك على اهتمامك بخدماتنا وثقتك بنا. بعد مراجعة البيانات الفنية الخاصة بعقارك، تبين أنه لا يستوفي المتطلبات اللازمة لإنشاء محطة شمسية وفقًا للمعايير الهندسية والفنية المعتمدة</p>
+        
+        <p class="mb-4">نحن نقدر اهتمامك بالطاقة المتجددة، ونؤكد استعدادنا لمساعدتك في استكشاف بدائل أخرى قد تناسب احتياجاتك. إذا كنت بحاجة إلى 
+          <button class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
+          حول إمكانية تعديل العقار لجعله مؤهلا، يسعدنا تقديم الدعم اللازم
+        </p>
+        
+        <p class="mb-4">نعتذر عن أي إزعاج قد يسببه هذا الأمر، ونتطلع إلى مساعدتك بطرق أخرى تلبي تطلعاتك</p>
+        
+        <p class="mb-4">لمزيد من التفاصيل، يمكنك التواصل معنا من هنا 
+          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">تواصل معنا</button>
+          من فضلك
+        </p>
+        
+        <p>شكرا لتفهمك وثقتك بنا</p>
+      </div>
+    </div>
+  </div>
   
   <!-- Thank You Message -->
   <div class="mt-12 flex items-center justify-center gap-12">

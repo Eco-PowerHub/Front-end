@@ -13,6 +13,7 @@ import { FooterComponent } from "../../footer/footer.component";
 export class SolarPropertyComponent {
 
   propertyForm: FormGroup;
+  showReport = false;
   
   constructor(private fb: FormBuilder) {
     this.propertyForm = this.fb.group({
@@ -36,8 +37,19 @@ export class SolarPropertyComponent {
   
   onSubmit() {
     if (this.propertyForm.valid) {
-      console.log('Form submitted:', this.propertyForm.value);
-      // Here you would typically send the data to your backend service
+      const formValues = this.propertyForm.value;
+      // Check if both answers are "yes"
+      if (formValues.treesNearby === 'yes' && formValues.buildingsNearby === 'yes') {
+        this.showReport = true;
+        // Scroll to the report section
+        setTimeout(() => {
+          document.getElementById('reportSection')?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        // Handle successful submission
+        console.log('Form submitted successfully:', this.propertyForm.value);
+        // Here you would typically send the data to your backend service
+      }
     } else {
       // Mark all fields as touched to trigger validation messages
       Object.keys(this.propertyForm.controls).forEach(key => {
@@ -46,5 +58,4 @@ export class SolarPropertyComponent {
       });
     }
   }
-
 }
