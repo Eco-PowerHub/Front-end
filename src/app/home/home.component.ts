@@ -4,11 +4,12 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../../header/header.component";
 import { FooterComponent } from "../../footer/footer.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent,RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
