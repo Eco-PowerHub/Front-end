@@ -1,0 +1,24 @@
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+    <div *ngFor="let pkg of packages" class="bg-white shadow-lg rounded-2xl p-6 border border-gray-200">
+      <h2 class="text-xl font-bold text-blue-900 mb-2">{{ pkg.packageName }}</h2>
+      <ul class="text-gray-700 text-sm space-y-1 mb-4">
+        <li>الألواح الشمسية: {{ pkg.panelModel }}</li>
+        <li>عدد الألواح الشمسية: {{ pkg.requiredPanels }}</li>
+        <li>العاكس: {{ pkg.inverterModel}}</li>
+        <li>البطارية: بطارية ليثيوم أيون ٥ كيلو وات/ساعة</li>
+        <li>عدد البطاريات: {{ pkg.requiredBatteries }}</li>
+        <!-- <li>نظام التركيب: {{  }} </li> -->
+         <li>وحدة التحكم في الشحن: وحدة تحكم MPPT ٣٠ أمبير</li>
+        <li>الكابلات والموصلات: كابل تيار مستمر بطول ٢٠ مترًا مع موصلات MC4</li>
+        <li>نظام المراقبة: تطبيق مراقبة الطاقة الأساسي</li>
+      </ul>
+      <div class="grid grid-cols-2 gap-4 text-center text-sm font-medium">
+        <p>إليك تفاصيل هذه الحزمة حيث بإمكانك معرفة فترة استرداد التكلفة لمبلغ <br>سعر الحزمة وكذلك المبالغ التي تستطيع أن توفرها</p>
+        <div class="bg-white p-3 rounded">سعر الحزمة كاملة<br><span class="text-[#022333]">{{ pkg.packagePrice | number }} L.E</span></div>
+        <div class="bg-white p-3 rounded">المبلغ السنوي<br><span class="text-[#022333]">{{ pkg.pricePerYear | number }} L.E</span></div>
+        <div class="bg-white p-3 rounded">فترة استرداد التكلفة <br><span class="text-[#022333]">{{ pkg.roiYears | number:'1.1-1' }} سنة</span></div>
+        <div class="bg-white p-3 rounded">مبلغ التوفير خلال  {{pkg.totalYearsGuarantee}} عام <br><span class="text-[#022333]">{{ pkg.savingCost | number }} L.E</span></div>
+      </div>
+    </div>
+  </div>
+  
