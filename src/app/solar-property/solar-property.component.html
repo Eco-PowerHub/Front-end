@@ -1,7 +1,5 @@
 <app-header></app-header>
 
-<!-- solar-property.component.html -->
-
 <!-- Hero Section with Image and Text Overlay -->
 <div class="part1 min-h-[600px] w-full flex flex-col items-center p-0 md:p-10 relative rtl bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden bg-white">
     <img 
@@ -224,7 +222,7 @@
 
 
   <!-- Rejection Report Section (conditionally shown) -->
-  <div *ngIf="showReport" id="reportSection" class="mt-12 mb-8">
+  <div *ngIf="showReport && reportType === 'rejection'" id="rejectionReportSection" class="mt-12 mb-8">
     <div class="flex items-center justify-center gap-8 mb-6">
       <h3 class="text-6xl font-bold">التقرير</h3>
       <img src="/report.png" alt="Thank You" class="max-w-[6%]">
@@ -263,7 +261,92 @@
       </div>
     </div>
   </div>
-  
+
+
+  <!-- Warning Report Section (conditionally shown) -->
+  <div *ngIf="showReport && reportType === 'warning'" id="warningReportSection" class="mt-12 mb-8">
+    <div class="flex items-center justify-center gap-8 mb-6">
+      <h3 class="text-6xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+    </div>
+    
+    <div class="border-[3px] m-16 border-black">
+      <!-- Report Header with Warning -->
+      <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
+        <img src="/warning.png" alt="warning" class="max-w-[3%]">
+        <h4 class="text-[36px] font-bold text-right">بحاجة إلى مراجعة فنية إضافية قبل تأكيد إمكانية إنشاء المحطة الشمسية</h4>
+      </div>
+      
+      <!-- Report Content -->
+      <div class="p-6 text-right text-[31px]/13 font-bold">
+        <p class="mb-4 font-bold">،عزيزنا العميل</p>
+        
+        <p class="mb-4">
+          نشكر لك اهتمامك بخدماتنا ورغبتك في التحول إلى الطاقة الشمسية<br>
+          بعد مراجعة البيانات الأولية الخاصة بعقارك، يبدو أنه قد يستوفي المتطلبات اللازمة لإنشاء محطة شمسية، ولكننا بحاجة إلى إجراء مراجعة فنية أكثر تفصيلًا للتأكد من إمكانية التنفيذ بأفضل شكل ممكن
+        </p>
+        
+        <p class="mb-4">
+          لذلك، نوصي بالتواصل مع فريق 
+          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">الدعم</button>
+          الفني لدينا، حيث سيقوم مهندسونا المتخصصون بمراجعة جميع التفاصيل والإجابة على استفساراتك لضمان تحقيق أفضل الحلول لمتطلباتك
+        </p>
+        
+        
+        <p class="mb-4">يرجى التواصل معنا لحجز موعد أو للحصول على استشارة فنية مباشرة مع أفضل المهندسين المختصين واحجز 
+          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
+          من هنا
+        </p>
+        
+        <p class="mb-10">نحن هنا لدعمك، ونتطلع إلى مساعدتك في تحقيق مشروعك بنجاح</p>
+      </div>
+    </div>
+  </div>
+
+
+
+   <!-- Approval Report Section (conditionally shown) -->
+   <div *ngIf="showReport && reportType === 'approval'" id="approvalReportSection" class="mt-12 mb-8">
+    <div class="flex items-center justify-center gap-8 mb-6">
+      <h3 class="text-6xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+    </div>
+    
+    <div class="border-[3px] m-16 border-black">
+      <!-- Report Header with Warning -->
+      <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
+        <img src="/approval.png" alt="approval" class="max-w-[4%]">
+        <h4 class="text-[38px] font-bold text-right">عزيزي العميل، تهانينا! عقارك مؤهل لإنشاء محطة طاقة شمسية</h4>
+      </div>
+      
+      <!-- Report Content -->
+      <div class="p-6 text-right text-[32px]/13 font-bold">
+        <p class="mb-4 font-bold">،عزيزنا العميل</p>
+        
+        <p class="mb-4">
+          نشكر لك اهتمامك بالتحول إلى الطاقة الشمسية
+        </p>
+        
+        <p class="mb-4">
+          ويسعدنا إبلاغك بأن عقارك يستوفي جميع المتطلبات الفنية والهندسية <br>
+          لإنشاء محطة طاقة شمسية
+        </p>
+        
+        
+        <p class="mb-12">
+          حرصًا منا على تلبية احتياجاتك بأفضل شكل ممكن، نقدم لك مجموعة من الحزم المتكاملة <br>
+          التي تناسب استهلاكك للطاقة وكذلك مساحة السطح لديك، مع تفاصيل كل حزمة
+        </p>
+        
+        <button class="px-3 py-3 mr-8 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">الحزم المقترحة لك</button>
+
+        <app-packages-list></app-packages-list>
+
+      </div>
+    </div>
+  </div>
+
+
   <!-- Thank You Message -->
   <div class="mt-12 flex items-center justify-center gap-12">
     <h3 class="text-6xl font-bold"> Eco Power Hub شكرًا ليك على اختيارك</h3>
