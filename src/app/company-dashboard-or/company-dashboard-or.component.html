@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body dir="rtl" class="bg-white">
+      
+      
+    <header dir="ltr" class="navbar bg-[#022333] p-4 shadow-md w-full z-60 relative" x-data="{ open: false }">
+        <div data-aos="fade-up" class="container mx-auto flex justify-between items-center">
+            <a href="#" class="max-w-[40px] md:max-w-[60px]"><img src="/eco-friendly.png" alt=""></a>
+          
+            
+              <!-- مربع البحث (في النص) -->
+              <div class="relative w-[300px] mx-auto">
+                <i class="fa fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 rotate-[-270deg]"></i>
+                <input
+                  type="text"
+                  class="border-2 h-9 bg-white rounded-full pl-4 pr-10 text-right
+                         focus:ring-2 focus:ring-[#499DCA] placeholder:text-[14px] focus:outline-none w-full transition-all duration-300 font-medium font-cairo"
+                  placeholder="بتدور على ايه؟">
+              </div>
+            
+              <div class="relative flex items-center space-x-3">
+                <div class="flex items-center space-x-2 mr-14 ">
+                    <img src="/R.jpeg" alt="Country" class="w-6 h-6 rounded-full object-cover">
+                  </div>
+                    <button 
+                   
+                    class="  text-[16px]  font-bold text-white -mr-5
+                           font-cairo transition duration-300 ease-in-out 
+                           hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
+                           Huawei 
+                           <img src="/Huawei_Standard_logo.svg 9.png" alt="User" class="w-8 h-8 ml-3 rounded-full object-cover">
+
+                  </button>
+              </div>
+         
+   
+        </div>
+
+    </header>
+<div class="flex min-h-screen">
+    <nav dir="rtl" class="bg-[#022333] md:flex flex-col w-56 min-h-screen text-white"> 
+        <a routerLink="/home"
+        routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+            <img src="/image 118.png" alt="User" class="w-5 h-5 object-cover">
+    
+            <span class="font-cairo font-bold">الصفحة الرئيسية</span>
+      </a>
+    
+        
+          <a 
+          routerLink="/company-dashboard-pro"
+          routerLinkActive="bg-white text-black"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="w-full border-t border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20 relative">
+          <img src="/image 119.png" alt="User" class="w-5 h-5 absolute right-10 object-cover">
+          <span class="font-bold">المنتجات</span>
+        </a>
+        
+          <a routerLink="/company-dashboard-or"
+          routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+            <img src="/image 86.png" alt="User" class="w-5 h-5 absolute right-10  object-cover">
+            <span class="font-bold">الطلبات</span>
+      </a>
+    
+    <a routerLink="/dashboard-support"
+    routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+      <img src="/image 153.png" alt="User" class="w-5 h-5 absolute right-10  object-cover">
+      <span class="font-bold">الاستشارات</span>
+    </a>
+          <a routerLink="/company-dashboard-set"
+          routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+            <img src="/image 120.png" alt="User" class="w-5 h-5 absolute right-10  object-cover">
+            <span class="font-bold">الإعدادات</span>
+    </a>
+       
+        
+          <!-- تسجيل الخروج -->
+          <a class="mt-auto w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+            <i class="fa-solid fa-right-from-bracket w-5 h-5 absolute right-10  object-cover"></i>        <span class="font-bold">تسجيل خروج</span>
+          </a>
+        </nav>
+        
+    
+    <section dir="ltr" class="flex flex-col w-full">
+      <div class="px-4 w-full flex justify-between items-center py-4">
+        <!-- الشعار -->
+        <div class="mt-4">
+          <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>
+          <div class="w-40 border-t-4  bg-[#001F2D] my-4"></div>
+      
+        </div>
+    
+        <!-- العنوان + صورة -->
+        <div class="flex flex-col items-end mr-12">
+          <div class="flex items-center gap-2 ">
+            <span class="mt-4 mr-4 cursor-pointer">
+              <img src="image 144.png" alt="" class="w-15 h-15 pb-1" />
+            </span>
+            <span class="txt font-bold text-black  tracking-tight  text-[40px] px-3">الطلبات</span>
+        
+        
+          </div>
+          <div class="w-40 border-t-4 border-[#001F2D] mt-1">
+          </div>
+        </div>
+          </div>
+        
+    
+   
+      <div dir="rtl" class="bg-[#022333] w-52 p-2 rounded-[25px] ml-auto mr-8 mt-24 -mb-6">
+        <span class="font-extrabold text-2xl text-center text-white block w-full">طلبات الشركة </span>
+      </div>
+      
+      <div  class="p-4 overflow-x-auto mt-6 flex flex-col md:flex-row gap-6 w-full">
+        
+          <table class="w-full border border-gray-300 text-right">
+            <thead class="bg-[#022333] text-white">
+              <tr>
+                <th class="px-4 py-2">حالة الطلب</th>
+                <th class="px-4 py-2">عنوان العميل</th>
+                <th class="px-4 py-2">التاريخ</th>
+                <th class="px-4 py-2">هاتف العميل</th>
+                <th class="px-4 py-2">السعر</th>
+                <th class="px-4 py-2"> رقم الطلب ID</th>
+                <th class="px-4 py-2"> اسم العميل</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm bg-white text-slate-800">
+              <tr *ngFor="let order of orders" class="border-b h-16">
+                <td class="px-4 py-2">{{ order.status }}</td>
+                <td class="px-4 py-2">{{ order.date }}</td>
+                <td class="px-4 py-2">{{ order.company }}</td>
+                <td class="px-4 py-2">{{ order.price }}</td>
+                <td class="px-4 py-2">{{ order.orderId }}</td>
+                <td class="px-4 py-2">{{ order.customerId }}</td>
+              </tr>
+            </tbody>
+            
+          </table>
+        </div>
+        
+     
+       </section>
+    
+  
+</div>
+</body>
+</html>
