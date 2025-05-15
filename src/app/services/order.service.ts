@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class OrderService {
-  private apiUrl = 'https://your-backend-url/api/orders'; // غيري ده بالرابط الحقيقي للباك
+  private apiUrl = 'http://157.175.182.159:8080/api/Order/GetAllOrders'; // غيري ده بالرابط الحقيقي للباك
 
   constructor(private http: HttpClient) {}
 

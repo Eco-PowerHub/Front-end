@@ -102,7 +102,7 @@
         <form class="bg-[#022333]  rounded-[25px] w-full px-6 py-6 pr-10 shadow-lg">
             <div class="mb-4">
                 <label class="block mb-2 mr-4 text-lg ">الاسم</label>
-                <input lang="ar" dir="rtl" type="text" 
+                <input [(ngModel)]="name" name="name" required lang="ar" dir="rtl" type="text" 
                 class="bg-white w-full p-4 border border-gray-300 rounded-[25px]
                        focus:outline-none focus:ring-2 focus:ring-blue-400 
                        text-slate-700 placeholder:font-medium placeholder:text-gray-500 text-right" 
@@ -111,26 +111,26 @@
             </div>
             <div class="mb-4">
                 <label class="block mb-2  mr-4  text-lg">البريد الإلكتروني</label>
-                <input lang="ar" dir="rtl" type="email" class=" bg-white w-full p-4 border border-gray-300 rounded-[25px] 
+                <input  [(ngModel)]="email" name="email" required lang="ar" dir="rtl" type="email" class=" bg-white w-full p-4 border border-gray-300 rounded-[25px] 
                 focus:outline-none focus:ring-2 focus:ring-blue-400 
                 text-slate-700 placeholder:text-gray-500 text-right " placeholder=" user@example.com">
             </div>
             <div class="mb-4">
                 <label class="block mb-2  mr-4  text-lg ">رقم الهاتف</label>
-                <input lang="ar" dir="rtl" type="tel" class="bg-white w-full p-4 border border-gray-300 rounded-[25px]
+                <input [(ngModel)]="phone" name="phone" required lang="ar" dir="rtl" type="tel" class="bg-white w-full p-4 border border-gray-300 rounded-[25px]
                 focus:outline-none focus:ring-2 focus:ring-blue-400 
                 text-slate-700 placeholder:text-gray-500 text-right "  placeholder="ادخل رقم هاتفك">
             </div>
             <div class="mb-4">
                 <label class="block mb-2  mr-4  text-lg ">رسالتك</label>
-                <textarea lang="ar" dir="rtl" class="bg-white w-full p-4 border border-gray-300 rounded-[25px] 
+                <textarea [(ngModel)]="message" name="message" required lang="ar" dir="rtl" class="bg-white w-full p-4 border border-gray-300 rounded-[25px] 
                 focus:outline-none focus:ring-2 focus:ring-blue-400 
                 text-slate-700 placeholder:text-gray-500 text-right " rows="4" placeholder=" يمكنك اخبارنا بسؤالك فيما يتعلق بمشاكل واجهتك أثناء عملية تخصيص الحزمة الشمسية لك. "></textarea>
             </div>
 
         </form>
         <div class="flex justify-center mt-4 ">
-            <button class="w-[100%] sm:w-1/3  p-2 rounded-[25px] bg-[#022333] text-white font-cairo transition duration-300 ease-in-out hover:bg-white hover:text-black hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
+            <button (click)="sendForm()" class="w-[100%] sm:w-1/3  p-2 rounded-[25px] bg-[#022333] text-white font-cairo transition duration-300 ease-in-out hover:bg-white hover:text-black hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
                 إرسال
             </button>
         </div>

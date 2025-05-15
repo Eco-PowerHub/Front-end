@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ProductdashService } from '../services/productdash.service';
+
 // تعريف واجهة للمنتج
 interface Product {
   name: string;
@@ -19,10 +21,8 @@ interface Product {
 export class DashboardProductComponent {
 
 
-  // مصفوفة لتخزين المنتجات
   products: Product[] = [];
 
-  // نموذج منتج جديد
   newProduct: Product = {
     name: '',
     price: '',
@@ -31,23 +31,35 @@ export class DashboardProductComponent {
     id: ''
   };
 
-  // رقم المنتج للحذف
   productIdToDelete: string = '';
 
-  // دالة لإضافة منتج جديد
+  constructor(private ProductdashService: ProductdashService) {}
+
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  // جلب المنتجات من السيرفس
+  loadProducts(): void {
+    this.ProductdashService.getProducts().subscribe(data => {
+      this.products = data;
+    });
+  }
+
   addProduct(): void {
-    const newProduct = { ...this.newProduct, id: new Date().getTime().toString() }; // إضافة رقم ديناميكي
-    this.products.push(newProduct);
-    this.resetForm();
+    this.ProductdashService.addProduct(this.newProduct).subscribe(() => {
+      this.resetForm();
+      this.loadProducts(); // تحديث القائمة
+    });
   }
 
-  // دالة لحذف منتج
   deleteProduct(): void {
-    this.products = this.products.filter(product => product.id !== this.productIdToDelete);
-    this.productIdToDelete = ''; // مسح القيمة بعد الحذف
+    this.ProductdashService.deleteProduct(this.productIdToDelete).subscribe(() => {
+      this.productIdToDelete = '';
+      this.loadProducts(); // تحديث القائمة
+    });
   }
 
-  // إعادة تعيين نموذج إضافة المنتج
   resetForm(): void {
     this.newProduct = { name: '', price: '', quantity: '', category: '', id: '' };
   }
