@@ -1,12 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable,of } from 'rxjs';
+
+
+export interface Product {
+  name: string;
+  price: string;
+  quantity: string;
+  category: string;
+  id: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
-  private apiUrl = 'http://157.175.182.159:8080/api/Order/GetAllOrders'; // غيري ده بالرابط الحقيقي للباك
+  private apiUrl = 'http://157.175.182.159:8080/api/Order/GetAllOrders'; 
+  private getpro= 'http://157.175.182.159:8080/api/Product/Products';
+  products: Product[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -29,4 +40,21 @@ export class OrderService {
   deleteAccount(): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete`);
   }
+    getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(this.getpro);
+  }
+
+  
+    // إضافة منتج
+    addProduct(product: Product): Observable<Product> {
+      const newProduct = { ...product, id: new Date().getTime().toString() };
+      this.products.push(newProduct);
+      return of(newProduct);
+    }
+  
+    // حذف منتج
+    deleteProduct(id: string): Observable<void> {
+      this.products = this.products.filter(p => p.id !== id);
+      return of(undefined);
+    }
 }

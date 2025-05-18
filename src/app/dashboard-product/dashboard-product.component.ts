@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ProductdashService } from '../services/productdash.service';
+import { OrderService } from '../services/order.service';
+import { CommonModule } from '@angular/common';
 
 // تعريف واجهة للمنتج
 interface Product {
@@ -14,7 +15,7 @@ interface Product {
 @Component({
   selector: 'app-dashboard-product',
   standalone: true, // 👈 مهم جدًا
-  imports: [FormsModule,RouterModule], 
+  imports: [FormsModule,RouterModule,CommonModule], 
   templateUrl: './dashboard-product.component.html',
   styleUrl: './dashboard-product.component.css'
 })
@@ -33,28 +34,26 @@ export class DashboardProductComponent {
 
   productIdToDelete: string = '';
 
-  constructor(private ProductdashService: ProductdashService) {}
+  constructor(private OrderService: OrderService) {}
 
-  ngOnInit(): void {
-    this.loadProducts();
-  }
+ 
 
   // جلب المنتجات من السيرفس
   loadProducts(): void {
-    this.ProductdashService.getProducts().subscribe(data => {
+    this.OrderService.getProducts().subscribe(data => {
       this.products = data;
     });
   }
 
   addProduct(): void {
-    this.ProductdashService.addProduct(this.newProduct).subscribe(() => {
+    this.OrderService.addProduct(this.newProduct).subscribe(() => {
       this.resetForm();
       this.loadProducts(); // تحديث القائمة
     });
   }
 
   deleteProduct(): void {
-    this.ProductdashService.deleteProduct(this.productIdToDelete).subscribe(() => {
+    this.OrderService.deleteProduct(this.productIdToDelete).subscribe(() => {
       this.productIdToDelete = '';
       this.loadProducts(); // تحديث القائمة
     });
@@ -62,5 +61,19 @@ export class DashboardProductComponent {
 
   resetForm(): void {
     this.newProduct = { name: '', price: '', quantity: '', category: '', id: '' };
+  }
+   ngOnInit(): void {
+    this.getAllProducts();
+  }
+
+  getAllProducts() {
+    this.OrderService.getProducts().subscribe(
+      (data) => {
+        this.products = data;
+      },
+      (error) => {
+        console.error('خطأ في جلب المنتجات:', error);
+      }
+    );
   }
 }

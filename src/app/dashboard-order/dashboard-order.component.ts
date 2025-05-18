@@ -1,23 +1,38 @@
-import { Component,OnInit  } from '@angular/core';
-import { OrderService } from '../services/order.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+interface Order {
+  id: number;
+  price: number;
+  orderDate: string;
+  orderHistory: string;
+  companyName: string;
+  userId: string;
+}
 
 @Component({
   selector: 'app-dashboard-order',
-  imports: [RouterModule],
+  standalone: true,
+  imports: [RouterModule, CommonModule],
   templateUrl: './dashboard-order.component.html',
-  styleUrl: './dashboard-order.component.css'
+  styleUrls: ['./dashboard-order.component.css']
 })
-export class DashboardOrderComponent  implements OnInit {
-  orders: any[] = [];
+export class DashboardOrderComponent implements OnInit {
+  orders: Order[] = [];
 
-  constructor(private orderService: OrderService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.orderService.getOrders().subscribe({
-      next: (data) => this.orders = data,
-      error: (err) => console.error('Error fetching orders:', err)
+    this.authService.getOrders().subscribe({
+      next: (res) => {
+        console.log('Orders response:', res);
+        this.orders = res.data;
+      },
+      error: (err) => {
+        console.error('Error fetching orders:', err);
+      }
     });
   }
-
 }

@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+interface ApiResponse {
+  data: any[];
+  message: string;
+  isSucceeded: boolean;
+  statusCode: number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +18,9 @@ private  Register='http://157.175.182.159:8080/api/Account/Register';
 private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
 private loginUrl='http://157.175.182.159:8080/api/Account/Login';
  private forgetpass='http://157.175.182.159:8080/api/Account/ForgetPassword';
+ private client='http://157.175.182.159:8080/api/Admin/Users';
+   private order = 'http://157.175.182.159:8080/api/Order/Orders'; 
+
   constructor(private http:HttpClient) { }
   register(userData: any): Observable<any> {
     console.log('بيانات التسجيل:', userData);
@@ -45,6 +53,14 @@ private loginUrl='http://157.175.182.159:8080/api/Account/Login';
     );
   }
   
+
+
+getCustomers(): Observable<ApiResponse> {
+  return this.http.get<ApiResponse>(this.client);
+}
+  getOrders(): Observable<any> {
+  return this.http.get<any>(this.order);
+}
 
 
 }
