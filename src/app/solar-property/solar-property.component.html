@@ -80,6 +80,9 @@
           <input type="radio" id="government" formControlName="propertyType" value="government" class="w-6 h-6 border-2 border-black">
         </div>
       </div>
+      <div *ngIf="propertyForm.get('propertyType')?.invalid && propertyForm.get('propertyType')?.touched" class="text-red-600 text-sm">
+      يرجى اختيار نوع العقار.
+    </div>
     </div>
     
     <!-- Roof Area -->
@@ -91,7 +94,13 @@
       placeholder="المساحة بالمتر المربع" 
       class="w-full h-15 border-2 border-black rounded p-2 text-right" 
       >
+      <div *ngIf="propertyForm.get('roofArea')?.invalid && propertyForm.get('roofArea')?.touched" class="text-red-600 text-sm">
+      <div *ngIf="propertyForm.get('roofArea')?.errors?.['required']">هذا الحقل مطلوب.</div>
+      <div *ngIf="propertyForm.get('roofArea')?.errors?.['pattern']">يرجى إدخال رقم صحيح.</div>
+      <div *ngIf="propertyForm.get('roofArea')?.errors?.['min']">يجب أن تكون أكبر من 0.</div>
     </div>
+    </div>
+
     
     <!-- Address -->
     <div class="mb-6">
@@ -102,7 +111,12 @@
       placeholder="أدخل عنوان العقار" 
         class="w-full h-15 border-2 border-black rounded p-2 text-right" 
         >
+
+      <div *ngIf="propertyForm.get('address')?.invalid && propertyForm.get('address')?.touched" class="text-red-600 text-sm">
+        <div *ngIf="propertyForm.get('address')?.errors?.['required']">هذا الحقل مطلوب.</div>
+        <div *ngIf="propertyForm.get('address')?.errors?.['minlength']">العنوان قصير جداً.</div>
       </div>
+    </div>
     
     <!-- Electricity Consumption -->
     <div class="mb-6">
@@ -115,29 +129,41 @@
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثالث</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month3"
             placeholder="1500 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('summerBills.month3')?.touched && propertyForm.get('summerBills.month3')?.invalid">
+            <div *ngIf="propertyForm.get('summerBills.month3')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('summerBills.month3')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثاني</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month2"
             placeholder="2000 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('summerBills.month2')?.touched && propertyForm.get('summerBills.month2')?.invalid">
+            <div *ngIf="propertyForm.get('summerBills.month2')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('summerBills.month2')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الأول</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month1"
             placeholder="1350 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('summerBills.month1')?.touched && propertyForm.get('summerBills.month1')?.invalid">
+            <div *ngIf="propertyForm.get('summerBills.month1')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('summerBills.month1')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
         </div>
       </div>
@@ -149,29 +175,41 @@
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثالث</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month3"
             placeholder="1100 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('winterBills.month3')?.touched && propertyForm.get('winterBills.month3')?.invalid">
+            <div *ngIf="propertyForm.get('winterBills.month3')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('winterBills.month3')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثاني</p>
             <input 
-              type="text" 
+              type="number" 
               formControlName="month2"
               placeholder="700 جنيه" 
               class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('winterBills.month2')?.touched && propertyForm.get('winterBills.month2')?.invalid">
+            <div *ngIf="propertyForm.get('winterBills.month2')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('winterBills.month2')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الأول</p>
             <input 
-              type="text" 
+              type="number" 
               formControlName="month1"
               placeholder="850 جنيه" 
               class="w-full h-15 border-2 border-black rounded p-2 text-right" 
               >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('winterBills.month1')?.touched && propertyForm.get('winterBills.month1')?.invalid">
+            <div *ngIf="propertyForm.get('winterBills.month1')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('winterBills.month1')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
             </div>
         </div>
       </div>

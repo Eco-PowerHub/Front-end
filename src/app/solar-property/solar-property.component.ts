@@ -20,17 +20,17 @@ export class SolarPropertyComponent {
   constructor(private fb: FormBuilder) {
     this.propertyForm = this.fb.group({
       propertyType: ['', Validators.required],
-      roofArea: ['', Validators.required],
-      address: ['', Validators.required],
+      roofArea: ['', [Validators.required, Validators.pattern(/^\d+(\.\d+)?$/), Validators.min(1)]],
+      address: ['', [Validators.required, Validators.minLength(5)]],
       summerBills: this.fb.group({
-        month1: ['', Validators.required],
-        month2: ['', Validators.required],
-        month3: ['', Validators.required]
+        month1: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+        month2: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+        month3: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
       }),
       winterBills: this.fb.group({
-        month1: ['', Validators.required],
-        month2: ['', Validators.required],
-        month3: ['', Validators.required]
+        month1: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+        month2: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+        month3: ['', [Validators.required, Validators.pattern(/^\d+$/)]]
       }),
       treesNearby: ['', Validators.required],
       buildingsNearby: ['', Validators.required]
@@ -38,6 +38,12 @@ export class SolarPropertyComponent {
   }
  
   onSubmit() {
+
+    if (this.propertyForm.invalid) {
+      this.propertyForm.markAllAsTouched();
+      return;
+    }
+
     if (this.propertyForm.valid) {
       const formValues = this.propertyForm.value;
       
