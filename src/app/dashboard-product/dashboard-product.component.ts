@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { OrderService } from '../services/order.service';
+import { AuthService } from '../auth/auth.service';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
 
 // تعريف واجهة للمنتج
 interface Product {
@@ -21,59 +23,62 @@ interface Product {
 })
 export class DashboardProductComponent {
 
+   products: any[] = [];
+companies: any[] = [];
 
-  products: Product[] = [];
+  constructor(private AuthService: AuthService ,private http: HttpClient) {}
 
-  newProduct: Product = {
-    name: '',
-    price: '',
-    quantity: '',
-    category: '',
-    id: ''
-  };
+  ngOnInit(): void {
+  this.getProducts();
+}
 
-  productIdToDelete: string = '';
+newProduct: any = {
+  name: '',
+  stock: 0,
+  amount: 0,
+  price: 0,
+  image: '',
+  model: '',
+  efficiency: 0,
+  estimatedPower: 0,
+  categoryId: 1,
+  companyId: 1
+};
 
-  constructor(private OrderService: OrderService) {}
-
- 
-
-  // جلب المنتجات من السيرفس
-  loadProducts(): void {
-    this.OrderService.getProducts().subscribe(data => {
-      this.products = data;
-    });
-  }
-
-  addProduct(): void {
-    this.OrderService.addProduct(this.newProduct).subscribe(() => {
-      this.resetForm();
-      this.loadProducts(); // تحديث القائمة
-    });
-  }
-
-  deleteProduct(): void {
-    this.OrderService.deleteProduct(this.productIdToDelete).subscribe(() => {
-      this.productIdToDelete = '';
-      this.loadProducts(); // تحديث القائمة
-    });
-  }
-
-  resetForm(): void {
-    this.newProduct = { name: '', price: '', quantity: '', category: '', id: '' };
-  }
-   ngOnInit(): void {
-    this.getAllProducts();
-  }
-
-  getAllProducts() {
-    this.OrderService.getProducts().subscribe(
-      (data) => {
-        this.products = data;
+addProduct(form: any) {
+  if (form.valid) {
+    this.AuthService.addProduct(this.newProduct).subscribe({
+      next: (res) => {
+        this.products.push(this.newProduct); // يضيف المنتج الجديد للجدول مباشرة
+        form.resetForm(); // ينظف الفورم بعد الإضافة
       },
-      (error) => {
-        console.error('خطأ في جلب المنتجات:', error);
+      error: (err) => {
+        console.error('فشل في إضافة المنتج:', err);
       }
-    );
+    });
   }
+}
+
+getProducts() {
+  this.http.get<any>('http://157.175.182.159:8080/api/Product/Products').subscribe({
+    next: (res) => {
+      this.products = res.data;
+    },
+    error: (err) => {
+      console.error('Error fetching products:', err);
+    }
+  });
+}
+
+getCompanyName(companyId: number): string {
+  const company = this.companies.find((c: any) => c.products.some((p: any) => p.companyId === companyId));
+  return company ? company.name : 'غير معروف';
+}
+
+getCompanyRate(companyId: number): number {
+  const company = this.companies.find((c: any) => c.products.some((p: any) => p.companyId === companyId));
+  return company ? Math.round(company.rate / 2) : 0;
+}
+
+
 }

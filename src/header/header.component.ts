@@ -1,9 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+
 @Component({
   selector: 'app-header',
-  imports: [RouterModule],
+  imports: [FormsModule,RouterModule,CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -53,6 +57,26 @@ export class HeaderComponent {
     }
   }
   
-  
+  searchText: string = '';
+allRoutes = [
+  { name: 'products', path: 'products' },
+  { name: 'property', path: 'property' },
+  { name: 'home', path: 'home' },
+  { name: 'settings', path: 'dashboard-settings' },
+];
+filteredRoutes: any[] = [];
+
+filterRoutes() {
+  const value = this.searchText.trim().toLowerCase();
+  this.filteredRoutes = this.allRoutes.filter(route =>
+    route.name.toLowerCase().includes(value)
+  );
+}
+
+goToRoute(path: string) {
+  this.router.navigate([path]);
+  this.searchText = '';
+  this.filteredRoutes = [];
+}
 
 }

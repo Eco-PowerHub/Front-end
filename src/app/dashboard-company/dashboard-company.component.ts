@@ -1,53 +1,79 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 interface Product {
   name: string;
-  price: string;
-  quantity: string;
-  category: string;
-  id: string;
+  stock: number;
+  amount: number;
+  price: number;
+  image: string;
+  model: string;
+  efficiency: number;
+  estimatedPower: number;
+  categoryId: number;
+  companyId: number;
 }
+
+interface Company {
+  name: string;
+  rate: number;
+  location: string;
+  phoneNumber: string;
+  image: string;
+  products: Product[];
+}
+
 @Component({
   selector: 'app-dashboard-company',
-  standalone: true, // 👈 مهم جدًا
-  imports: [FormsModule,RouterModule], 
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './dashboard-company.component.html',
   styleUrl: './dashboard-company.component.css'
 })
-export class DashboardCompanyComponent {
-  
-  // مصفوفة لتخزين المنتجات
-  products: Product[] = [];
+export class DashboardCompanyComponent implements OnInit {
+  companies: Company[] = [];
 
-  // نموذج منتج جديد
-  newProduct: Product = {
-    name: '',
-    price: '',
-    quantity: '',
-    category: '',
-    id: ''
-  };
+  constructor(private http: HttpClient) {}
 
-  // رقم المنتج للحذف
-  productIdToDelete: string = '';
-
-  // دالة لإضافة منتج جديد
-  addProduct(): void {
-    const newProduct = { ...this.newProduct, id: new Date().getTime().toString() }; // إضافة رقم ديناميكي
-    this.products.push(newProduct);
-    this.resetForm();
+  ngOnInit(): void {
+    this.getCompanies();
   }
 
-  // دالة لحذف منتج
-  deleteProduct(): void {
-    this.products = this.products.filter(product => product.id !== this.productIdToDelete);
-    this.productIdToDelete = ''; // مسح القيمة بعد الحذف
+  getCompanies() {
+    this.http.get<any>('http://157.175.182.159:8080/api/Company/Companies')
+      .subscribe({
+        next: (res) => {
+          this.companies = res.data;
+        },
+        error: (err) => {
+          console.error('Error fetching companies:', err);
+        }
+      });
   }
+  companyNameToDelete: string = '';
+companyIdToDelete: string = '';
 
-  // إعادة تعيين نموذج إضافة المنتج
-  resetForm(): void {
-    this.newProduct = { name: '', price: '', quantity: '', category: '', id: '' };
-  }
+deleteCompany() {
+  const id = this.companyIdToDelete;
+
+  this.http.delete(`http://157.175.182.159:8080/api/Company/DeleteCompany/2`)
+    .subscribe({
+      next: (res) => {
+        console.log('Company deleted:', res);
+        // حذف من القائمة الظاهرة بدون ما نعمل ري لود:
+        this.companies = this.companies.filter(c =>
+          !(c.products.length > 0 && c.products[0].companyId.toString() === id)
+        );
+        alert('تم حذف الشركة بنجاح');
+      },
+      error: (err) => {
+        console.error('Error deleting company:', err);
+        alert('فشل في حذف الشركة');
+      }
+    });
+}
 
 }

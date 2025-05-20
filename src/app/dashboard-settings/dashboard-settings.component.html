@@ -132,17 +132,17 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
                 <div class="flex-1 grid w-3/4 gap-4">
                   <div>
                     <label class="block mb-1 font-bold">اسم المستخدم</label>
-                    <input type="text" [(ngModel)]="user.name" class="w-full border p-2 rounded" />
+<input type="text" [(ngModel)]="user.username" class="w-full border p-2 rounded" />
                   </div>
           
                   <div>
                     <label class="block mb-1 font-bold">البريد الإلكتروني</label>
-                    <input type="email" [(ngModel)]="user.email" class="w-full border p-2 rounded" />
+<input type="email" [(ngModel)]="user.email" class="w-full border p-2 rounded" />
                   </div>
           
                   <div>
                     <label class="block mb-1 font-bold">رقم الهاتف</label>
-                    <input type="text" [(ngModel)]="user.phone" class="w-full border p-2 rounded" />
+<input type="text" [(ngModel)]="user.phoneNumber" class="w-full border p-2 rounded" />
                   </div>
                 </div>
                 <div class="flex flex-col w-1/2 items-end ml-20">
@@ -157,33 +157,68 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
               </div>
             </div>
           
-            <!-- إعدادات كلمة المرور -->
-            <h2 class="text-lg font-bold mb-4">إعدادات كلمة المرور</h2>
-            <div class="border p-6 rounded-lg shadow">
-              
-          
-              <div class="grid  w-1/2 gap-4">
-                <div>
-                  <label class="block mb-1 font-bold">كلمة المرور الحالية</label>
-                  <input type="password" [(ngModel)]="user.currentPassword" class="w-full border p-2 rounded" placeholder="ادخل كلمة المرور الحالية" />
-                </div>
-                <div>
-                  <label class="block mb-1 font-bold">كلمة المرور الجديدة</label>
-                  <input type="password" [(ngModel)]="user.newPassword" class="w-full border p-2 rounded" placeholder="ادخل كلمة المرور الجديدة" />
-                </div>
-                <div>
-                  <label class="block mb-1 font-bold">تأكيد كلمة المرور الجديدة</label>
-                  <input type="password" [(ngModel)]="user.confirmPassword" class="w-full border p-2 rounded" placeholder="ادخل كلمة المرور الجديدة" />
-                </div>
-              </div>
-          
-              <div class="flex justify-end mt-6">
-                <button class="bg-black text-white px-10 py-2 rounded hover:opacity-90" (click)="savePasswordChanges()">حفظ التغييرات</button>
-              </div>
-            </div>
+         <!-- إعدادات كلمة المرور -->
+<h2 class="text-lg font-bold mb-4">إعدادات كلمة المرور</h2>
+<div class="border p-6 rounded-lg shadow">
+  <div class="grid w-1/2 gap-4">
+
+    <!-- كلمة المرور الحالية -->
+    <div class="relative">
+      <label class="block mb-1 font-bold">كلمة المرور الحالية</label>
+      <input
+        [type]="showCurrentPassword ? 'text' : 'password'"
+        [(ngModel)]="user.currentPassword"
+        class="w-full border p-2 rounded"
+        placeholder="ادخل كلمة المرور الحالية"
+      />
+      <i
+        class="fa"
+        [ngClass]="showCurrentPassword ? 'fa-eye-slash' : 'fa-eye'"
+        (click)="showCurrentPassword = !showCurrentPassword"
+        style="position: absolute; top: 38px; left: 15px; cursor: pointer;"
+      ></i>
+    </div>
+
+    <!-- كلمة المرور الجديدة -->
+    <div class="relative">
+      <label class="block mb-1 font-bold">كلمة المرور الجديدة</label>
+      <input
+        [type]="showNewPassword ? 'text' : 'password'"
+        [(ngModel)]="user.newPassword"
+        class="w-full border p-2 rounded"
+        placeholder="ادخل كلمة المرور الجديدة"
+      />
+      <i
+        class="fa"
+        [ngClass]="showNewPassword ? 'fa-eye-slash' : 'fa-eye'"
+        (click)="showNewPassword = !showNewPassword"
+        style="position: absolute; top: 38px; left: 15px; cursor: pointer;"
+      ></i>
+    </div>
+
+    <!-- تأكيد كلمة المرور -->
+    <div class="relative">
+      <label class="block mb-1 font-bold">تأكيد كلمة المرور الجديدة</label>
+      <input
+        [type]="showConfirmPassword ? 'text' : 'password'"
+        [(ngModel)]="user.confirmPassword"
+        class="w-full border p-2 rounded"
+        placeholder="ادخل كلمة المرور الجديدة"
+      />
+      <i
+        class="fa"
+        [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
+        (click)="showConfirmPassword = !showConfirmPassword"
+        style="position: absolute; top: 38px; left: 15px; cursor: pointer;"
+      ></i>
+    </div>
+  </div>
+
+  <div class="flex justify-end mt-6">
+    <button class="bg-black text-white px-10 py-2 rounded hover:opacity-90" (click)="savePasswordChanges()">حفظ التغييرات</button>
+  </div>
+</div>
           </div>
-          
-      
         
      
        </section>

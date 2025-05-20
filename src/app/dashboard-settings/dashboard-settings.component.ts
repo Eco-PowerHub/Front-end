@@ -1,5 +1,5 @@
-import { Component,OnInit  } from '@angular/core';
-import { OrderService } from '../services/order.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -8,64 +8,68 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-dashboard-settings',
   standalone: true,
-  imports: [RouterModule,FormsModule,CommonModule,HttpClientModule],
-  providers: [OrderService], 
+  imports: [RouterModule, FormsModule, CommonModule, HttpClientModule],
   templateUrl: './dashboard-settings.component.html',
   styleUrl: './dashboard-settings.component.css'
 })
 export class DashboardSettingsComponent implements OnInit {
   user = {
-    name: '',
+    username: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   };
 
-  constructor(private OrderService: OrderService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.OrderService.getUser().subscribe({
-      next: (data) => this.user = { ...this.user, ...data },
-      error: (err) => console.error('Error fetching user', err)
-    });
+    // لو عندك API لتجيب بيانات المستخدم، ضيفيها هنا
   }
 
   saveProfileChanges() {
     const updatedInfo = {
-      name: this.user.name,
+      username: this.user.username,
       email: this.user.email,
-      phone: this.user.phone
+      phoneNumber: this.user.phoneNumber
     };
 
-    this.OrderService.updateUser(updatedInfo).subscribe({
+    this.authService.editProfile(updatedInfo).subscribe({
       next: () => alert('تم حفظ التعديلات'),
-      error: (err) => console.error('Error updating user', err)
+      error: (err) => console.error('Error updating profile:', err)
     });
   }
 
   savePasswordChanges() {
     const passwordInfo = {
+      email: this.user.email,
       currentPassword: this.user.currentPassword,
-      newPassword: this.user.newPassword,
-      confirmPassword: this.user.confirmPassword
+      newPassword: this.user.newPassword
     };
 
-    this.OrderService.changePassword(passwordInfo).subscribe({
+    this.authService.changePassword(passwordInfo).subscribe({
       next: () => alert('تم تغيير كلمة المرور'),
-      error: (err) => console.error('Error changing password', err)
+      error: (err) => console.error('Error changing password:', err)
     });
   }
 
   deleteAccount() {
-    this.OrderService.deleteAccount().subscribe({
+    const data = {
+      email: this.user.email,
+      password: this.user.currentPassword,
+      role: 1
+    };
+
+    this.authService.deleteAccount(data).subscribe({
       next: () => {
         alert('تم حذف الحساب');
-        // ممكن تعملي redirect هنا
+        // Redirect if needed
       },
-      error: (err) => console.error('Error deleting account', err)
+      error: (err) => console.error('Error deleting account:', err)
     });
   }
-
+  showCurrentPassword = false;
+showNewPassword = false;
+showConfirmPassword = false;
 }

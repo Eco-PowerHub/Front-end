@@ -123,7 +123,7 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
 
 
   <!-- النموذج الثاني لحذف المنتج -->
-  <form (ngSubmit)="deleteProduct()" #deleteProductForm="ngForm" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
+  <form  #deleteProductForm="ngForm" (ngSubmit)="deleteCompany()" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
     <div class="bg-white w-1/2 flex items-center justify-between p-2 rounded-[25px] mb-6">
       <span class="font-extrabold text-2xl text-black"> حذف الشركات</span>
       <img src="/image 127.png" alt="User" class="w-6 h-6" />
@@ -132,11 +132,11 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
     
       <div class="w-full">
         <label class="block mb-2 text-lg">اسم الشركة</label>
-        <input lang="ar" dir="rtl" [(ngModel)]="productIdToDelete" name="productIdToDelete" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder=" ادخل اسم الشركة التي تريد حذفها " required />
+        <input lang="ar" dir="rtl"  name="companyNameToDelete" [(ngModel)]="companyNameToDelete" type="text" class="bg-white w-full text-black p-2 border border-gray-300 rounded-[25px]" placeholder=" ادخل اسم الشركة التي تريد حذفها " required />
       </div>
       <div class="w-full">
         <label class="block mb-2 text-lg">رقم الشركة (ID)</label>
-        <input lang="ar" dir="rtl" [(ngModel)]="productIdToDelete" name="productIdToDelete" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder=" ادخل الرقم الخاص بالمنتج " required />
+        <input lang="ar" dir="rtl" name="companyIdToDelete" [(ngModel)]="companyIdToDelete" type="text" class="bg-white w-full p-2 border text-black border-gray-300 rounded-[25px]" placeholder=" ادخل الرقم الخاص بالمنتج " required />
       </div>
     </div>
     <div class="flex justify-center mt-4">
@@ -145,32 +145,37 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
   </form>
 </div>
 <div dir="rtl" class="bg-[#022333] w-52 p-2 rounded-[25px] ml-auto mr-8 -mb-6">
-    <span class="font-extrabold text-2xl text-center text-white block w-full">جميع الطلبات</span>
+    <span class="font-extrabold text-2xl text-center text-white block w-full">جميع الشركات</span>
   </div>
-  
-  <div  class="p-4 overflow-x-auto mt-6 flex flex-col md:flex-row gap-6 w-full">
-    
-      <table class="w-full border border-gray-300 text-right">
-        <thead class="bg-[#022333] text-white">
-          <tr>
-            <th class="px-4 py-2">رقم الهاتف </th>
-            <th class="px-4 py-2">العنوان </th>
-            <th class="px-4 py-2"> رمز الشركة</th>
-            <th class="px-4 py-2">رقم الشركة ID</th>
-            <th class="px-4 py-2"> اسم الشركة </th>
-          </tr>
-        </thead>
-        <tbody class="text-sm bg-white text-slate-800">
-          <tr *ngFor="let order of orders" class="border-b h-16">
-            <td class="px-4 py-2">{{ order.company }}</td>
-            <td class="px-4 py-2">{{ order.price }}</td>
-            <td class="px-4 py-2">{{ order.orderId }}</td>
-            <td class="px-4 py-2">{{ order.customerId }}</td>
-          </tr>
-        </tbody>
-        
-      </table>
-    </div>
+  <div class="p-4 overflow-x-auto mt-6 flex flex-col md:flex-row gap-6 w-full">
+  <table class="w-full border border-gray-300 text-center">
+    <thead class="bg-[#022333] text-white">
+      <tr>
+        <th class="px-4 py-2">رقم الهاتف</th>
+        <th class="px-4 py-2">العنوان</th>
+        <th class="px-4 py-2">رمز الشركة</th>
+        <th class="px-4 py-2">رقم الشركة ID</th>
+        <th class="px-4 py-2">اسم الشركة</th>
+
+      </tr>
+    </thead>
+    <tbody class="text-sm bg-white text-slate-800">
+      <tr *ngFor="let company of companies" class="border-b h-16">
+        <td class="px-4 py-2">{{ company.phoneNumber }}</td>
+        <td class="px-4 py-2">{{ company.location }}</td>
+       
+        <td class="px-4 py-2 ">
+  <img [src]="company.image" alt="{{ company.name }}" class="w-10 h-10 object-cover rounded text-center justify-center items-center ml-10" />
+</td>
+<td class="px-4 py-2">
+        {{ company.products.length > 0 ? company.products[0].companyId : 'لا يوجد' }}
+      </td>
+        <td class="px-4 py-2">{{ company.name }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
 
         
      
