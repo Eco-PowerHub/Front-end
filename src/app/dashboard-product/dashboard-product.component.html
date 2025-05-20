@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body dir="rtl" class="bg-white">
+      
+    <header dir="ltr" class="navbar bg-[#022333] p-4 shadow-md w-full z-60 relative" x-data="{ open: false }">
+        <div data-aos="fade-up" class="container mx-auto flex justify-between items-center">
+            <a href="#" class="max-w-[40px] md:max-w-[60px]"><img src="/eco-friendly.png" alt=""></a>
+          
+            
+              <!-- مربع البحث (في النص) -->
+              <div class="relative w-[300px] mx-auto">
+                <i class="fa fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 rotate-[-270deg]"></i>
+                <input
+                  type="text"
+                  class="border-2 h-9 bg-white rounded-full pl-4 pr-10 text-right
+                         focus:ring-2 focus:ring-[#499DCA] placeholder:text-[14px] focus:outline-none w-full transition-all duration-300 font-medium font-cairo"
+                  placeholder="بتدور على ايه؟">
+              </div>
+            
+              <div class="relative flex items-center space-x-3">
+                <div class="flex items-center space-x-2 mr-14 ">
+                    <img src="/R.jpeg" alt="Country" class="w-6 h-6 rounded-full object-cover">
+                  </div>
+                    <button 
+                   
+                    class="  text-[16px]  font-bold text-white -mr-5
+                           font-cairo transition duration-300 ease-in-out 
+                           hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
+                           Nda Youssef
+                           <img src="/userimg.png" alt="User" class="w-8 h-8 ml-3 rounded-full object-cover">
+
+                  </button>
+              </div>
+         
+   
+        </div>
+
+    </header>
+<div class="flex min-h-screen">
+  <nav dir="rtl" class="bg-[#022333] md:flex flex-col w-56 min-h-screen text-white"> 
+    <a routerLink="/home"
+    routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+        <img src="/image 118.png" alt="User" class="w-5 h-5 object-cover">
+
+        <span class="font-cairo font-bold">الصفحة الرئيسية</span>
+  </a>
+
+    
+      <a 
+      routerLink="/dashboard-product"
+      routerLinkActive="bg-white text-black"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="w-full border-t border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20 relative">
+      <img src="/image 119.png" alt="User" class="w-5 h-5 absolute right-10 object-cover">
+      <span class="font-bold">المنتجات</span>
+    </a>
+    
+      <a routerLink="/dashboard-order"
+      routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+        <img src="/image 86.png" alt="User" class="w-5 h-5 absolute right-10  object-cover">
+        <span class="font-bold">الطلبات</span>
+  </a>
+      <a routerLink="/dashboard-clients"
+      routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+        <img src="/image 117.png" alt="User" class="w-5 h-5 absolute right-10   object-cover">
+        <span class="font-bold">العملاء</span>
+</a>
+      <a routerLink="/dashboard-company"
+      routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+        <img src="/image 88.png" alt="User" class="w-5 h-5 absolute right-10  object-cover">
+        <span class="font-bold">الشركات</span>
+</a>
+<a routerLink="/dashboard-support"
+routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+  <img src="/image 153.png" alt="User" class="w-5 h-5 absolute right-10  object-cover">
+  <span class="font-bold">الاستشارات</span>
+</a>
+      <a routerLink="/dashboard-settings"
+      routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+        <img src="/image 120.png" alt="User" class="w-5 h-5 absolute right-10  object-cover">
+        <span class="font-bold">الإعدادات</span>
+</a>
+   
+    
+      <!-- تسجيل الخروج -->
+      <a class="mt-auto w-full border-t-1 border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20">
+        <i class="fa-solid fa-right-from-bracket w-5 h-5 absolute right-10  object-cover"></i>        <span class="font-bold">تسجيل خروج</span>
+      </a>
+    </nav>
+    
+    <section dir="ltr" class="flex flex-col w-full">
+      <div class="px-4 w-full flex justify-between items-center py-4">
+        <!-- الشعار -->
+        <div class="">
+          <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>
+          <div class="w-40 border-t-4  bg-[#001F2D] my-4"></div>
+      
+        </div>
+    
+        <!-- العنوان + صورة -->
+        <div class="flex flex-col items-end">
+          <div class="flex items-center gap-2 ">
+            <span class="mt-5 mr-4 cursor-pointer">
+              <img src="assets/products.png" alt="" class="w-15 h-15 pb-1" />
+            </span>
+            <span class="txt font-bold text-black  tracking-tight  text-[40px] px-3">المنتجات</span>
+        
+        
+          </div>
+          <div class="w-40 border-t-4 border-[#001F2D] mt-1">
+          </div>
+        </div>
+          </div>
+        
+    
+  <div dir="rtl" class="p-4 flex flex-col md:flex-row gap-6 w-full">
+  <!-- النموذج الأول لإضافة المنتج -->
+ <form (ngSubmit)="addProduct(addProductForm)" #addProductForm="ngForm" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
+  <div class="bg-white w-1/2 flex items-center justify-between p-2 rounded-[25px] mb-6">
+    <span class="font-extrabold text-2xl text-black">أضف منتج جديد</span>
+    <img src="/image 122.png" alt="User" class="w-6 h-6" />
+  </div>
+
+  <!-- حقول الإدخال -->
+  <div class="flex flex-col md:flex-row gap-4 mb-4">
+    <div class="w-full">
+      <label class="block mb-2 text-lg">اسم المنتج</label>
+      <input lang="ar" dir="rtl" name="name" [(ngModel)]="newProduct.name" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل اسم المنتج" required />
+    </div>
+    <div class="w-full">
+      <label class="block mb-2 text-lg">صنف المنتج</label>
+      <select lang="ar" dir="rtl" name="category" [(ngModel)]="newProduct.category" class="bg-white w-full p-3 border border-gray-300 rounded-[25px] text-right" required>
+        <option disabled selected>اختر صنف المنتج</option>
+        <option>لوح شمسي</option>
+        <option>بطارية</option>
+        <option>عاكس</option>
+        <option>أسلاك</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-4 mb-4">
+    <div class="w-full">
+      <label class="block mb-2 text-lg">الكمية</label>
+      <input lang="ar" dir="rtl" name="quantity" [(ngModel)]="newProduct.quantity" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل الكمية لهذا المنتج" required />
+    </div>
+    <div class="w-full">
+      <label class="block mb-2 text-lg">السعر</label>
+      <input lang="ar" dir="rtl" name="price" [(ngModel)]="newProduct.price" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="كم سعر المنتج؟" required />
+    </div>
+  </div>
+
+  <div class="w-full mb-4 relative">
+    <label class="block mb-2 text-lg font-semibold text-white">اسم الشركة البائعة </label>
+    <select lang="ar" dir="rtl" name="company" [(ngModel)]="newProduct.company" class="appearance-none bg-white w-full p-3 pr-10 border border-gray-300 rounded-[25px] focus:outline-none focus:ring-2 focus:ring-blue-400 text-slate-700 text-right" required>
+      <option disabled selected> ادخل اسم الشركة </option>
+      <option>Rise-Up Solar </option>
+      <option>سولار ماركت ايجيبت</option>
+      <option>المهندس</option>
+      <option>Egyptian International Service</option>
+      <option>حلول الطاقة</option>
+      <option>زين اليكتريك</option>
+    </select>
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <button type="submit" class="w-[100%] sm:w-1/3 p-2 rounded-[25px] bg-white text-black font-cairo">تأكيد</button>
+  </div>
+</form>
+
+  <!-- النموذج الثاني لحذف المنتج -->
+  <form  #deleteProductForm="ngForm" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
+    <div class="bg-white w-1/2 flex items-center justify-between p-2 rounded-[25px] mb-6">
+      <span class="font-extrabold text-2xl text-black">حذف منتج</span>
+      <img src="/image 127.png" alt="User" class="w-6 h-6" />
+    </div>
+    <div class="flex flex-col gap-4 mb-4">
+      <div class="w-full">
+        <label class="block mb-2 text-lg">صنف المنتج</label>
+        <select lang="ar" dir="rtl" class="bg-white w-full p-3 border border-gray-300 rounded-[25px] text-right" required>
+          <option disabled selected>اختر صنف المنتج</option>
+          <option>لوح شمسي</option>
+          <option>بطارية</option>
+          <option>عاكس</option>
+          <option>أسلاك</option>
+        </select>
+      </div>
+      <div class="w-full">
+        <label class="block mb-2 text-lg">رقم المنتج (ID)</label>
+        <input lang="ar" dir="rtl" name="productIdToDelete" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل رقم المنتج" required />
+      </div>
+      <div class="w-full mb-4 relative">
+        <label class="block mb-2 text-lg font-semibold text-white">اسم الشركة البائعة </label>
+        
+        <select lang="ar" dir="rtl" 
+          class="appearance-none bg-white w-full p-3 pr-10 border border-gray-300 rounded-[25px] 
+                 focus:outline-none focus:ring-2 focus:ring-blue-400 
+                 text-slate-700 text-right" required>
+          <option disabled selected> ادخل اسم الشركة </option>
+          <option>Rise-Up Solar </option>
+          <option>سولار ماركت ايجيبت</option>
+          <option>المهندس</option>
+          <option>Egyptian International Service</option>
+          <option>حلول الطاقة</option>
+          <option>زين اليكتريك</option>
+        </select>
+      
+    
+      </div>
+    </div>
+    <div class="flex justify-center mt-4">
+      <button type="submit" class="w-[100%] sm:w-1/3 p-2 rounded-[25px] bg-white text-black font-cairo">تأكيد</button>
+    </div>
+  </form>
+</div>
+<div dir="rtl" class="bg-[#022333] w-52 p-2 rounded-[25px] ml-auto mr-8 -mb-6">
+    <span class="font-extrabold text-2xl text-center text-white block w-full">جميع المنتجات</span>
+  </div>
+
+<!-- جدول المنتجات -->
+<div class="p-4 overflow-x-auto mt-6 flex flex-col w-full">
+  <table class="w-full border border-gray-300 text-right">
+    <thead class="bg-[#022333] text-white">
+      <tr>
+        <th class="px-4 py-2">التقييم</th>
+        <th class="px-4 py-2">المتاح</th>
+        <th class="px-4 py-2">اسم الشركة</th>
+        <th class="px-4 py-2">السعر</th>
+        <th class="px-4 py-2">التصنيف</th>
+        <th class="px-4 py-2">رقم المنتج (ID)</th>
+        <th class="px-4 py-2">اسم المنتج</th>
+      </tr>
+    </thead>
+    <tbody class="text-sm bg-white text-slate-800">
+      <tr *ngFor="let product of products">
+        <td class="px-4 py-2 text-yellow-500">
+          <!-- نعرض نجوم حسب تقييم الشركة -->
+          <ng-container *ngIf="product.companyId">
+            <ng-container *ngFor="let star of [].constructor(getCompanyRate(product.companyId)); let i = index">
+              ★
+            </ng-container>
+          </ng-container>
+        </td>
+        <td class="px-4 py-2">
+          {{ product.stock > 0 ? 'متاح' : 'غير متاح' }}
+        </td>
+        <td class="px-4 py-2">
+          {{ getCompanyName(product.companyId) }}
+        </td>
+        <td class="px-4 py-2">{{ product.price }}</td>
+        <td class="px-4 py-2">{{ product.categoryId }}</td>
+        <td class="px-4 py-2">{{ product.id || '—' }}</td>
+        <td class="px-4 py-2">{{ product.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+        
+     
+       </section>
+    
+  
+</div>
+</body>
+</html>

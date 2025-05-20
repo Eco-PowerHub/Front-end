@@ -1,10 +1,11 @@
+import { RouterModule } from '@angular/router';
 import { ScrollService } from '../app/scroll.service';
 import { Component, AfterViewInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })

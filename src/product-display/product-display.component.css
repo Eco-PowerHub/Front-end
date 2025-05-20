@@ -38,9 +38,9 @@
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
     border-radius: 18px;
-    padding: 20px;
+    /* padding: 20px; */
     text-align: center;
-    width: 80%;
+    width: 60%;
     margin: 10px auto; /* تقليل المسافة العلوية */
     position: relative;
     top: -30px; /* رفع البوكس للأعلى */
@@ -58,21 +58,21 @@
   
 /* الصور */
 .product-images {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     gap: 30px; /* توسيع المسافة بين الصور */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */ 
 }
   
 .product-images img {
-    width: 500px; /* تكبير الصور أكثر */
+    width: 100%; /* تكبير الصور أكثر */
     height: auto;
     border-radius: 12px;
     transition: transform 0.3s;
 }
   
 .product-images img:hover {
-    transform: scale(1.07);
+    transform: scale(1.05);
 }
   
 /* تحسين التصميم للهواتف */

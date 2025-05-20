@@ -1,7 +1,5 @@
 <app-header></app-header>
 
-<!-- solar-property.component.html -->
-
 <!-- Hero Section with Image and Text Overlay -->
 <div class="part1 min-h-[600px] w-full flex flex-col items-center p-0 md:p-10 relative rtl bg-cover bg-center bg-fixed bg-no-repeat overflow-hidden bg-white">
     <img 
@@ -69,31 +67,40 @@
         <div class="flex justify-between gap-8">
         <div class="flex items-center gap-2">
           <label for="commercial" class="text-2xl font-bold">نشاط تجاري</label>
-          <input type="radio" id="commercial" formControlName="propertyType" value="commercial" class="w-6 h-6 border-2 border-black">
+          <input type="radio" id="commercial" formControlName="propertyType" [value]="1" class="w-6 h-6 border-2 border-black">
         </div>
         <div class="flex items-center gap-2">
           <label for="residential" class="text-2xl font-bold">وحدة سكنية</label>
-          <input type="radio" id="residential" formControlName="propertyType" value="residential" class="w-6 h-6 border-2 border-black">
+          <input type="radio" id="residential" formControlName="propertyType" [value]="2" class="w-6 h-6 border-2 border-black">
           <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           </span>
         </div>
         <div class="flex items-center gap-2">
           <label for="government" class="text-2xl font-bold">مؤسسة حكومية</label>
-          <input type="radio" id="government" formControlName="propertyType" value="government" class="w-6 h-6 border-2 border-black">
+          <input type="radio" id="government" formControlName="propertyType" [value]="3" class="w-6 h-6 border-2 border-black">
         </div>
       </div>
+      <div *ngIf="propertyForm.get('propertyType')?.invalid && propertyForm.get('propertyType')?.touched" class="text-red-600 text-sm">
+      يرجى اختيار نوع العقار.
+    </div>
     </div>
     
     <!-- Roof Area -->
     <div class="mb-6">
       <h3 class="text-[42px] text-right font-bold mb-3 pt-4">مساحة السطح لأستقبال المحطة الشمسية</h3>
       <input 
-      type="text" 
+      type="number" 
       formControlName="roofArea"
       placeholder="المساحة بالمتر المربع" 
       class="w-full h-15 border-2 border-black rounded p-2 text-right" 
       >
+      <div *ngIf="propertyForm.get('roofArea')?.invalid && propertyForm.get('roofArea')?.touched" class="text-red-600 text-sm">
+      <div *ngIf="propertyForm.get('roofArea')?.errors?.['required']">هذا الحقل مطلوب.</div>
+      <div *ngIf="propertyForm.get('roofArea')?.errors?.['pattern']">يرجى إدخال رقم صحيح.</div>
+      <div *ngIf="propertyForm.get('roofArea')?.errors?.['min']">يجب أن تكون أكبر من 0.</div>
     </div>
+    </div>
+
     
     <!-- Address -->
     <div class="mb-6">
@@ -104,7 +111,12 @@
       placeholder="أدخل عنوان العقار" 
         class="w-full h-15 border-2 border-black rounded p-2 text-right" 
         >
+
+      <div *ngIf="propertyForm.get('address')?.invalid && propertyForm.get('address')?.touched" class="text-red-600 text-sm">
+        <div *ngIf="propertyForm.get('address')?.errors?.['required']">هذا الحقل مطلوب.</div>
+        <div *ngIf="propertyForm.get('address')?.errors?.['minlength']">العنوان قصير جداً.</div>
       </div>
+    </div>
     
     <!-- Electricity Consumption -->
     <div class="mb-6">
@@ -117,29 +129,41 @@
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثالث</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month3"
             placeholder="1500 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('summerBills.month3')?.touched && propertyForm.get('summerBills.month3')?.invalid">
+            <div *ngIf="propertyForm.get('summerBills.month3')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('summerBills.month3')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثاني</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month2"
             placeholder="2000 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('summerBills.month2')?.touched && propertyForm.get('summerBills.month2')?.invalid">
+            <div *ngIf="propertyForm.get('summerBills.month2')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('summerBills.month2')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الأول</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month1"
             placeholder="1350 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('summerBills.month1')?.touched && propertyForm.get('summerBills.month1')?.invalid">
+            <div *ngIf="propertyForm.get('summerBills.month1')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('summerBills.month1')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
         </div>
       </div>
@@ -151,29 +175,41 @@
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثالث</p>
             <input 
-            type="text" 
+            type="number" 
             formControlName="month3"
             placeholder="1100 جنيه" 
             class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('winterBills.month3')?.touched && propertyForm.get('winterBills.month3')?.invalid">
+            <div *ngIf="propertyForm.get('winterBills.month3')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('winterBills.month3')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثاني</p>
             <input 
-              type="text" 
+              type="number" 
               formControlName="month2"
               placeholder="700 جنيه" 
               class="w-full h-15 border-2 border-black rounded p-2 text-right" 
             >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('winterBills.month2')?.touched && propertyForm.get('winterBills.month2')?.invalid">
+            <div *ngIf="propertyForm.get('winterBills.month2')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('winterBills.month2')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
           </div>
           <div>
             <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الأول</p>
             <input 
-              type="text" 
+              type="number" 
               formControlName="month1"
               placeholder="850 جنيه" 
               class="w-full h-15 border-2 border-black rounded p-2 text-right" 
               >
+            <div class="text-red-600 text-right text-sm pt-2" *ngIf="propertyForm.get('winterBills.month1')?.touched && propertyForm.get('winterBills.month1')?.invalid">
+            <div *ngIf="propertyForm.get('winterBills.month1')?.errors?.['required']">هذا الحقل مطلوب</div>
+            <div *ngIf="propertyForm.get('winterBills.month1')?.errors?.['pattern']">يجب أن يكون رقمًا صالحًا</div>
+            </div>
             </div>
         </div>
       </div>
@@ -224,7 +260,7 @@
 
 
   <!-- Rejection Report Section (conditionally shown) -->
-  <div *ngIf="showReport" id="reportSection" class="mt-12 mb-8">
+  <div *ngIf="showReport && reportType === 'rejection'" id="rejectionReportSection" class="mt-12 mb-8">
     <div class="flex items-center justify-center gap-8 mb-6">
       <h3 class="text-6xl font-bold">التقرير</h3>
       <img src="/report.png" alt="Thank You" class="max-w-[6%]">
@@ -248,14 +284,14 @@
         <p class="mb-4">نود أن نشكرك على اهتمامك بخدماتنا وثقتك بنا. بعد مراجعة البيانات الفنية الخاصة بعقارك، تبين أنه لا يستوفي المتطلبات اللازمة لإنشاء محطة شمسية وفقًا للمعايير الهندسية والفنية المعتمدة</p>
         
         <p class="mb-4">نحن نقدر اهتمامك بالطاقة المتجددة، ونؤكد استعدادنا لمساعدتك في استكشاف بدائل أخرى قد تناسب احتياجاتك. إذا كنت بحاجة إلى 
-          <button class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
+          <button routerLink="/support" class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
           حول إمكانية تعديل العقار لجعله مؤهلا، يسعدنا تقديم الدعم اللازم
         </p>
         
         <p class="mb-4">نعتذر عن أي إزعاج قد يسببه هذا الأمر، ونتطلع إلى مساعدتك بطرق أخرى تلبي تطلعاتك</p>
         
         <p class="mb-4">لمزيد من التفاصيل، يمكنك التواصل معنا من هنا 
-          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">تواصل معنا</button>
+          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105"><a (click)="scrollToFooter()">تواصل معنا</a></button>
           من فضلك
         </p>
         
@@ -263,7 +299,92 @@
       </div>
     </div>
   </div>
-  
+
+
+  <!-- Warning Report Section (conditionally shown) -->
+  <div *ngIf="showReport && reportType === 'warning'" id="warningReportSection" class="mt-12 mb-8">
+    <div class="flex items-center justify-center gap-8 mb-6">
+      <h3 class="text-6xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+    </div>
+    
+    <div class="border-[3px] m-16 border-black">
+      <!-- Report Header with Warning -->
+      <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
+        <img src="/warning.png" alt="warning" class="max-w-[3%]">
+        <h4 class="text-[36px] font-bold text-right">بحاجة إلى مراجعة فنية إضافية قبل تأكيد إمكانية إنشاء المحطة الشمسية</h4>
+      </div>
+      
+      <!-- Report Content -->
+      <div class="p-6 text-right text-[31px]/13 font-bold">
+        <p class="mb-4 font-bold">،عزيزنا العميل</p>
+        
+        <p class="mb-4">
+          نشكر لك اهتمامك بخدماتنا ورغبتك في التحول إلى الطاقة الشمسية<br>
+          بعد مراجعة البيانات الأولية الخاصة بعقارك، يبدو أنه قد يستوفي المتطلبات اللازمة لإنشاء محطة شمسية، ولكننا بحاجة إلى إجراء مراجعة فنية أكثر تفصيلًا للتأكد من إمكانية التنفيذ بأفضل شكل ممكن
+        </p>
+        
+        <p class="mb-4">
+          لذلك، نوصي بالتواصل مع فريق 
+          <button routerLink="/support" class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">الدعم</button>
+          الفني لدينا، حيث سيقوم مهندسونا المتخصصون بمراجعة جميع التفاصيل والإجابة على استفساراتك لضمان تحقيق أفضل الحلول لمتطلباتك
+        </p>
+        
+        
+        <p class="mb-4">يرجى التواصل معنا لحجز موعد أو للحصول على استشارة فنية مباشرة مع أفضل المهندسين المختصين واحجز 
+          <button routerLink="/support" class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
+          من هنا
+        </p>
+        
+        <p class="mb-10">نحن هنا لدعمك، ونتطلع إلى مساعدتك في تحقيق مشروعك بنجاح</p>
+      </div>
+    </div>
+  </div>
+
+
+
+   <!-- Approval Report Section (conditionally shown) -->
+   <div *ngIf="showReport && reportType === 'approval'" id="approvalReportSection" class="mt-12 mb-8">
+    <div class="flex items-center justify-center gap-8 mb-6">
+      <h3 class="text-6xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+    </div>
+    
+    <div class="border-[3px] m-16 border-black">
+      <!-- Report Header with Warning -->
+      <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
+        <img src="/approval.png" alt="approval" class="max-w-[4%]">
+        <h4 class="text-[38px] font-bold text-right">عزيزي العميل، تهانينا! عقارك مؤهل لإنشاء محطة طاقة شمسية</h4>
+      </div>
+      
+      <!-- Report Content -->
+      <div class="p-6 text-right text-[32px]/13 font-bold">
+        <p class="mb-4 font-bold">،عزيزنا العميل</p>
+        
+        <p class="mb-4">
+          نشكر لك اهتمامك بالتحول إلى الطاقة الشمسية
+        </p>
+        
+        <p class="mb-4">
+          ويسعدنا إبلاغك بأن عقارك يستوفي جميع المتطلبات الفنية والهندسية <br>
+          لإنشاء محطة طاقة شمسية
+        </p>
+        
+        
+        <p class="mb-12">
+          حرصًا منا على تلبية احتياجاتك بأفضل شكل ممكن، نقدم لك مجموعة من الحزم المتكاملة <br>
+          التي تناسب استهلاكك للطاقة وكذلك مساحة السطح لديك، مع تفاصيل كل حزمة
+        </p>
+        
+        <button class="px-3 py-3 mr-8 rounded-full bg-[#022333] text-white">الحزم المقترحة لك</button>
+
+        <app-packages-list *ngIf="reportType === 'approval'" [packages]="recommended_packages"></app-packages-list>
+
+      </div>
+    </div>
+  </div>
+
+
   <!-- Thank You Message -->
   <div class="mt-12 flex items-center justify-center gap-12">
     <h3 class="text-6xl font-bold"> Eco Power Hub شكرًا ليك على اختيارك</h3>

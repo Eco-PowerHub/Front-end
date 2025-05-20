@@ -1,10 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule],
+  imports: [FormsModule,RouterModule,CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -47,32 +50,33 @@ export class HeaderComponent {
     }
   }
 
-  @ViewChild('footerSection') footerSection!: ElementRef;
-
   scrollToFooter() {
-    const element = this.footerSection.nativeElement;
-    const footerSection = element.getBoundingClientRect().top + window.pageYOffset;
-    const startPosition = window.pageYOffset;
-    const distance = footerSection - startPosition;
-    const duration = 1100; // المدة بالميلي ثانية (زوديها لو عايزة أبطأ)
-    let startTime: number | null = null;
-  
-    const ease = (t: number, b: number, c: number, d: number): number => {
-      t /= d / 2;
-      if (t < 1) return (c / 2) * t * t + b;
-      t--;
-      return (-c / 2) * (t * (t - 2) - 1) + b;
-    };
-  
-    const animation = (currentTime: number) => {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = ease(timeElapsed, startPosition, distance, duration);
-      window.scrollTo(0, run);
-      if (timeElapsed < duration) requestAnimationFrame(animation);
-    };
-  
-    requestAnimationFrame(animation);
+    const footer = document.getElementById('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
+  
+  searchText: string = '';
+allRoutes = [
+  { name: 'products', path: 'products' },
+  { name: 'property', path: 'property' },
+  { name: 'home', path: 'home' },
+  { name: 'settings', path: 'dashboard-settings' },
+];
+filteredRoutes: any[] = [];
+
+filterRoutes() {
+  const value = this.searchText.trim().toLowerCase();
+  this.filteredRoutes = this.allRoutes.filter(route =>
+    route.name.toLowerCase().includes(value)
+  );
+}
+
+goToRoute(path: string) {
+  this.router.navigate([path]);
+  this.searchText = '';
+  this.filteredRoutes = [];
+}
 
 }
