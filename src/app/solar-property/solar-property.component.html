@@ -67,17 +67,17 @@
         <div class="flex justify-between gap-8">
         <div class="flex items-center gap-2">
           <label for="commercial" class="text-2xl font-bold">نشاط تجاري</label>
-          <input type="radio" id="commercial" formControlName="propertyType" value="commercial" class="w-6 h-6 border-2 border-black">
+          <input type="radio" id="commercial" formControlName="propertyType" [value]="1" class="w-6 h-6 border-2 border-black">
         </div>
         <div class="flex items-center gap-2">
           <label for="residential" class="text-2xl font-bold">وحدة سكنية</label>
-          <input type="radio" id="residential" formControlName="propertyType" value="residential" class="w-6 h-6 border-2 border-black">
+          <input type="radio" id="residential" formControlName="propertyType" [value]="2" class="w-6 h-6 border-2 border-black">
           <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           </span>
         </div>
         <div class="flex items-center gap-2">
           <label for="government" class="text-2xl font-bold">مؤسسة حكومية</label>
-          <input type="radio" id="government" formControlName="propertyType" value="government" class="w-6 h-6 border-2 border-black">
+          <input type="radio" id="government" formControlName="propertyType" [value]="3" class="w-6 h-6 border-2 border-black">
         </div>
       </div>
       <div *ngIf="propertyForm.get('propertyType')?.invalid && propertyForm.get('propertyType')?.touched" class="text-red-600 text-sm">
@@ -284,14 +284,14 @@
         <p class="mb-4">نود أن نشكرك على اهتمامك بخدماتنا وثقتك بنا. بعد مراجعة البيانات الفنية الخاصة بعقارك، تبين أنه لا يستوفي المتطلبات اللازمة لإنشاء محطة شمسية وفقًا للمعايير الهندسية والفنية المعتمدة</p>
         
         <p class="mb-4">نحن نقدر اهتمامك بالطاقة المتجددة، ونؤكد استعدادنا لمساعدتك في استكشاف بدائل أخرى قد تناسب احتياجاتك. إذا كنت بحاجة إلى 
-          <button class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
+          <button routerLink="/support" class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
           حول إمكانية تعديل العقار لجعله مؤهلا، يسعدنا تقديم الدعم اللازم
         </p>
         
         <p class="mb-4">نعتذر عن أي إزعاج قد يسببه هذا الأمر، ونتطلع إلى مساعدتك بطرق أخرى تلبي تطلعاتك</p>
         
         <p class="mb-4">لمزيد من التفاصيل، يمكنك التواصل معنا من هنا 
-          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">تواصل معنا</button>
+          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105"><a (click)="scrollToFooter()">تواصل معنا</a></button>
           من فضلك
         </p>
         
@@ -326,13 +326,13 @@
         
         <p class="mb-4">
           لذلك، نوصي بالتواصل مع فريق 
-          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">الدعم</button>
+          <button routerLink="/support" class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">الدعم</button>
           الفني لدينا، حيث سيقوم مهندسونا المتخصصون بمراجعة جميع التفاصيل والإجابة على استفساراتك لضمان تحقيق أفضل الحلول لمتطلباتك
         </p>
         
         
         <p class="mb-4">يرجى التواصل معنا لحجز موعد أو للحصول على استشارة فنية مباشرة مع أفضل المهندسين المختصين واحجز 
-          <button class="px-5 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
+          <button routerLink="/support" class="px-3 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">استشارة هندسية</button>
           من هنا
         </p>
         
@@ -376,9 +376,9 @@
           التي تناسب استهلاكك للطاقة وكذلك مساحة السطح لديك، مع تفاصيل كل حزمة
         </p>
         
-        <button class="px-3 py-3 mr-8 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">الحزم المقترحة لك</button>
+        <button class="px-3 py-3 mr-8 rounded-full bg-[#022333] text-white">الحزم المقترحة لك</button>
 
-        <app-packages-list></app-packages-list>
+        <app-packages-list *ngIf="reportType === 'approval'" [packages]="recommended_packages"></app-packages-list>
 
       </div>
     </div>

@@ -12,7 +12,7 @@ export interface PackageResponse {
 }
 
 export interface PropertyFormData {
-  propertyType: string;
+  propertyType: number;
   roofArea: number;
   address: string;
   summerBills: {
@@ -39,6 +39,25 @@ export class SolarPackageService {
   constructor(private http: HttpClient) {}
 
   getPackages(formData: PropertyFormData): Observable<PackageResponse> {
-    return this.http.post<PackageResponse>(this.apiUrl, formData);
-  }
+  const mappedData = {
+    type: formData.propertyType,
+    location: formData.address,
+    surfaceArea: formData.roofArea,
+    packagePrice: 0, 
+    packageId: 0,
+    electricityUsage: [
+      formData.summerBills.month1,
+      formData.summerBills.month2,
+      formData.summerBills.month3,
+      formData.winterBills.month1,
+      formData.winterBills.month2,
+      formData.winterBills.month3
+    ],
+    totalYearsGuarantee: 0 
+  };
+
+  console.log("🚀 Payload being sent to API:", mappedData);
+
+  return this.http.post<PackageResponse>(this.apiUrl, mappedData);
+}
 }

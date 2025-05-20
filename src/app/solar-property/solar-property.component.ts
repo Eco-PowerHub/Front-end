@@ -7,14 +7,23 @@ import { FooterComponent } from "../../footer/footer.component";
 import { PackagesListComponent } from "../../components/packages-list/packages-list.component";
 import { SolarPackage } from '../../models/solar-package';
 import { PropertyFormData, SolarPackageService } from '../../services/solar-package.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-solar-property',
-  imports: [HeaderComponent, CommonModule, ReactiveFormsModule, FooterComponent, PackagesListComponent],
+  imports: [HeaderComponent, CommonModule, ReactiveFormsModule, FooterComponent, PackagesListComponent, RouterModule],
   templateUrl: './solar-property.component.html',
   styleUrl: './solar-property.component.css'
 })
 export class SolarPropertyComponent {
+
+  scrollToFooter() {
+    const footer = document.getElementById('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   propertyForm: FormGroup;
   showReport = false;
   reportType: 'rejection' | 'warning' | 'approval' = 'rejection';
