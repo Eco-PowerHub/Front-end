@@ -32,7 +32,11 @@ export class SignupPageComponent {
         Validators.pattern(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])/) // كلمة مرور قوية
       ]],
       confirmPassword: ['', Validators.required],
-      address: ['']
+      address: ['',
+        [       Validators.required,
+          
+        ]
+      ]
     }, { validators: this.passwordMatchValidator }); // ✅ تمرير التحقق هنا
   }
 
@@ -51,47 +55,52 @@ export class SignupPageComponent {
   }
   // دالة إرسال البيانات عند الضغط على "تسجيل"
   onSubmit() {
-    if (this.signupForm.valid) {
-      this.loading = true;
-  
-      const formData = {
-        firstName: this.signupForm.value.firstName,
-        lastName: this.signupForm.value.lastName,
-        userName: this.signupForm.value.firstName + this.signupForm.value.lastName, 
-        phoneNumber: this.signupForm.value.phoneNumber,
-        email: this.signupForm.value.email,
-        password: this.signupForm.value.password,
-        address:this.signupForm.value.address,
-        confirmNewPassword: this.signupForm.value.confirmPassword,
-        role: this.signupForm.value.role // يجب أن يكون String لأنه كذلك في API
-      };
-  
-      console.log('🔹 البيانات المُرسلة:', formData);
-  
-      this.authservice.register(formData ).subscribe({
-        next: (response :any) => {
-          console.log('✅ تم التسجيل بنجاح:', response);
-          if (response.message === 'Email or User Name already exists!!') {
-            alert(response.message); // عرض الرسالة كـ alert
-            this.loading = false;
-            return; // إيقاف بقية التنفيذ
-          }
-          localStorage.setItem('otpExpiry', response.data.otpExpiry);
-          this.router.navigate(['/sendotp'], { queryParams: { email: formData.email ,otpExpiry: response.data.otpExpiry } });
-        },
-        error: (err: any) => {
-          console.error('❌ فشل التسجيل:', err);
-          this.loading = false;
-  
-          // عرض رسالة الخطأ للمستخدم
-          const errorMessage = err.error?.message || 'حدث خطأ غير متوقع. حاول مرة أخرى.';
-          alert(errorMessage);
-        }
-      });
-    } else {
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched(); // ✅ ده اللي يخلّي كل الرسائل تظهر
       console.log('⚠ هناك خطأ في الفورم!');
-      this.signupForm.markAllAsTouched(); // ✅ خلي الحقول تظهر أخطاءها
-      return; // ✅ د
+      return;
+    }
+  
+    this.loading = true;
+  
+    const formData = {
+      firstName: this.signupForm.value.firstName,
+      lastName: this.signupForm.value.lastName,
+      userName: this.signupForm.value.firstName + this.signupForm.value.lastName,
+      phoneNumber: this.signupForm.value.phoneNumber,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password,
+      address: this.signupForm.value.address,
+      confirmNewPassword: this.signupForm.value.confirmPassword,
+      role: this.signupForm.value.role // يجب أن يكون String لأنه كذلك في API
+    };
+  
+    console.log('🔹 البيانات المُرسلة:', formData);
+  
+    this.authservice.register(formData).subscribe({
+      next: (response: any) => {
+        console.log('✅ تم التسجيل بنجاح:', response);
+        if (response.message === 'Email or User Name already exists!!') {
+          alert(response.message);
+          this.loading = false;
+          return;
+        }
+        localStorage.setItem('otpExpiry', response.data.otpExpiry);
+        this.router.navigate(['/sendotp'], {
+          queryParams: {
+            email: formData.email,
+            otpExpiry: response.data.otpExpiry
+          }
+        });
+      },
+      error: (err: any) => {
+        console.error('❌ فشل التسجيل:', err);
+        this.loading = false;
+  
+        const errorMessage =
+          err.error?.message || 'حدث خطأ غير متوقع. حاول مرة أخرى.';
+        alert(errorMessage);
+      }
+    });
   }
 }
-} 

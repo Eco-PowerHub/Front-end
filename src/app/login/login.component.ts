@@ -45,9 +45,12 @@ export class LoginComponent {
 
     this.authService.login(this.loginForm.value).subscribe(
       (res: any) => {
-        localStorage.setItem('token', res.token); // أو حسب ما يرجع الـ API
-        localStorage.setItem('userName', res.userName); // لو عندك الاسم في الرد
-        this.router.navigate(['/']); // يرجع للـ home بعد الدخول
+        console.log(res)
+     
+        localStorage.setItem('token', res.data.token); // أو حسب ما يرجع الـ API
+           console.log(res.data.token)
+        localStorage.setItem('userName', res.data.userName); // لو عندك الاسم في الرد
+        this.router.navigate(['/home']); 
       },
       err => {
         console.log(err);

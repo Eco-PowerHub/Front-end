@@ -1,73 +1,69 @@
-import { Component,OnInit, ElementRef, ViewChild,ChangeDetectorRef  } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule ,NgIf } from '@angular/common';
-import { AuthService } from '../app/auth.service';
-import { ScrollService } from '../app/scroll.service';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule,NgIf ],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
-  isLoggedIn = false;
-  userName = '';
-  showLogout = false;
+export class HeaderComponent {
 
- 
+  constructor(private router: Router) {}
+
+  // goTologin() {
+  //   this.router.navigate(['/login']); // غير "signup" لاسم الصفحة اللي رايحاها
+  // }
+
+
+  open: boolean = false;         // للقائمة الجانبية
+  showLogout: boolean = false;  // لزر تسجيل الخروج
+  toggleMenu() {
+    this.open = !this.open;
   
-
-  constructor(public authService: AuthService, private router: Router,
-    private cdr: ChangeDetectorRef,private scrollService: ScrollService,) {}
-
-  startAutoSlide() {
-    // Example empty function (until you implement it)
-    console.log('Auto slide started (not yet implemented)');
-  }
-  
-
-  ngOnInit(): void {
-    this.authService.isLoggedIn().subscribe(status => {
-      this.isLoggedIn = status;
-    });
-
-    this.authService.getUserName().subscribe(name => {
-      this.userName = name;
-    });
+    // لو فتحت القائمة، اقفلي زر تسجيل الخروج
+    if (this.open) {
+      this.showLogout = false;
+    }
   }
 
-  logout() {
+  
+
+
+  logoutt() {}
+  /*logout() {
     this.authService.logout();
-    this.router.navigate(['/']);
-  }
-
-  toggleLogoutButton() {
-    this.showLogout = !this.showLogout;
-  }
-
-  goTologin() {
+    console.log('تم تسجيل الخروج');
     this.router.navigate(['/login']);
+  }*/
+   // لو فتحت زر تسجيل الخروج، اقفلي القائمة
+   toggleLogoutButton() {
+    this.showLogout = !this.showLogout;
+  
+    // لو فتحت زر تسجيل الخروج، اقفلي القائمة الجانبية
+    if (this.showLogout) {
+      this.open = false;
+    }
   }
 
-  @ViewChild('targetSection') targetSection!: ElementRef;
+  @ViewChild('footerSection') footerSection!: ElementRef;
 
-  scrollToSection() {
-    const element = this.targetSection.nativeElement;
-    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+  scrollToFooter() {
+    const element = this.footerSection.nativeElement;
+    const footerSection = element.getBoundingClientRect().top + window.pageYOffset;
     const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    const duration = 1100;
+    const distance = footerSection - startPosition;
+    const duration = 1100; // المدة بالميلي ثانية (زوديها لو عايزة أبطأ)
     let startTime: number | null = null;
-
+  
     const ease = (t: number, b: number, c: number, d: number): number => {
       t /= d / 2;
       if (t < 1) return (c / 2) * t * t + b;
       t--;
       return (-c / 2) * (t * (t - 2) - 1) + b;
     };
-
+  
     const animation = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
@@ -75,46 +71,8 @@ export class HeaderComponent implements OnInit {
       window.scrollTo(0, run);
       if (timeElapsed < duration) requestAnimationFrame(animation);
     };
-
+  
     requestAnimationFrame(animation);
-  }
-
-
-
-  open: boolean = false;
-  showLogoutt: boolean = false;
-
-  toggleMenu() {
-    this.open = !this.open;
-    if (this.open) {
-      this.showLogoutt = false;
-    }
-  }
-
- 
-
-
-  
-
-
-
-
-
-  
-  scrollToFooter() {
-    console.log('زر تم الضغط عليه'); // للتأكد إنه بيتنفذ
-    this.scrollService.triggerScrollToFooter();
-  }
-  goToAbout() {
-    this.router.navigate(['/aboutus']);
-  }
-
-  goToSupport() {
-    this.router.navigate(['/support']);
-  }
-
-  goToProducts() {
-    this.router.navigate(['/products']);
   }
 
 }

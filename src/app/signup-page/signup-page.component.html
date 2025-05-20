@@ -15,22 +15,27 @@
 
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-4">
       <!-- الاسم الأول والأخير -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-[10px] sm:flex  sm:mr-5">
+      <div class="grid grid-cols-1 sm: gap-y-2 gap-x-4 mt-[7px] sm:flex  sm:mr-5">
         <div class="sm:col-start-2">
           <label for="firstName" class="text-[#022333] text-[15px] block text-right mb-1 font-bold mr-3">الاسم الأول</label>
           <input id="firstName" class="w-[230px] sm:w-[210px] pt-2 pb-2 text-[13px] border border-[#ccc] rounded-lg pr-3 text-right bg-[#F5F5F5]" formControlName="firstName" type="text" placeholder="ادخل الاسم الأول" />
-          <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="text-red-500 text-xs mt-1 text-right">
+          <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="text-red-500 text-xs mt-[2px] mb-[2px] text-right">
             الاسم الأول مطلوب.
           </div>
         </div>
         <div class="sm:col-start-1">
           <label for="lastName" class="text-[#022333] text-[15px] block text-right mb-1 font-bold mr-3">الاسم الأخير</label>
           <input id="lastName" class="w-[230px] sm:w-[210px] pt-2 pb-2 border border-[#ccc] rounded-lg text-right pr-3 text-[13px] bg-[#F5F5F5]" formControlName="lastName" type="text" placeholder="ادخل الاسم الأخير" />
+          <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched" class="text-red-500 text-xs mt-[2px] mb-[2px] text-right">
+            <span *ngIf="signupForm.get('lastName')?.errors?.['required']"> الاسم الأخير مطلوب.</span>
+             
+          </div>
         </div>
+      
       </div>
 
       <!-- الهاتف والبريد الإلكتروني -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:flex  sm:mr-5">
+      <div class="grid grid-cols-1 sm:gap-y-2 gap-x-4 sm:flex  sm:mr-5 mt-[-9px]">
         <div class="sm:col-start-2">
           <label for="phone" class="text-[15px] text-[#022333] block text-right mb-1 font-bold mr-3">رقم الهاتف</label>
           <input id="phone" class="w-[230px] sm:w-[210px] pt-2 pb-2 border border-[#ccc] text-[13px] rounded-lg pr-3 text-right bg-[#F5F5F5] " formControlName="phoneNumber" type="tel" placeholder="ادخل رقم الهاتف" />
@@ -60,7 +65,7 @@
       </div>
 
       <!-- كلمة المرور وتأكيدها -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:flex  sm:mr-5">
+      <div class="grid grid-cols-1 sm:gap-y-2 gap-x-4 sm:flex  sm:mr-5 mt-[-9px]">
     
         <div class="sm:col-start-2">
           <label for="password" class="text-[#022333] text-[15px] block text-right mb-1 font-bold mr-3">كلمة المرور</label>
@@ -81,10 +86,16 @@
       </div>
 
       <!-- العنوان -->
-      <div class="mb-3">
-        <label for="address" class="text-[#022333] text-[15px] block text-right mb-1 font-bold mr-3 sm:mr-10">العنوان</label>
-        <textarea id="address" class="w-[230px] sm:w-[435px] border border-[#ccc] h-[55px] pr-3 text-[13px] rounded-lg text-right bg-[#F5F5F5]" formControlName="address" placeholder="ادخل عنوانك بالتفصيل"></textarea>
-      </div>
+      <div class="mb-3   mt-[-9px]">
+        <label for="address" class="text-[#022333] text-[15px] block text-right mb-1 font-bold mr-8 sm:mr-10">العنوان</label>
+        
+        
+    <textarea id="address" class="w-[230px] sm:w-[435px] border border-[#ccc] h-[55px] pr-3 text-[13px] rounded-lg text-right bg-[#F5F5F5]" formControlName="address" placeholder="ادخل عنوانك بالتفصيل"></textarea>
+      
+    <div *ngIf="signupForm.get('address')?.invalid && signupForm.get('address')?.touched" class="text-red-500 text-xs mt-[-3px] text-right mr-5">
+      العنوان مطلوب.
+    </div>
+  </div>
 
       <!-- اختيار الدور -->
       <div class="flex justify-center gap-3 pb-2 mt-[-10px]">
@@ -100,7 +111,8 @@
 
       <!-- زر التسجيل -->
       <div class="flex justify-center mt-10">
-        <button type="submit" [disabled]="signupForm.invalid" class="w-[180px] sm:w-[200px] h-[36px] sm:h-[38px] text-center bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition">
+        <button type="submit"  class="w-[180px] sm:w-[200px] h-[36px] sm:h-[38px] text-center bg-blue-300 text-white p-2 rounded-md transition duration-300 ease-in-out hover:bg-[#499DCA]
+                            hover:shadow-[0px_0px_20px_#162229] hover:scale-110 ">
           إنشاء حساب
         </button>
         
@@ -109,7 +121,7 @@
       
     </form>
     <!-- رابط تسجيل الدخول -->
-    <p class="text-center text-[13px] font-bold pb-3 pt-1">لديك حساب بالفعل؟ <a href="/login" class="text-[#045988] hover:underline">تسجيل الدخول</a></p>
+    <p class="text-center text-[13px] font-bold pb-3 pt-1">لديك حساب بالفعل؟ <a href="/signup-success" class="text-[#045988] hover:underline">تسجيل الدخول</a></p>
 
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -49,6 +49,16 @@ export class AuthService {
       { headers }
     );
   }
+//support
+ supportform(data: any   ) {
+  const token = localStorage.getItem('token');
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.post('http://157.175.182.159:8080/api/UserSupport/AddSupport', data ,{headers} );
+  }
 
   // 🧠 Login Success
   loginSuccess(token: string, userName: string): void {
@@ -77,5 +87,8 @@ export class AuthService {
 
   private hasToken(): boolean {
     return !!localStorage.getItem('token');
+  }
+ support(userData: any): Observable<any> {
+    return this.http.post(this.Register, userData);
   }
 }

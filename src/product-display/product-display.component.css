@@ -27,7 +27,7 @@
   }
 /* الحاوية الرئيسية */
 .product-display-container {
-    text-align: center;
+    /* text-align: center; */
     background-color: #eff5fa;
     padding: 40px 0 0;
     /* border-radius: 32px; */
@@ -88,8 +88,8 @@
 .products-container {
     display: grid;
     place-items: center;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    gap: 20px; /* Space between cards */ /* توسيط العناصر */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
     padding-bottom: 50px;
   }
 .products-title{
