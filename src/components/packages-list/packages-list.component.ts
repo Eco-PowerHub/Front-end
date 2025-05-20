@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SolarPackage } from '../../models/solar-package';
 import { SolarPackageService } from '../../services/solar-package.service';
 import { CommonModule } from '@angular/common';
@@ -10,13 +10,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './packages-list.component.css'
 })
 export class PackagesListComponent implements OnInit {
-  packages: SolarPackage[] = [];
+  @Input() packages: SolarPackage[] = [];
+  selectedPackageId: number | null = null;
 
-  constructor(private solarService: SolarPackageService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.solarService.getPackages().subscribe((data) => {
-      this.packages = data;
-    });
+    // إذا كان هناك باكيدج، اختر الأول افتراضيًا
+    if (this.packages.length > 0) {
+      this.selectedPackageId = this.packages[0].packageId;
+    }
+  }
+
+  // اختيار باكيدج
+  selectPackage(packageId: number): void {
+    this.selectedPackageId = packageId;
+  }
+
+  // الحصول على تفاصيل الباكيدج المختار
+  getSelectedPackage(): SolarPackage | undefined {
+    return this.packages.find(pkg => pkg.packageId === this.selectedPackageId);
   }
 }
