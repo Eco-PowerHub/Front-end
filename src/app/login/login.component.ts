@@ -54,6 +54,8 @@ export class LoginComponent {
       },
       err => {
         console.log(err);
+        this.errorMessage = 'فشل تسجيل الدخول، برجاء التأكد من البيانات وإعادة المحاولة'
+        // alert(this.errorMessage);
       }
     );
   }
