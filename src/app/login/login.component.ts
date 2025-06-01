@@ -43,21 +43,21 @@ export class LoginComponent {
 
     const loginData = this.loginForm.value;
 
-    this.authService.login(this.loginForm.value).subscribe(
-      (res: any) => {
-        console.log(res)
-     
-        localStorage.setItem('token', res.data.token); // أو حسب ما يرجع الـ API
-           console.log(res.data.token)
-        localStorage.setItem('userName', res.data.userName); // لو عندك الاسم في الرد
-        this.router.navigate(['/home']); 
-      },
-      err => {
-        console.log(err);
-        this.errorMessage = 'فشل تسجيل الدخول، برجاء التأكد من البيانات وإعادة المحاولة'
-        // alert(this.errorMessage);
-      }
-    );
+    this.authService.login(loginData).subscribe({
+    next: (res: any) => {
+    const token = res.data.token;
+    localStorage.setItem('token', token);
+
+    this.authService.getProfile().subscribe(user => {
+      this.authService.setUser(user.data); // تحديث BehaviorSubject
+      this.router.navigate(['/home']);
+    });
+  },
+  error: () => {
+    this.errorMessage = 'فشل تسجيل الدخول، برجاء التأكد من البيانات';
+  }
+});
+
   }
   
   

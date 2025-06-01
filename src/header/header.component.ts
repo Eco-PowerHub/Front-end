@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../app/auth/auth.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -12,42 +14,54 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
-  constructor(private router: Router) {}
-
-  // goTologin() {
-  //   this.router.navigate(['/login']); // غير "signup" لاسم الصفحة اللي رايحاها
-  // }
-
-
+  user$: Observable<any>; // بس تعريف بدون تهيئة فورية
   open: boolean = false;         // للقائمة الجانبية
-  showLogout: boolean = false;  // لزر تسجيل الخروج
+  showLogout: boolean = false;   // لزر تسجيل الخروج
+
+  searchText: string = '';
+  allRoutes = [
+    { name: 'products', path: 'products' },
+    { name: 'property', path: 'property' },
+    { name: 'home', path: 'home' },
+    { name: 'settings', path: 'dashboard-settings' },
+  ];
+  filteredRoutes: any[] = [];
+
+  constructor(private router: Router, public authService: AuthService) {
+    this.user$ = this.authService.user$;
+
+  }
+
+  ngOnInit() {
+
+    // الاستماع لتغيرات المستخدم (بيانات تسجيل الدخول)
+    // this.authService.user$.subscribe(user => {
+    //   console.log('Logged user:', user);
+    //   this.user = user;
+    // });
+
+    // تحميل بيانات المستخدم من التخزين المحلي عند تحديث الصفحة
+    // this.authService.loadUserFromStorage();
+  }
+
   toggleMenu() {
     this.open = !this.open;
-  
-    // لو فتحت القائمة، اقفلي زر تسجيل الخروج
     if (this.open) {
-      this.showLogout = false;
+      this.showLogout = false; // إذا فتحت القائمة، اقفل زر تسجيل الخروج
     }
   }
 
-  
-
-
-  logoutt() {}
-  /*logout() {
-    this.authService.logout();
-    console.log('تم تسجيل الخروج');
-    this.router.navigate(['/login']);
-  }*/
-   // لو فتحت زر تسجيل الخروج، اقفلي القائمة
-   toggleLogoutButton() {
+  toggleLogoutButton() {
     this.showLogout = !this.showLogout;
-  
-    // لو فتحت زر تسجيل الخروج، اقفلي القائمة الجانبية
     if (this.showLogout) {
-      this.open = false;
+      this.open = false; // إذا فتحت زر تسجيل الخروج، اقفل القائمة الجانبية
     }
+  }
+
+  logoutt() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+    this.showLogout = false;
   }
 
   scrollToFooter() {
@@ -56,27 +70,21 @@ export class HeaderComponent {
       footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-  
-  searchText: string = '';
-allRoutes = [
-  { name: 'products', path: 'products' },
-  { name: 'property', path: 'property' },
-  { name: 'home', path: 'home' },
-  { name: 'settings', path: 'dashboard-settings' },
-];
-filteredRoutes: any[] = [];
 
-filterRoutes() {
-  const value = this.searchText.trim().toLowerCase();
-  this.filteredRoutes = this.allRoutes.filter(route =>
-    route.name.toLowerCase().includes(value)
-  );
-}
+  filterRoutes() {
+    const value = this.searchText.trim().toLowerCase();
+    this.filteredRoutes = this.allRoutes.filter(route =>
+      route.name.toLowerCase().includes(value)
+    );
+  }
 
-goToRoute(path: string) {
-  this.router.navigate([path]);
-  this.searchText = '';
-  this.filteredRoutes = [];
-}
+  goToRoute(path: string) {
+    this.router.navigate([path]);
+    this.searchText = '';
+    this.filteredRoutes = [];
+  }
 
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
 }
