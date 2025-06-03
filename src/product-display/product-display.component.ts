@@ -22,8 +22,8 @@ export class ProductDisplayComponent implements OnInit {
   categoryNamesMap: { [key: string]: string } = {
     Batteries: 'البطاريات',
     Inverters: 'المحولات',
-    SolarPanel: 'الخلايا الشمسية',
-    controlSystem: 'نظام مراقبة',
+    Panels: 'الخلايا الشمسية',
+    Generators: 'المولدات',
     Chargers: 'الشواحن',
     CablesAndConductors: 'الكابلات والموصلات',
     all: 'كل المنتجات'

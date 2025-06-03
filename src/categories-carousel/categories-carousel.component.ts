@@ -20,12 +20,12 @@ interface Product {
 })
 export class CategoriesCarouselComponent {
   products: Product[] = [
-    { id: 1, name: 'الخلايا الشمسية', image: 'assets/panel.png', slug: 'SolarPanel' },
+    { id: 1, name: 'الخلايا الشمسية', image: 'assets/panel.png', slug: 'Panels' },
     { id: 2, name: 'البطاريات', image: 'assets/battery.jpeg', slug: 'Batteries' },
     { id: 3, name: 'المحولات', image: 'assets/inverter.png', slug: 'Inverters' },
-    { id: 4, name: 'شواحن', image: 'assets/charger.png', slug: 'Chargers' },
-    { id: 5, name: 'نظام مراقبة', image: 'assets/camera.png', slug: 'controlSystem' },
-    { id: 6, name: 'كابلات وموصلات', image: 'assets/cables.png', slug: 'CablesAndConductors' }
+    { id: 4, name: 'الشواحن', image: 'assets/charger.png', slug: 'Chargers' },
+    { id: 5, name: 'المولدات', image: 'assets/camera.png', slug: 'Generators' },
+    { id: 6, name: 'الكابلات والموصلات', image: 'assets/cables.png', slug: 'CablesAndConductors' }
   ];
 
   visibleProducts: Product[] = [];
