@@ -55,10 +55,10 @@ export class AppPasswordResetComponent implements OnInit {
       alert('كلمتا المرور غير متطابقتين.');
       return;
     }
-
+const encodedToken = encodeURIComponent(this.token);
     const requestData = {
       email: this.email,
-      token: this.token,
+      token: encodedToken,
       newPassword,
       confirmNewPassword
     };
