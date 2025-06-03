@@ -66,7 +66,7 @@ export class SignupPageComponent {
     const formData = {
       firstName: this.signupForm.value.firstName,
       lastName: this.signupForm.value.lastName,
-      userName: this.signupForm.value.firstName + this.signupForm.value.lastName,
+      userName: this.signupForm.value.firstName +' '+ this.signupForm.value.lastName,
       phoneNumber: this.signupForm.value.phoneNumber,
       email: this.signupForm.value.email,
       password: this.signupForm.value.password,
