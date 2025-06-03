@@ -12,9 +12,13 @@ interface ApiResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  logout() {
-    throw new Error('Method not implemented.');
-  }
+  // logout() {
+  //   throw new Error('Method not implemented.');
+  // }
+
+private userSubject = new BehaviorSubject<any>(null);
+user$ = this.userSubject.asObservable();
+
 private  Register='http://157.175.182.159:8080/api/Account/Register';
 private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
 private loginUrl='http://157.175.182.159:8080/api/Account/Login';
@@ -38,9 +42,28 @@ private loginUrl='http://157.175.182.159:8080/api/Account/Login';
 
   // 🔑 Login
   login(loginData: { email: string; password: string; role: number }) {
-    const headers = { 'Content-Type': 'application/json' };
-    return this.http.post(this.loginUrl, JSON.stringify(loginData), { headers });
-  }
+  const headers = { 'Content-Type': 'application/json' };
+  return this.http.post<any>(this.loginUrl, JSON.stringify(loginData), { headers });
+}
+
+setUser(user: any) {
+  this.userSubject.next(user);
+  localStorage.setItem('user', JSON.stringify(user));
+}
+
+loadUserFromStorage() {
+  const userData = localStorage.getItem('user');
+  if (userData) {
+    const parsedUser = JSON.parse(userData); 
+    this.userSubject.next(parsedUser);  }
+}
+
+logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  this.userSubject.next(null);
+}
+
 
   // 📧 Forget password
   sendResetEmail(email: string) {
@@ -115,6 +138,15 @@ getcompany(): Observable<ApiResponse> {
   addProduct(product: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/AddProduct`, product);
   }
+
+  getProfile(): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+  return this.http.get('http://157.175.182.159:8080/api/User/Me', { headers });
+}
+
 
 
 }
