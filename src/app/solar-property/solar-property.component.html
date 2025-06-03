@@ -5,7 +5,7 @@
     <img 
       src="/homeTwo.png" 
       alt="Solar panels on building roof" 
-      class="w-full h-full object-cover"
+      class="w-full absolute inset-0 bg-cover bg-center"
     />
     <div class="absolute inset-0 flex items-center justify-center">
       <div class="bg-gray-950/60 text-white py-5 px-20 -mt-85 rounded-4xl backdrop-blur-none shadow-2xl">
@@ -60,7 +60,7 @@
     
     
     <!-- Form Container -->
-    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" class=" border-[3px] m-14 mt-5 border-black p-10">
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" class=" border-[3px] mx-35 mb-14 mt-5 border-black p-10">
       <!-- Property Type -->
       <div class="mb-6">
         <h3 class="text-2xl text-right font-bold mb-6">نوع العقار</h3>

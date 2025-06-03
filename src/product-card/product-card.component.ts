@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from '../models/iproduct';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
