@@ -9,74 +9,74 @@
     />
     <div class="absolute inset-0 flex items-center justify-center">
       <div class="bg-gray-950/60 text-white py-5 px-20 -mt-85 rounded-4xl backdrop-blur-none shadow-2xl">
-        <h1 class="text-[40px] font-bold text-right">!اختار محطتك الشمسية وأنت متطمن</h1>
+        <h1 class="text-4xl font-bold text-right">!اختار محطتك الشمسية وأنت متطمن</h1>
       </div>
     </div>
   </div>
   
   <!-- Tips Section -->
-  <div class="px-9 text-center bg-white pb-28">
-    <div class="flex items-center justify-center gap-2 mb-6">
-      <h3 class="text-6xl font-bold">! نصائح ليك قبل إدخال بياناتك</h3>
-      <img src="/lamp.png" alt="lamp" class="max-w-[15%]">
+  <div class="px-9 text-center bg-white pb-10">
+    <div class="flex items-center justify-center gap-2 pt-2">
+      <h3 class="text-4xl font-bold">! نصايح ليك قبل إدخال بياناتك</h3>
+      <img src="/lamp.png" alt="lamp" class="max-w-[8%]">
     </div>
   
     <!-- Checklist Items -->
-    <div class="bg-[#022333] text-white p-6 ">
+    <div class="bg-[#022333] text-white p-6">
       <div class="space-y-4 text-right">
         <!-- Tip 1 -->
-        <div class="flex items-center justify-end gap-6 mt-12">
-          <p class="flex-1 text-3xl">.تعرف على نوع الممتلكات الخاصة بك وقدر المساحة المتاحة على السطح لتركيب المحطة الشمسية</p>
-          <img src="/rightCheck.png" alt="check" class="max-w-[5%]">
+        <div class="flex items-center justify-end gap-6">
+          <p class="flex-1 text-xl">.تعرف على نوع الممتلكات الخاصة بك وقدر المساحة المتاحة على السطح لتركيب المحطة الشمسية</p>
+          <img src="/rightCheck.png" alt="check" class="max-w-[3%]">
         </div>
   
         <!-- Tip 2 -->
-        <div class="flex items-center justify-end gap-6 mt-12">
-          <p class="flex-1 text-3xl">.تحقق من فواتير الكهرباء الخاصة بك للحصول على أفضل نظام شمسي يناسب احتياجاتك</p>
-          <img src="/rightCheck.png" alt="check" class="max-w-[5%]">
+        <div class="flex items-center justify-end gap-6 mt-10">
+          <p class="flex-1 text-xl">.تحقق من فواتير الكهرباء الخاصة بك للحصول على أفضل نظام شمسي يناسب احتياجاتك</p>
+          <img src="/rightCheck.png" alt="check" class="max-w-[3%]">
         </div>
   
         <!-- Tip 3 -->
-        <div class="flex items-center justify-end gap-6 mt-12">
-          <p class="flex-1 text-3xl">.راقب إذا كان هناك أشجار او مباني تحجب ضوء الشمس على مساحتك الخاصة</p>
-          <img src="/rightCheck.png" alt="check" class="max-w-[5%]">
+        <div class="flex items-center justify-end gap-6 mt-10">
+          <p class="flex-1 text-xl">.راقب إذا كان هناك أشجار او مباني تحجب ضوء الشمس على مساحتك الخاصة</p>
+          <img src="/rightCheck.png" alt="check" class="max-w-[3%]">
         </div>
   
         <!-- Tip 4 -->
-        <div class="flex items-center justify-end gap-6 mt-12">
-          <p class="flex-1 text-3xl">اتصل بشركة الكهرباء لمزيد من التفاصيل حول الفواتير الكهربائية و في حال لم تعرف قيمة فواتيرك الخاصة على الرقم  <strong>121</strong> </p>
-          <img src="/rightCheck.png" alt="check" class="max-w-[5%]">
+        <div class="flex items-center justify-end gap-6 mt-10">
+          <p class="flex-1 text-xl">اتصل بشركة الكهرباء لمزيد من التفاصيل حول الفواتير الكهربائية و في حال لم تعرف قيمة فواتيرك الخاصة على الرقم  <strong>121</strong> </p>
+          <img src="/rightCheck.png" alt="check" class="max-w-[3%]">
         </div>
       </div>
     </div>
   
     <!-- Enter Data Section -->
-    <div class="mt-8 mb-4 flex flex-col items-center">
-      <div class="flex items-center gap-12">
-        <h3 class="text-6xl font-bold">أدخل بياناتك بعناية</h3>
-        <img src="/data.png" alt="data" class="max-w-[15%]">
+    <div class="mt-10 mb-2 flex flex-col items-center">
+      <div class="flex justify-center items-center gap-8">
+        <h3 class="text-4xl font-bold">أدخل بياناتك بعناية</h3>
+        <img src="/data.png" alt="data" class="max-w-[12%]">
       </div>
     </div>
     
     
     <!-- Form Container -->
-    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" class=" border-[3px] m-16 border-black p-12">
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" class=" border-[3px] m-14 mt-5 border-black p-10">
       <!-- Property Type -->
       <div class="mb-6">
-        <h3 class="text-[42px] text-right font-bold mb-6">نوع العقار</h3>
-        <div class="flex justify-between gap-8">
+        <h3 class="text-2xl text-right font-bold mb-6">نوع العقار</h3>
+        <div class="flex justify-between gap-5">
         <div class="flex items-center gap-2">
-          <label for="commercial" class="text-2xl font-bold">نشاط تجاري</label>
+          <label for="commercial" class="text-l font-bold">نشاط تجاري</label>
           <input type="radio" id="commercial" formControlName="propertyType" [value]="1" class="w-6 h-6 border-2 border-black">
         </div>
         <div class="flex items-center gap-2">
-          <label for="residential" class="text-2xl font-bold">وحدة سكنية</label>
+          <label for="residential" class="text-l font-bold">وحدة سكنية</label>
           <input type="radio" id="residential" formControlName="propertyType" [value]="2" class="w-6 h-6 border-2 border-black">
           <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           </span>
         </div>
         <div class="flex items-center gap-2">
-          <label for="government" class="text-2xl font-bold">مؤسسة حكومية</label>
+          <label for="government" class="text-l font-bold">مؤسسة حكومية</label>
           <input type="radio" id="government" formControlName="propertyType" [value]="3" class="w-6 h-6 border-2 border-black">
         </div>
       </div>
@@ -87,7 +87,7 @@
     
     <!-- Roof Area -->
     <div class="mb-6">
-      <h3 class="text-[42px] text-right font-bold mb-3 pt-4">مساحة السطح لأستقبال المحطة الشمسية</h3>
+      <h3 class="text-2xl text-right font-bold mb-3 pt-4">مساحة السطح لأستقبال المحطة الشمسية</h3>
       <input 
       type="number" 
       formControlName="roofArea"
@@ -104,7 +104,7 @@
     
     <!-- Address -->
     <div class="mb-6">
-      <h3 class="text-[42px] text-right font-bold mb-3 pt-4">العنوان</h3>
+      <h3 class="text-2xl text-right font-bold mb-3 pt-4">العنوان</h3>
       <input 
       type="text" 
       formControlName="address"
@@ -120,14 +120,14 @@
     
     <!-- Electricity Consumption -->
     <div class="mb-6">
-      <h3 class="text-[42px] text-right font-bold mb-3 pt-4">استهلاك الكهرباء (مبلغ الفواتير الشهرية)</h3>
+      <h3 class="text-2xl text-right font-bold mb-3 pt-4">استهلاك الكهرباء (مبلغ الفواتير الشهرية)</h3>
       
       <!-- Summer Bills -->
       <div class="mb-4" formGroupName="summerBills">
-        <p class="text-3xl text-right font-bold mb-4 pb-4">قيمة 3 فواتير في فصل الصيف</p>
+        <p class="text-xl text-right font-bold mb-4 pb-4">قيمة 3 فواتير في فصل الصيف</p>
         <div class="grid grid-cols-3 gap-10">
           <div>
-            <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثالث</p>
+            <p class="text-l font-bold mt-1 text-center pb-2">الشهر الثالث</p>
             <input 
             type="number" 
             formControlName="month3"
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div>
-            <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثاني</p>
+            <p class="text-l font-bold mt-1 text-center pb-2">الشهر الثاني</p>
             <input 
             type="number" 
             formControlName="month2"
@@ -153,7 +153,7 @@
             </div>
           </div>
           <div>
-            <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الأول</p>
+            <p class="text-l font-bold mt-1 text-center pb-2">الشهر الأول</p>
             <input 
             type="number" 
             formControlName="month1"
@@ -170,10 +170,10 @@
       
       <!-- Winter Bills -->
       <div formGroupName="winterBills">
-        <p class="text-3xl text-right font-bold mb-4 pb-4 pt-4">قيمة 3 فواتير في فصل الشتاء</p>
+        <p class="text-xl text-right font-bold mb-4 pb-4 pt-4">قيمة 3 فواتير في فصل الشتاء</p>
         <div class="grid grid-cols-3 gap-10">
           <div>
-            <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثالث</p>
+            <p class="text-l font-bold mt-1 text-center pb-2">الشهر الثالث</p>
             <input 
             type="number" 
             formControlName="month3"
@@ -186,7 +186,7 @@
             </div>
           </div>
           <div>
-            <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الثاني</p>
+            <p class="text-l font-bold mt-1 text-center pb-2">الشهر الثاني</p>
             <input 
               type="number" 
               formControlName="month2"
@@ -199,7 +199,7 @@
             </div>
           </div>
           <div>
-            <p class="text-2xl font-bold mt-1 text-center pb-2">الشهر الأول</p>
+            <p class="text-l font-bold mt-1 text-center pb-2">الشهر الأول</p>
             <input 
               type="number" 
               formControlName="month1"
@@ -217,18 +217,18 @@
     
     <!-- Additional Questions -->
     <div class="mb-6">
-      <h4 class="text-[42px] text-right font-bold mb-3 pt-4">أجب على الأسئلة التالية</h4>
+      <h4 class="text-2xl text-right font-bold mb-3 pt-4">أجب على الأسئلة التالية</h4>
       
       <!-- Trees Question -->
       <div class="mb-4">
-        <p class="text-3xl text-right font-bold mb-4 pb-4">هل توجد أشجار قريبة من مساحة السطح؟</p>
+        <p class="text-xl text-right font-bold mb-4 pb-4">هل توجد أشجار قريبة من مساحة السطح؟</p>
         <div class="flex justify-around gap-8">
           <div class="flex items-center gap-2">
-            <label for="trees-no" class="text-3xl font-bold">لا</label>
+            <label for="trees-no" class="text-l font-bold">لا</label>
             <input type="radio" id="trees-no" formControlName="treesNearby" value="no" class="w-6 h-6 border-2 border-black">
           </div>
           <div class="flex items-center gap-2">
-            <label for="trees-yes" class="text-3xl font-bold">نعم</label>
+            <label for="trees-yes" class="text-l font-bold">نعم</label>
             <input type="radio" id="trees-yes" formControlName="treesNearby" value="yes" class="w-6 h-6 border-2 border-black">
           </div>
         </div>
@@ -236,14 +236,14 @@
       
       <!-- Buildings Question -->
       <div>
-        <p class="text-3xl text-right font-bold mb-4 pb-4">هل توجد مبان عالية قريبة من مساحة السطح؟</p>
+        <p class="text-xl text-right font-bold mb-4 pb-4">هل توجد مبان عالية قريبة من مساحة السطح؟</p>
         <div class="flex justify-around gap-8">
           <div class="flex items-center gap-2">
-            <label for="buildings-no" class="text-3xl font-bold">لا</label>
+            <label for="buildings-no" class="text-l font-bold">لا</label>
             <input type="radio" id="buildings-no" formControlName="buildingsNearby" value="no" class="w-6 h-6 border-2 border-black">
           </div>
           <div class="flex items-center gap-2">
-            <label for="buildings-yes" class="text-3xl font-bold">نعم</label>
+            <label for="buildings-yes" class="text-l font-bold">نعم</label>
             <input type="radio" id="buildings-yes" formControlName="buildingsNearby" value="yes" class="w-6 h-6 border-2 border-black">
           </div>
         </div>
@@ -252,7 +252,7 @@
     
     <!-- Submit Button -->
     <div class="flex justify-center">
-      <button type="submit" class="text-4xl font-bold bg-[#022333] text-white py-5 px-20 rounded-4xl transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
+      <button type="submit" class="text-2xl font-bold bg-[#022333] text-white py-5 px-15 rounded-4xl transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
         تأكيد
       </button>
     </div>
@@ -262,11 +262,11 @@
   <!-- Rejection Report Section (conditionally shown) -->
   <div *ngIf="showReport && reportType === 'rejection'" id="rejectionReportSection" class="mt-12 mb-8">
     <div class="flex items-center justify-center gap-8 mb-6">
-      <h3 class="text-6xl font-bold">التقرير</h3>
-      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+      <h3 class="text-4xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[3%]">
     </div>
     
-    <div class="border-[3px] m-16 border-black">
+    <div class="border-[3px] m-16 mt-1 border-black">
       <!-- Report Header with Error -->
       <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
         <div class="bg-red-500 rounded-full p-1">
@@ -274,11 +274,11 @@
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </div>
-        <h4 class="text-[40px] font-bold text-right">نأسف لعدم مطابقة بيانات العقار لمتطلبات إنشاء المحطة الشمسية</h4>
+        <h4 class="text-2xl font-bold text-right">نأسف لعدم مطابقة بيانات العقار لمتطلبات إنشاء المحطة الشمسية</h4>
       </div>
       
       <!-- Report Content -->
-      <div class="p-6 text-right text-[31px]/13 font-bold">
+      <div class="p-6 text-right text-2xl font-bold">
         <p class="mb-4 font-bold">،عزيزنا العميل</p>
         
         <p class="mb-4">نود أن نشكرك على اهتمامك بخدماتنا وثقتك بنا. بعد مراجعة البيانات الفنية الخاصة بعقارك، تبين أنه لا يستوفي المتطلبات اللازمة لإنشاء محطة شمسية وفقًا للمعايير الهندسية والفنية المعتمدة</p>
@@ -304,19 +304,19 @@
   <!-- Warning Report Section (conditionally shown) -->
   <div *ngIf="showReport && reportType === 'warning'" id="warningReportSection" class="mt-12 mb-8">
     <div class="flex items-center justify-center gap-8 mb-6">
-      <h3 class="text-6xl font-bold">التقرير</h3>
-      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+      <h3 class="text-4xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[3%]">
     </div>
     
-    <div class="border-[3px] m-16 border-black">
+    <div class="border-[3px] m-16 mt-1 border-black">
       <!-- Report Header with Warning -->
       <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
         <img src="/warning.png" alt="warning" class="max-w-[3%]">
-        <h4 class="text-[36px] font-bold text-right">بحاجة إلى مراجعة فنية إضافية قبل تأكيد إمكانية إنشاء المحطة الشمسية</h4>
+        <h4 class="text-2xl font-bold text-right">بحاجة إلى مراجعة فنية إضافية قبل تأكيد إمكانية إنشاء المحطة الشمسية</h4>
       </div>
       
       <!-- Report Content -->
-      <div class="p-6 text-right text-[31px]/13 font-bold">
+      <div class="p-6 text-right text-2xl font-bold">
         <p class="mb-4 font-bold">،عزيزنا العميل</p>
         
         <p class="mb-4">
@@ -346,19 +346,19 @@
    <!-- Approval Report Section (conditionally shown) -->
    <div *ngIf="showReport && reportType === 'approval'" id="approvalReportSection" class="mt-12 mb-8">
     <div class="flex items-center justify-center gap-8 mb-6">
-      <h3 class="text-6xl font-bold">التقرير</h3>
-      <img src="/report.png" alt="Thank You" class="max-w-[6%]">
+      <h3 class="text-4xl font-bold">التقرير</h3>
+      <img src="/report.png" alt="Thank You" class="max-w-[3%]">
     </div>
     
-    <div class="border-[3px] m-16 border-black">
+    <div class="border-[3px] m-16 mt-1 border-black">
       <!-- Report Header with Warning -->
       <div class="bg-[#022333] text-white p-4 flex items-center justify-center gap-4">
-        <img src="/approval.png" alt="approval" class="max-w-[4%]">
-        <h4 class="text-[38px] font-bold text-right">عزيزي العميل، تهانينا! عقارك مؤهل لإنشاء محطة طاقة شمسية</h4>
+        <img src="/approval.png" alt="approval" class="max-w-[3%]">
+        <h4 class="text-2xl font-bold text-right">عزيزي العميل، تهانينا! عقارك مؤهل لإنشاء محطة طاقة شمسية</h4>
       </div>
       
       <!-- Report Content -->
-      <div class="p-6 text-right text-[32px]/13 font-bold">
+      <div class="p-6 text-right text-2xl font-bold">
         <p class="mb-4 font-bold">،عزيزنا العميل</p>
         
         <p class="mb-4">
@@ -386,9 +386,9 @@
 
 
   <!-- Thank You Message -->
-  <div class="mt-12 flex items-center justify-center gap-12">
-    <h3 class="text-6xl font-bold"> Eco Power Hub شكرًا ليك على اختيارك</h3>
-    <img src="/smile.png" alt="Thank You" class="max-w-[7%]">
+  <div class="mt-12 flex items-center justify-center gap-5">
+    <h3 class="text-3xl font-bold"> Eco Power Hub شكرًا ليك على اختيارك</h3>
+    <img src="/smile.png" alt="Thank You" class="max-w-[4%]">
   </div>
 </div>
 
