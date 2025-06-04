@@ -129,9 +129,9 @@
                 text-slate-700 placeholder:text-gray-500 text-right " rows="4" placeholder=" يمكنك اخبارنا بسؤالك فيما يتعلق بمشاكل واجهتك أثناء عملية تخصيص الحزمة الشمسية لك. "></textarea>
             </div>
  <div class="flex justify-center mt-4 ">
-            <button type="submit" class="w-[100%] sm:w-1/3  p-2 rounded-[25px] bg-[#022333] font-black text-lg text-white font-cairo transition duration-300 ease-in-out hover:bg-white hover:text-black hover:shadow-[0px_0px_20px_#162229] hover:scale-110">
-                إرسال
-            </button>
+            <button type="submit" class="w-[100%] sm:w-1/3  p-2 flex items-center justify-center rounded-[25px] bg-[#022333] font-black text-lg text-white font-cairo transition duration-300 ease-in-out hover:bg-white hover:text-black hover:shadow-[0px_0px_20px_#162229] hover:scale-110" [disabled]="isLoading">
+<span *ngIf="!isLoading">ارسال</span>
+  <div *ngIf="isLoading" class="animate-spin h-5 w-5 border-2 border-t-transparent border-[#022333] rounded-full"></div>            </button>
         </div>
         </form>
    
