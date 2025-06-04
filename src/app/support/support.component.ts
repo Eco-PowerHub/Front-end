@@ -21,7 +21,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class SupportComponent implements OnInit{
     supportForm!: FormGroup;
- 
+isLoading: boolean = false;
    constructor(private fb: FormBuilder , private router: Router, private authservice: AuthService) {}
 
   ngOnInit(): void {
@@ -31,29 +31,42 @@ export class SupportComponent implements OnInit{
       phoneNumber: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
       subject: ['', Validators.required]
     });
+ 
   }
  onSubmit(): void {
     if (this.supportForm.invalid) {
       this.supportForm.markAllAsTouched();
       return;
     }
+    this.isLoading = true;
     const supportform ={
       
-      subject: this.supportForm.value.subject,
+    userName: this.supportForm.value.userName,
+    email: this.supportForm.value.email,
+    phoneNumber: this.supportForm.value.phoneNumber,
+    subject: this.supportForm.value.subject,
    
     }
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('يجب تسجيل الدخول أولاً لإرسال طلب الدعم.');
+      return;
+    }
 
- this.authservice.supportform(supportform).subscribe({
+ this.authservice.supportform(supportform,token).subscribe({
     next: (res:any) => {
       console.log('تم الإرسال بنجاح', res);
       alert('شكراً لتواصلك معنا! تم إرسال رسالتك.');
+        this.isLoading = false;
       this.supportForm.reset();
-      
+    
     },
     error: (err:any) => {
       console.error('حدث خطأ أثناء الإرسال:', err);
       alert('حدث خطأ أثناء الإرسال. حاول مرة أخرى لاحقاً.');
+        this.isLoading = false;
     }
+    
   });
   }
 }

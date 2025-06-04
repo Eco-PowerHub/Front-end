@@ -15,7 +15,8 @@ import { CommonModule } from '@angular/common';
 })
 export class SendOtpComponent {
   codeForm: FormGroup;
-  isSubmitting = false;
+  isloading:boolean=false;
+
   email: string = ''; // متغير لتخزين الإيميل
   otpExpiry:string='';
   constructor(
@@ -44,7 +45,7 @@ export class SendOtpComponent {
 
     const requestData = { email: this.email, otp };
   console.log('البيانات المرسلة إلى الاندبوينت:', JSON.stringify(requestData));
-    this.isSubmitting = true;
+  this.isloading = true; 
    // console.log('📤 إرسال OTP:', { email: this.email, otp });//بعرض الداتا المبعوة للاندبوينت
 
     this.authService.verifyCode(requestData).subscribe({
@@ -60,7 +61,7 @@ export class SendOtpComponent {
       console.log(`${Math.floor(timeLeft/1000)} seconds`);
  
       this.router.navigate(['/signup-success']);
-    }
+      this.isloading = false;     }
     else{
       console.log("otp expired");
     }

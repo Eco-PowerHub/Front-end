@@ -82,9 +82,7 @@ logout() {
     );
   }
 //support
- supportform(data: any   ) {
-  const token = localStorage.getItem('token');
-  
+ supportform(data: any ,token: string  ) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'

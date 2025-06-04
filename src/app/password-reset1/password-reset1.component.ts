@@ -27,10 +27,14 @@ console.log(this.email);
       next: (response) => {
         console.log('✅ Email sent successfully:', response);
         alert('📧 A reset link has been sent to your email.');
+            this.isLoading = false;
+
       },
       error: (error) => {
         console.error('❌ Error sending email:', error);
         alert('⚠️ Failed to send email. Please try again.');
+            this.isLoading = false;
+
       },
       complete: () => {
         this.isLoading = false;

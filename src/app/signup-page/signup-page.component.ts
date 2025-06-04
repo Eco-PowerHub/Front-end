@@ -17,7 +17,7 @@ import { AuthService } from '../auth/auth.service';
 export class SignupPageComponent {
 
   signupForm: FormGroup;
-  loading = false;
+isLoading: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService) {
     this.signupForm = this.fb.group({
@@ -61,8 +61,8 @@ export class SignupPageComponent {
       return;
     }
   
-    this.loading = true;
-  
+this.isLoading = true;  
+
     const formData = {
       firstName: this.signupForm.value.firstName,
       lastName: this.signupForm.value.lastName,
@@ -82,7 +82,7 @@ export class SignupPageComponent {
         console.log('✅ تم التسجيل بنجاح:', response);
         if (response.message === 'Email or User Name already exists!!') {
           alert(response.message);
-          this.loading = false;
+          this.isLoading = false;
           return;
         }
         localStorage.setItem('otpExpiry', response.data.otpExpiry);
@@ -95,8 +95,7 @@ export class SignupPageComponent {
       },
       error: (err: any) => {
         console.error('❌ فشل التسجيل:', err);
-        this.loading = false;
-  
+this.isLoading = false;  
         const errorMessage =
           err.error?.message || 'حدث خطأ غير متوقع. حاول مرة أخرى.';
         alert(errorMessage);

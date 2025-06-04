@@ -21,6 +21,7 @@ export class AppPasswordResetComponent implements OnInit {
   resetForm: FormGroup;
   email: string = '';
   token: string = '';
+isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
