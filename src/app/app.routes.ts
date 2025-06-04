@@ -33,6 +33,7 @@ export const routes: Routes = [
     {path: 'aboutus', component:AboutUsComponent},
     {path:'forgetpassword' , component:PasswordReset1Component},
     {path:'products' , component:ProductDisplayComponent },
+    {path:'cart' , component:CartComponent }, 
     {path:'property' , component:SolarPropertyComponent },
     {path:'dashboard-product' , component:DashboardProductComponent,data: { title: ' Dashoard' } },
     {path:'dashboard-order' , component:DashboardOrderComponent,data: { title: ' Dashoard' } },
