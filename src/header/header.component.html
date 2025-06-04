@@ -68,7 +68,8 @@
         <!-- مسجل دخول -->
         <li *ngIf="user$ | async as user" class="flex items-center relative">
           <img *ngIf="user.profilePicture" [src]="user.profilePicture" alt="User photo" class="rounded-full w-8 h-8 ml-2 object-cover" />
-          <span (click)="toggleLogoutButton()" class="cursor-pointer p-2 text-white relative font-bold hover:text-[#499DCA] font-cairo select-none">
+          <span (click)="toggleLogoutButton()" class="cursor-pointer p-2 text-white relative font-bold after:block after:mt-2 after:w-0 after:h-[2px] after:bg-blue-500
+                   after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">
             {{ user.username }}
           </span>
 
