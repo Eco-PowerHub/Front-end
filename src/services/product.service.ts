@@ -16,16 +16,17 @@ interface ApiResponse {
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://157.175.182.159:8080/api/Product/Products';
+  private baseUrl = 'http://157.175.182.159:8080/api';
+  private products = `${this.baseUrl}/Product/Products`;
 
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(`${this.baseUrl}`);
+    return this.http.get<ApiResponse>(`${this.products}`);
   }
 
   getProductsByCategory(categoryName: string): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(`${this.baseUrl}ByCategory?categoryName=${categoryName}`);
+    return this.http.get<ApiResponse>(`${this.products}ByCategory?categoryName=${categoryName}`);
   }
 }
 

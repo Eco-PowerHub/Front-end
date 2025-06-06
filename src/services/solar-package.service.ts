@@ -34,7 +34,8 @@ export interface PropertyFormData {
 })
 export class SolarPackageService {
 
-  private apiUrl ='http://157.175.182.159:8080/api/Property/AddProperty';
+  private apiUrl ='http://157.175.182.159:8080/api';
+  private packages = `${this.apiUrl}/Property/AddProperty`;
 
   constructor(private http: HttpClient) {}
 
@@ -58,6 +59,6 @@ export class SolarPackageService {
 
   console.log("🚀 Payload being sent to API:", mappedData);
 
-  return this.http.post<PackageResponse>(this.apiUrl, mappedData);
+  return this.http.post<PackageResponse>(this.packages, mappedData);
 }
 }

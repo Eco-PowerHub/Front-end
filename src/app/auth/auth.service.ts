@@ -19,15 +19,17 @@ export class AuthService {
 private userSubject = new BehaviorSubject<any>(null);
 user$ = this.userSubject.asObservable();
 
-private  Register='http://157.175.182.159:8080/api/Account/Register';
-private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
-private loginUrl='http://157.175.182.159:8080/api/Account/Login';
- private forgetpass='http://157.175.182.159:8080/api/Account/ForgetPassword';
- private client='http://157.175.182.159:8080/api/Admin/Users';
-   private order = 'http://157.175.182.159:8080/api/Order/Orders'; 
-   private company ='http://157.175.182.159:8080/api/Company/Companies';
-   private product='http://157.175.182.159:8080/api/Product/Products';
-     private baseUrl = 'http://157.175.182.159:8080/api/Product';
+private apiUrl = 'http://157.175.182.159:8080/api';
+
+private  Register=`${this.apiUrl}/Account/Register`;
+private  verifyotp=`${this.apiUrl}/Account/verify-otp`;
+private loginUrl=`${this.apiUrl}/Account/Login`;
+ private forgetpass=`${this.apiUrl}/Account/ForgetPassword`;
+ private client=`${this.apiUrl}/Admin/Users`;
+   private order = `${this.apiUrl}/Order/Orders`; 
+   private company =`${this.apiUrl}/Company/Companies`;
+   private product=`${this.apiUrl}/Product/Products`;
+     private baseUrl = `${this.apiUrl}/Product`;
 
 
   constructor(private http:HttpClient) { }
@@ -75,7 +77,7 @@ logout() {
   resetPassword(data: any) {
     const headers = { 'Content-Type': 'application/json' };
     return this.http.post(
-      'http://157.175.182.159:8080/api/Account/ResetPassword',
+      `${this.apiUrl}/Account/ResetPassword`,
      data,
      { headers }
    
@@ -87,7 +89,7 @@ logout() {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-    return this.http.post('http://157.175.182.159:8080/api/UserSupport/AddSupport', data ,{headers} );
+    return this.http.post(`${this.apiUrl}/UserSupport/AddSupport`, data ,{headers} );
   }
 
   //
@@ -104,7 +106,7 @@ editProfile(data: any) {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('token')}`
   };
-  return this.http.put('http://157.175.182.159:8080/api/Account/EditProfile', data, { headers });
+  return this.http.put(`${this.apiUrl}/Account/EditProfile`, data, { headers });
 }
 
 changePassword(data: any) {
@@ -112,7 +114,7 @@ changePassword(data: any) {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('token')}`
   };
-  return this.http.put('http://157.175.182.159:8080/api/Account/ChangePassword', data, { headers });
+  return this.http.put(`${this.apiUrl}/Account/ChangePassword`, data, { headers });
 }
 
 deleteAccount(data: any) {
@@ -120,7 +122,7 @@ deleteAccount(data: any) {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('token')}`
   };
-  return this.http.request('delete', 'http://157.175.182.159:8080/api/Account/DeleteAccount', {
+  return this.http.request('delete', `${this.apiUrl}/Account/DeleteAccount`, {
     body: data,
     headers
   });
@@ -142,7 +144,7 @@ getcompany(): Observable<ApiResponse> {
   const headers = new HttpHeaders({
     Authorization: `Bearer ${token}`
   });
-  return this.http.get('http://157.175.182.159:8080/api/User/Me', { headers });
+  return this.http.get(`${this.apiUrl}/User/Me`, { headers });
 }
 
 
