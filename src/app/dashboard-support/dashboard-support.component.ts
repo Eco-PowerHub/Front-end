@@ -6,6 +6,15 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+interface support {
+  subject: string;
+  response: string;
+  createdAt: string;
+  userId: string;
+  userName: string;
+  email: string;
+  phoneNumber: string;
+}
 
 @Component({
   selector: 'app-dashboard-support',
@@ -15,35 +24,20 @@ standalone: true, // 👈 مهم جدًا
   styleUrl: './dashboard-support.component.css'
 })
 export class DashboardSupportComponent {
-orders: any[] = [];
-  constructor(private http: HttpClient, private router: Router) {}
+  orders: support[] = [];
+  constructor(private authService: AuthService ,private http: HttpClient, private router: Router) {}
 
-getOrders() {
-  // مؤقتًا بيانات وهمية لحد ما الـ API يشتغل
-  this.orders = [
-    {
-      name: 'محمد أحمد',
-      phone: '0123456789',
-      email: 'mohamed@example.com',
-      details: 'استشارة فنية حول المنتج X'
-    },
-    {
-      name: 'سارة علي',
-      phone: '0112345678',
-      email: 'sara@example.com',
-      details: 'استفسار عن الأسعار والخدمات'
-    },
-    {
-      name: 'أحمد حسن',
-      phone: '0109876543',
-      email: 'ahmed@example.com',
-      details: 'طلب عرض سعر لمجموعة منتجات'
-    }
-  ];
-}
-ngOnInit() {
-  this.getOrders();
-}
+  ngOnInit(): void {
+    this.authService.getSupport().subscribe({
+      next: (res) => {
+        console.log('Orders response:', res);
+        this.orders = res.data;
+      },
+      error: (err) => {
+        console.error('Error fetching orders:', err);
+      }
+    });
+  }
  deleteAccount(): void {
     const token = localStorage.getItem('token');
     if (!token) return;

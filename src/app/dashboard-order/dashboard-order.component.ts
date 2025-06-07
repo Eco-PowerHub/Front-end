@@ -7,7 +7,7 @@ interface Order {
   id: number;
   price: number;
   orderDate: string;
-  orderHistory: string;
+  orderStatus: string;
   companyName: string;
   userId: string;
 }

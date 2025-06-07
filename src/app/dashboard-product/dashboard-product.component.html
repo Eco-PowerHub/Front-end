@@ -131,11 +131,11 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
   <div class="flex flex-col md:flex-row gap-4 mb-4">
     <div class="w-full">
       <label class="block mb-2 text-lg">اسم المنتج</label>
-      <input lang="ar" dir="rtl" name="name" [(ngModel)]="newProduct.name" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل اسم المنتج" required />
+      <input lang="ar" dir="rtl" name="name" [(ngModel)]="newProduct.name" type="text" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder="ادخل اسم المنتج" required />
     </div>
     <div class="w-full">
       <label class="block mb-2 text-lg">صنف المنتج</label>
-      <select lang="ar" dir="rtl" name="category" [(ngModel)]="newProduct.category" class="bg-white w-full p-3 border border-gray-300 rounded-[25px] text-right" required>
+      <select lang="ar" dir="rtl" name="category" [(ngModel)]="newProduct.category" class="bg-white w-full p-3 border text-slate-700 border-gray-300 rounded-[25px] text-right" required>
         <option disabled selected>اختر صنف المنتج</option>
         <option>لوح شمسي</option>
         <option>بطارية</option>
@@ -148,11 +148,11 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
   <div class="flex flex-col md:flex-row gap-4 mb-4">
     <div class="w-full">
       <label class="block mb-2 text-lg">الكمية</label>
-      <input lang="ar" dir="rtl" name="quantity" [(ngModel)]="newProduct.quantity" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل الكمية لهذا المنتج" required />
+      <input lang="ar" dir="rtl" name="quantity" [(ngModel)]="newProduct.quantity" type="text" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder="ادخل الكمية لهذا المنتج" required />
     </div>
     <div class="w-full">
       <label class="block mb-2 text-lg">السعر</label>
-      <input lang="ar" dir="rtl" name="price" [(ngModel)]="newProduct.price" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="كم سعر المنتج؟" required />
+      <input lang="ar" dir="rtl" name="price" [(ngModel)]="newProduct.price" type="text" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder="كم سعر المنتج؟" required />
     </div>
   </div>
 
@@ -239,14 +239,13 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
     </thead>
     <tbody class="text-sm bg-white text-slate-800">
       <tr *ngFor="let product of products">
-        <td class="px-4 py-2 text-yellow-500">
-          <!-- نعرض نجوم حسب تقييم الشركة -->
-          <ng-container *ngIf="product.companyId">
-            <ng-container *ngFor="let star of [].constructor(getCompanyRate(product.companyId)); let i = index">
-              ★
-            </ng-container>
-          </ng-container>
-        </td>
+     <td class="px-4 py-2 text-yellow-500">
+  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+  <span [class.text-yellow-500]="i < 4" [class.text-gray-300]="i >= 4">★</span>
+</ng-container>
+
+</td>
+
         <td class="px-4 py-2">
           {{ product.stock > 0 ? 'متاح' : 'غير متاح' }}
         </td>

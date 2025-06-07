@@ -135,11 +135,11 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
       </tr>
     </thead>
     <tbody class="text-sm bg-white text-slate-800">
-      <tr *ngFor="let order of orders" class="border-b h-16">
-        <td class="px-4 py-2">{{ order.details }}</td>
-        <td class="px-4 py-2">{{ order.email }}</td>
-        <td class="px-4 py-2">{{ order.phone }}</td>
-        <td class="px-4 py-2">{{ order.name }}</td>
+      <tr *ngFor="let support of orders" class="border-b h-16">
+        <td class="px-4 py-2">{{ support.subject }}</td>
+        <td class="px-4 py-2">{{ support.email }}</td>
+        <td class="px-4 py-2">{{ support.phoneNumber }}</td>
+        <td class="px-4 py-2">{{ support.userName }}</td>
       </tr>
     </tbody>
   </table>

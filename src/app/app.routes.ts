@@ -14,7 +14,6 @@ import { DashboardSupportComponent } from './dashboard-support/dashboard-support
 import { DashboardSettingsComponent } from './dashboard-settings/dashboard-settings.component';
 import { DashboardCompanyComponent } from './dashboard-company/dashboard-company.component';
 import { CompanyDashboardProComponent } from './company-dashboard-pro/company-dashboard-pro.component';
-import { CompanyDashboardOrComponent } from './company-dashboard-or/company-dashboard-or.component';
 import { CompanyDashboardSetComponent } from './company-dashboard-set/company-dashboard-set.component';
 import { CartComponent } from '../cart/cart.component';
 import { ProductDisplayComponent } from '../product-display/product-display.component';
@@ -42,7 +41,6 @@ export const routes: Routes = [
     {path:'dashboard-company' , component:DashboardCompanyComponent ,data: { title: ' Dashoard' } },
     {path:'dashboard-clients' , component:DashboardClientsComponent ,data: { title: ' Dashoard' } },
     {path:'company-dashboard-pro' , component:CompanyDashboardProComponent ,data: { title: ' Dashoard' } },
-    {path:'company-dashboard-or' , component:CompanyDashboardOrComponent ,data: { title: ' Dashoard' } },
     {path:'company-dashboard-set' , component:CompanyDashboardSetComponent ,data: { title: ' Dashoard' } }
 
 
