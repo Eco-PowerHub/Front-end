@@ -8,8 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class CartService {
 
-  private apiUrl = '';
+  private apiUrl = 'http://157.175.182.159:8080/api';
+  private cart = `${this.apiUrl}/Cart`
   constructor(private http: HttpClient) { }
+
+  addCart(): Observable<any> {
+    return this.http.post(`${this.cart}/AddCart`, {});
+  }
 
   getCartItems(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.apiUrl);

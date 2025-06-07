@@ -25,6 +25,7 @@
   <p>السعر: <span class="text">{{ product.price }} ج.م</span></p>
 
   <div class="button-container">
-    <button routerLink="/cart"  class="btn">إضافة إلى السلة</button>
-  </div>
+  <button class="btn" (click)="handleAddToCart()">إضافة إلى السلة</button>
+</div>
+
 </div>

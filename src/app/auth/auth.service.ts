@@ -12,6 +12,9 @@ interface ApiResponse {
   providedIn: 'root'
 })
 export class AuthService {
+  // isLoggedIn() {
+  //   throw new Error('Method not implemented.');
+  // }
   // logout() {
   //   throw new Error('Method not implemented.');
   // }
@@ -52,6 +55,10 @@ setUser(user: any) {
   this.userSubject.next(user);
   localStorage.setItem('user', JSON.stringify(user));
 }
+
+isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 
 loadUserFromStorage() {
   const userData = localStorage.getItem('user');
