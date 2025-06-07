@@ -1,59 +1,89 @@
-# EcoPowerhubb
+# Eco Power Hub
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
+EcoPowerHub is a web application for managing renewable energy solutions and power systems. This project represents the frontend implementation built with Angular.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- User authentication and authorization
+- Company and product management
+- Order processing and tracking
+- User profile management
+- Support ticket system
+- Admin dashboard
 
+## Prerequisites
+
+- Node.js (v14 or higher)
+- Angular CLI 19.0.4
+- NPM (Node Package Manager)
+
+## Getting Started
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Eco-PowerHub/Front-end.git
+cd Front-end
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Navigate to `http://localhost:4200/`. The application will automatically reload when you change any source files.
 
-## Code scaffolding
+## Project Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── auth/        # Authentication services and components
+│   ├── components/  # Shared components
+│   ├── services/    # Application services
+│   └── models/      # Data models and interfaces
+├── assets/          # Static files
+└── environments/    # Environment configurations
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Building for Production
+
+To build the project for production:
 
 ```bash
-ng generate --help
+ng build --configuration production
 ```
 
-## Building
+The build artifacts will be stored in the `dist/` directory.
 
-To build the project run:
+## Deployment
 
-```bash
-ng build
-```
+The project includes configurations for:
+- Docker containerization (see `Dockerfile`)
+- Kubernetes deployment (see `Kubernetes/` directory)
+- Nginx configuration (see `Nginx/nginx.conf`)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Testing
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+### Unit Tests
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+### End-to-End Tests
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## API Integration
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The application integrates with a RESTful API providing:
+- User authentication
+- Product management
+- Order processing
+- Company management
+- Support ticket system
