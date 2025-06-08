@@ -139,7 +139,8 @@ getcompany(): Observable<ApiResponse> {
 
   // إضافة منتج
   addProduct(product: any): Observable<any> {
-    return this.http.post(`${this.addProducts}/Product`, product);
+          return this.http.post('http://157.175.182.159:8080/api/Product/AddProduct',product );
+
   }
 
   getProfile(): Observable<any> {
