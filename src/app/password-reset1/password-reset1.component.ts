@@ -13,12 +13,15 @@ import { CommonModule } from '@angular/common';
 export class PasswordReset1Component {
   email: string = '';
   isLoading: boolean = false;
+showModal: boolean = false;
+modalMessage: string = '';
 
   constructor(private authService: AuthService) {}
 
   sendResetemail() {
     if (!this.email.trim()) {
-      alert('❌ Please enter a valid email address.');
+      this.modalMessage = ' Please enter a valid email address.';
+          this.showModal = true;
       return;
     }
 console.log(this.email);
@@ -26,13 +29,16 @@ console.log(this.email);
     this.authService.sendResetEmail(this.email).subscribe({
       next: (response) => {
         console.log('✅ Email sent successfully:', response);
-        alert('📧 A reset link has been sent to your email.');
+          this.modalMessage = 'A reset link has been sent to your email.';
+          this.showModal = true;
             this.isLoading = false;
 
       },
       error: (error) => {
         console.error('❌ Error sending email:', error);
-        alert('⚠️ Failed to send email. Please try again.');
+          this.modalMessage = '⚠️ Failed to send email. Please try again.';
+          this.showModal = true;
+        
             this.isLoading = false;
 
       },
@@ -40,5 +46,9 @@ console.log(this.email);
         this.isLoading = false;
       }
     });
+  }
+   closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
   }
 }

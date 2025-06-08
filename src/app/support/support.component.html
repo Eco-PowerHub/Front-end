@@ -13,6 +13,17 @@
 <app-header></app-header>
 <body class="bg-white">
 
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal-content">
+    <div class="modal-icon shake">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#051C2F" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+      </svg>
+    </div>
+    <p>{{ modalMessage }}</p>
+    <button class="modal-btn" (click)="closeModal()">حسنًا</button>
+  </div>
+</div>
 
   <section class=" p-2 flex justify-between items-center">
     <div class="ml-4  mt-4">
@@ -67,7 +78,7 @@
                             <div class="flex items-center justify-center w-10 h-10 -mr-1 rounded-full border-2 bg-black text-2xl shrink-0">
                                 <i class="fa-solid fa-envelope  text-white "></i></div> username&#64;domainname.com
                         </a>
-                        <a data-aos="fade-up" href="#" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
+                        <a data-aos="fade-up" href="https://www.facebook.com/profile.php?id=61577191190917" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
                             <div class="flex items-center justify-center w-10 h-10 -mr-1 rounded-full border-2 bg-black text-2xl shrink-0">
                                 <i class="fa-brands fa-facebook-f  text-white "></i></div> Eco PowerHub Company
                         </a>
@@ -75,13 +86,13 @@
                             <div class="flex items-center justify-center w-10 h-10 -mr-1 rounded-full border-2 bg-black text-2xl shrink-0">
                                 <i class="fa-solid fa-phone text-white"></i></div> 25146268 - 245217562
                         </a>
-                        <a  data-aos="fade-up"   href="#" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
+                        <a  data-aos="fade-up"   href="https://www.instagram.com/ecopowerhub3/" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
                             <div class="flex items-center justify-center w-10 h-10 -mr-1 rounded-full border-2 bg-black text-2xl shrink-0">
                                 <i class="fa-brands fa-instagram text-white"></i>
                             </div>
                             EcoPowerHub&#64;instagram.com
                           </a>
-                          <a  data-aos="fade-up" href="#" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
+                          <a  data-aos="fade-up" href="https://twitter.com/hub_eco64337" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
                             <div class="flex items-center justify-center w-10 h-10 -mr-1 rounded-full border-2 bg-black text-2xl shrink-0">
                                 <i class="fa-brands fa-twitter text-white"></i></div> ecopowerhub&#64;twitter.com
                         </a>
@@ -115,19 +126,33 @@
                 <input id="email"  formControlName="email" lang="ar" dir="rtl" type="email" class=" bg-white w-full p-4 border border-gray-300 rounded-[25px] 
                 focus:outline-none focus:ring-2 focus:ring-blue-400 
                 text-slate-700 placeholder:text-gray-500 text-right " placeholder=" user@example.com">
-            </div>
+                
+          <div *ngIf="supportForm.get('email')?.invalid && supportForm.get('email')?.touched" class="text-red-500 text-xs mt-1 mr-3">
+            <span *ngIf="supportForm.get('email')?.errors?.['required']">البريد الإلكتروني مطلوب.</span>
+            <span *ngIf="supportForm.get('email')?.errors?.['email']">يرجى إدخال بريد إلكتروني صالح.</span>
+            <span *ngIf="supportForm.get('email')?.errors?.['invalidEmailFormat']">البريد الإلكتروني يحتوي على أحرف أو رموز غير مسموح بها.</span>
+          </div>
+              </div>
             <div class="mb-4">
                 <label for="phoneNumber" class="block mb-2  mr-4  text-lg ">رقم الهاتف</label>
                 <input id="phoneNumber" formControlName="phoneNumber"  lang="ar" dir="rtl" type="tel" class="bg-white w-full p-4 border border-gray-300 rounded-[25px]
                 focus:outline-none focus:ring-2 focus:ring-blue-400 
                 text-slate-700 placeholder:text-gray-500 text-right "  placeholder="ادخل رقم هاتفك">
-            </div>
+            <div *ngIf="supportForm.get('phoneNumber')?.invalid && supportForm.get('phoneNumber')?.touched" class="text-red-500 text-xs mt-1 mr-3">
+            <span *ngIf="supportForm.get('phoneNumber')?.errors?.['required']">رقم الهاتف مطلوب.</span>
+            <span *ngIf="supportForm.get('phoneNumber')?.errors?.['pattern']">يرجى إدخال رقم هاتف صحيح (مثال: 01xxxxxxxxx).</span>
+            <span *ngIf="supportForm.get('phoneNumber')?.errors?.['invalidPhoneFormat']">رقم الهاتف يحتوي على أحرف أو رموز غير مسموح بها.</span>
+          </div>
+              </div>
             <div class="mb-4">
                 <label for="subject" class="block mb-2  mr-4  text-lg ">رسالتك</label>
                 <textarea id="subject" formControlName="subject" lang="ar" dir="rtl" class="bg-white w-full p-4 border border-gray-300 rounded-[25px] 
                 focus:outline-none focus:ring-2 focus:ring-blue-400 
                 text-slate-700 placeholder:text-gray-500 text-right " rows="4" placeholder=" يمكنك اخبارنا بسؤالك فيما يتعلق بمشاكل واجهتك أثناء عملية تخصيص الحزمة الشمسية لك. "></textarea>
-            </div>
+            <div *ngIf="supportForm.get('subject')?.invalid && supportForm.get('subject')?.touched" class="text-red-500 text-xs mt-1 mr-3">
+            <span *ngIf="supportForm.get('subject')?.errors?.['required']">الرسالة مطلوبة.</span>
+          </div>
+              </div>
  <div class="flex justify-center mt-4 ">
             <button type="submit" class="w-[100%] sm:w-1/3  p-2 flex items-center justify-center rounded-[25px] bg-[#022333] font-black text-lg text-white font-cairo transition duration-300 ease-in-out hover:bg-white hover:text-black hover:shadow-[0px_0px_20px_#162229] hover:scale-110" [disabled]="isLoading">
 <span *ngIf="!isLoading">ارسال</span>

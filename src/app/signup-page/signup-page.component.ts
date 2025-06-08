@@ -18,6 +18,8 @@ export class SignupPageComponent {
 
   signupForm: FormGroup;
 isLoading: boolean = false;
+showModal: boolean = false;
+modalMessage: string = '';
 
   constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService) {
     this.signupForm = this.fb.group({
@@ -66,7 +68,7 @@ this.isLoading = true;
     const formData = {
       firstName: this.signupForm.value.firstName,
       lastName: this.signupForm.value.lastName,
-      userName: this.signupForm.value.firstName +' '+ this.signupForm.value.lastName,
+      userName: this.signupForm.value.firstName + this.signupForm.value.lastName,
       phoneNumber: this.signupForm.value.phoneNumber,
       email: this.signupForm.value.email,
       password: this.signupForm.value.password,
@@ -80,26 +82,39 @@ this.isLoading = true;
     this.authservice.register(formData).subscribe({
       next: (response: any) => {
         console.log('✅ تم التسجيل بنجاح:', response);
-        if (response.message === 'Email or User Name already exists!!') {
-          alert(response.message);
+        if (response.message === 'Email or User Name already exists!') {
+         this.modalMessage = response.message;
+          this.showModal = true;
           this.isLoading = false;
           return;
         }
-        localStorage.setItem('otpExpiry', response.data.otpExpiry);
-        this.router.navigate(['/sendotp'], {
-          queryParams: {
-            email: formData.email,
-            otpExpiry: response.data.otpExpiry
-          }
-        });
+      if (response.data && response.data.otpExpiry) {
+          localStorage.setItem('otpExpiry', response.data.otpExpiry);
+          this.router.navigate(['/sendotp'], {
+            queryParams: {
+              email: formData.email,
+              otpExpiry: response.data.otpExpiry
+            }
+          });
+        } else {
+          this.modalMessage = 'حدث خطأ غير متوقع أثناء معالجة البيانات.';
+          this.showModal = true;
+          this.isLoading = false;
+        }
       },
       error: (err: any) => {
         console.error('❌ فشل التسجيل:', err);
-this.isLoading = false;  
-        const errorMessage =
-          err.error?.message || 'حدث خطأ غير متوقع. حاول مرة أخرى.';
-        alert(errorMessage);
+         this.isLoading = false;  
+        const errorMessage = err.error?.message || 'حدث خطأ غير متوقع. حاول مرة أخرى.';
+        this.modalMessage = errorMessage;
+        this.showModal = true;
       }
     });
+    
+  }
+  
+  closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
   }
 }
