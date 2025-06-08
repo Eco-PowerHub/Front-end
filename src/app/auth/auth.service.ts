@@ -33,6 +33,9 @@ private loginUrl=`${this.apiUrl}/Account/Login`;
    private company =`${this.apiUrl}/Company/Companies`;
    private product=`${this.apiUrl}/Product/Products`;
      private baseUrl = `${this.apiUrl}/Product`;
+     private support = `${this.apiUrl}/UserSupport/Supports`;
+       private getProduct=`${this.apiUrl}/Product/Products`;
+       private addProducts=`${this.apiUrl}/Product/AddProduct`;
 
 
   constructor(private http:HttpClient) { }
@@ -107,6 +110,9 @@ getCustomers(): Observable<ApiResponse> {
   getOrders(): Observable<any> {
   return this.http.get<any>(this.order);
 }
+  getSupport(): Observable<any> {
+  return this.http.get<any>(this.support);
+}
 // auth.service.ts
 editProfile(data: any) {
   const headers = {
@@ -138,12 +144,12 @@ getcompany(): Observable<ApiResponse> {
   return this.http.get<ApiResponse>(this.company);
 }
   getProducts(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/Products`);
+    return this.http.get(`${this.getProduct}/Products`);
   }
 
   // إضافة منتج
   addProduct(product: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/AddProduct`, product);
+    return this.http.post(`${this.addProducts}/Product`, product);
   }
 
   getProfile(): Observable<any> {

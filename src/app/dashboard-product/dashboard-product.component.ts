@@ -76,9 +76,16 @@ getCompanyName(companyId: number): string {
 }
 
 getCompanyRate(companyId: number): number {
-  const company = this.companies.find((c: any) => c.products.some((p: any) => p.companyId === companyId));
-  return company ? Math.round(company.rate / 2) : 0;
+  // تأكدي هنا إن الشركة موجودة فعلاً في الداتا
+  const company = this.companies.find(c => c.id === companyId);
+  return company ? company.rate : 0; // لو مش لاقي الشركة يرجع 0
 }
+
+getRateArray(companyId: number): number[] {
+  const rate = this.getCompanyRate(companyId);
+  return Array(rate).fill(0); // مثلاً لو rate = 3 → [0, 0, 0]
+}
+
 
 
 }

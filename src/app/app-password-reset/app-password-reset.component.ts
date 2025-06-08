@@ -22,7 +22,8 @@ export class AppPasswordResetComponent implements OnInit {
   email: string = '';
   token: string = '';
 isLoading: boolean = false;
-
+showModal: boolean = false;
+modalMessage: string = '';
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -46,7 +47,8 @@ isLoading: boolean = false;
 
   resetPass() {
     if (this.resetForm.invalid) {
-      alert('الرجاء إدخال كلمة مرور صالحة.');
+      this.modalMessage = 'الرجاء إدخال كلمة مرور صالحة.';
+        this.showModal = true;
       return;
     }
 
@@ -54,6 +56,8 @@ isLoading: boolean = false;
 
     if (newPassword !== confirmNewPassword) {
       alert('كلمتا المرور غير متطابقتين.');
+      this.modalMessage = 'كلمتا المرور غير متطابقتين.';
+        this.showModal = true;
       return;
     }
 const encodedToken = encodeURIComponent(this.token);
@@ -69,13 +73,19 @@ const encodedToken = encodeURIComponent(this.token);
     this.authService.resetPassword(requestData).subscribe({
       next: (response) => {
         console.log('✅ تم تغيير كلمة المرور بنجاح:', response);
-        alert('تم تعيين كلمة المرور الجديدة. يمكنك الآن تسجيل الدخول.');
+        this.modalMessage = 'تم تعيين كلمة المرور الجديدة. يمكنك الآن تسجيل الدخول.';
+        this.showModal = true;
         this.router.navigate(['/login']);
       },
       error: (error) => {
         console.error('❌ خطأ أثناء تعيين كلمة المرور:', error);
-        alert('حدث خطأ أثناء إعادة تعيين كلمة المرور. حاول مرة أخرى.');
+        this.modalMessage = 'حدث خطأ أثناء إعادة تعيين كلمة المرور. حاول مرة أخرى.';
+        this.showModal = true;
       }
     });
+  }
+     closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
   }
 }

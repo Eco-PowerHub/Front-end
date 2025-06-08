@@ -8,6 +8,18 @@
     <span class="welcome font-bold text-sm sm:text-2xl">Eco Power Hub </span> مرحبًا بكم في 
   </span>
 </nav>
+<!-- Modal لعرض الرسائل -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal-content">
+    <div class="modal-icon shake">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#051C2F" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+      </svg>
+    </div>
+    <p>{{ modalMessage }}</p>
+    <button class="modal-btn" (click)="closeModal()">حسنًا</button>
+  </div>
+</div>
 
 <div dir="rtl" class="signup-container bg-white rounded-xl shadow-3xl w-xs sm:w-[510px] shadow-2xl mx-auto flex justify-center items-center ">
   <div class="signup-card w-full px-4">
@@ -97,7 +109,7 @@
     </div>
   </div>
 
-      <!-- اختيار الدور -->
+      <!-- role
       <div class="flex justify-center gap-3 pb-2 mt-[-10px]">
         <label class="flex items-center space-x-2 cursor-pointer">
           <input type="radio" formControlName="role" [value]="2" class="accent-blue-600 "> 
@@ -109,13 +121,13 @@
         </label> 
       </div>
 
-      <!-- زر التسجيل -->
-      <div class="flex justify-center mt-10">
-        <button type="submit"  class="w-[180px] sm:w-[200px] h-[36px] sm:h-[38px] text-center bg-blue-300 text-white p-2 rounded-md flex items-center justify-center transition duration-300 ease-in-out hover:bg-[#499DCA]
+    زر التسجيل -->
+      <div class="flex justify-center mt-15">
+        <button type="submit"  class="  w-[180px] sm:w-[200px] h-[36px] sm:h-[38px] text-center bg-blue-300 text-white p-2 rounded-md flex items-center justify-center transition duration-300 ease-in-out hover:bg-[#499DCA]
                             hover:shadow-[0px_0px_20px_#162229] hover:scale-110 disabled:opacity-50  " [disabled]="isLoading">
        <span *ngIf="!isLoading">إنشاء حساب</span>
 
-      <div *ngIf="isLoading" class="animate-spin h-6 w-6 border-4 border-t-transparent border-white rounded-full"></div>
+      <div *ngIf="isLoading" class="animate-spin h-6 w-6 border-4 border-t-transparent border-[#1a2b4d] rounded-full"></div>
 </button>
         
       </div>
