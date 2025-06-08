@@ -1,0 +1,28 @@
+/* إضافة حركة للظهور */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* تطبيق الحركة على العناصر التي سيتم ملاحظتها */
+.observe-links, .observe-form, .observe-image {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* التأثيرات عند التفاعل */
+.observe-links.visible, .observe-form.visible, .observe-image.visible {
+  opacity: 1;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* تخصيص للمحتوى */
+.content {
+  margin-top: 200px; /* المسافة للتأكد من ظهور العنصر عند التمرير */
+}
