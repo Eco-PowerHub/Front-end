@@ -44,7 +44,7 @@ body, html {
 }
 
 .home-link {
-  position: absolute;
+  /* position: absolute; */
   left: 20px;
   z-index: 2;
 }
