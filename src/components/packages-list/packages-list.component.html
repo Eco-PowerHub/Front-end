@@ -52,26 +52,26 @@
       <div class="grid grid-cols-2 gap-20 text-center text-xl font-bold text-[#022333] pb-4">
         <div class="bg-white border border-gray-300 p-3 ml-15 shadow-sm">
           فترة استرداد التكلفة<br>
-          <span class="text-xl font-bold">{{ pkg.roiYears | number:'1.1-1' }} سنوات</span>
+          <span class="text-l font-bold">{{ pkg.roiYears | number:'1.1-1' }} سنة</span>
         </div>
         <div class="bg-white border border-gray-300 p-3 mr-15 shadow-sm">
           سعر الحزمة كاملة<br>
-          <span class="text-xl font-bold">{{ pkg.packagePrice | number }} L.E</span>
+          <span class="text-l font-bold">{{ pkg.packagePrice | number }} L.E</span>
         </div>
         <div class="bg-white border border-gray-300 p-3 ml-15 shadow-sm">
           مبلغ التوفير خلال {{ pkg.totalYearsGuarantee }} عام<br>
-          <span class="text-xl font-bold">{{ pkg.savingCost | number }} L.E</span>
+          <span class="text-l font-bold">{{ pkg.savingCost | number }} L.E</span>
         </div>
       <div class="bg-white border border-gray-300 p-3 mr-15 shadow-sm">
-        المبلغ السنوي<br>
-        <span class="text-2xl font-bold">{{ pkg.pricePerYear | number }} L.E</span>
+        المبلغ المدفوع خلال هذا العام<br>
+        <span class="text-l font-bold">{{ pkg.pricePerYear | number }} L.E</span>
       </div>
     </div>
 
   </div>
     <!-- زر الطلب -->
     <div class="text-2xl text-center mt-6">
-      <button class="px-5 py-3 mr-8 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">
+      <button routerLink="/cart" class="px-5 py-3 mr-8 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">
         اطلبها الآن
       </button>
     </div>

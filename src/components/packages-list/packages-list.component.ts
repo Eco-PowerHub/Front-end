@@ -2,10 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SolarPackage } from '../../models/solar-package';
 import { SolarPackageService } from '../../services/solar-package.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-packages-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './packages-list.component.html',
   styleUrl: './packages-list.component.css'
 })

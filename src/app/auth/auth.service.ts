@@ -23,12 +23,14 @@ private  Register='http://157.175.182.159:8080/api/Account/Register';
 private  verifyotp='http://157.175.182.159:8080/api/Account/verify-otp';
 private loginUrl='http://157.175.182.159:8080/api/Account/Login';
  private forgetpass='http://157.175.182.159:8080/api/Account/ForgetPassword';
- private client='http://157.175.182.159:8080/api/Admin/Users';
+ private client='http://157.175.182.159:8080/api/User/Users';
    private order = 'http://157.175.182.159:8080/api/Order/Orders'; 
    private company ='http://157.175.182.159:8080/api/Company/Companies';
    private product='http://157.175.182.159:8080/api/Product/Products';
-     private baseUrl = 'http://157.175.182.159:8080/api/Product';
-
+     private baseUrl = 'http://157.175.182.159:8080/api/Product/AddProduct';
+       private support = 'http://157.175.182.159:8080/api/UserSupport/Supports';
+       private getProduct='http://157.175.182.159:8080/api/Product/Products';
+       private addProducts='http://157.175.182.159:8080/api/Product/AddProduct';
 
   constructor(private http:HttpClient) { }
   register(userData: any): Observable<any> {
@@ -98,6 +100,9 @@ getCustomers(): Observable<ApiResponse> {
   getOrders(): Observable<any> {
   return this.http.get<any>(this.order);
 }
+  getSupport(): Observable<any> {
+  return this.http.get<any>(this.support);
+}
 // auth.service.ts
 editProfile(data: any) {
   const headers = {
@@ -129,12 +134,12 @@ getcompany(): Observable<ApiResponse> {
   return this.http.get<ApiResponse>(this.company);
 }
   getProducts(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/Products`);
+    return this.http.get(`${this.getProduct}/Products`);
   }
 
   // إضافة منتج
   addProduct(product: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/AddProduct`, product);
+    return this.http.post(`${this.addProducts}/Product`, product);
   }
 
   getProfile(): Observable<any> {
