@@ -20,6 +20,7 @@ import { ProductDisplayComponent } from '../product-display/product-display.comp
 import { HomeComponent } from './home/home.component';
 import { SupportComponent } from './support/support.component';
 import { SolarPropertyComponent } from './solar-property/solar-property.component';
+import { AuthGuardService } from '../services/auth-guard.service';
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     {path: 'home', component:HomeComponent},
@@ -32,7 +33,7 @@ export const routes: Routes = [
     {path: 'aboutus', component:AboutUsComponent},
     {path:'forgetpassword' , component:PasswordReset1Component},
     {path:'products' , component:ProductDisplayComponent },
-    {path:'cart' , component:CartComponent }, 
+    {path:'cart' , component:CartComponent, canActivate: [AuthGuardService] }, 
     {path:'property' , component:SolarPropertyComponent },
     {path:'dashboard-product' , component:DashboardProductComponent,data: { title: ' Dashoard' } },
     {path:'dashboard-order' , component:DashboardOrderComponent,data: { title: ' Dashoard' } },

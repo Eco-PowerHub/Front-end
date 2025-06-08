@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from "../../header/header.component";
 import { FooterComponent } from "../../footer/footer.component";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators,ValidationErrors,AbstractControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
@@ -22,6 +22,33 @@ import { AuthService } from '../auth/auth.service';
 export class SupportComponent implements OnInit{
     supportForm!: FormGroup;
 isLoading: boolean = false;
+showModal: boolean = false;
+modalMessage: string = '';
+//animation
+isLinksVisible = false;
+isFormVisible = false;
+isImageVisible = false;
+ngAfterViewInit(): void {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target as HTMLElement;
+
+        if (target.classList.contains('observe-links')) this.isLinksVisible = true;
+        if (target.classList.contains('observe-form')) this.isFormVisible = true;
+        if (target.classList.contains('observe-image')) this.isImageVisible = true;
+
+        observer.unobserve(entry.target); // لمنع تكرار التفاعل
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  const elements = document.querySelectorAll('.observe-links, .observe-form, .observe-image');
+  elements.forEach(el => observer.observe(el));
+}
+
    constructor(private fb: FormBuilder , private router: Router, private authservice: AuthService) {}
 
   ngOnInit(): void {
@@ -31,7 +58,24 @@ isLoading: boolean = false;
       phoneNumber: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
       subject: ['', Validators.required]
     });
+    
+    // تهيئة AOS
+    
  
+  }
+  private customEmailValidator(control: AbstractControl): ValidationErrors | null {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (control.value && !emailRegex.test(control.value)) {
+      return { invalidEmailFormat: true };
+    }
+    return null;
+  }
+  private customPhoneValidator(control: AbstractControl): ValidationErrors | null {
+    const phoneRegex = /^01[0-9]{9}$/; // يسمح فقط بالأرقام (بدءًا بـ 01 ومتبوعة بـ 9 أرقام)
+    if (control.value && !phoneRegex.test(control.value)) {
+      return { invalidPhoneFormat: true };
+    }
+    return null;
   }
  onSubmit(): void {
     if (this.supportForm.invalid) {
@@ -49,24 +93,31 @@ isLoading: boolean = false;
     }
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('يجب تسجيل الدخول أولاً لإرسال طلب الدعم.');
+     this.modalMessage='يجب تسجيل الدخول أولاً لإرسال طلب الدعم.';
       return;
     }
 
  this.authservice.supportform(supportform,token).subscribe({
     next: (res:any) => {
       console.log('تم الإرسال بنجاح', res);
-      alert('شكراً لتواصلك معنا! تم إرسال رسالتك.');
+      this.modalMessage = 'شكراً لتواصلك معنا! تم إرسال رسالتك.';
+        this.showModal = true;
         this.isLoading = false;
       this.supportForm.reset();
     
     },
     error: (err:any) => {
       console.error('حدث خطأ أثناء الإرسال:', err);
-      alert('حدث خطأ أثناء الإرسال. حاول مرة أخرى لاحقاً.');
         this.isLoading = false;
+      this.modalMessage = 'حدث خطأ أثناء الإرسال. حاول مرة أخرى لاحقاً.';
+        this.showModal = true;
+      
     }
     
   });
+  }
+    closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
   }
 }
