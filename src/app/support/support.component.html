@@ -65,16 +65,17 @@
   
       
     
-    <div lang="ar" dir="rtl" class="w-full lg:w-1/2 items-center justify-end text-right">
+    <div lang="ar" dir="rtl" class="w-full lg:w-1/2 items-center justify-end text-right ">
         
  
                   
                 
 
-                <div class="aa grid  mb-20 gap-20 mt-6 ">
+                <div class="aa grid  mb-20 gap-20 mt-10 ">
                     
-                    <div class="flex flex-col space-y-10 text-black  ">
-                        <a data-aos="fade-up" href="#" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
+                    <div class="flex flex-col space-y-10 text-black  observe-links transition-all duration-700 "    
+                      [ngClass]="{ 'opacity-100 translate-x-0': isLinksVisible, 'opacity-0 translate-x-20': !isLinksVisible }">
+                        <a data-aos="fade-up" href="ecopowerhub18@gmail.com" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
                             <div class="flex items-center justify-center w-10 h-10 -mr-1 rounded-full border-2 bg-black text-2xl shrink-0">
                                 <i class="fa-solid fa-envelope  text-white "></i></div> username&#64;domainname.com
                         </a>
@@ -96,21 +97,22 @@
                             <div class="flex items-center justify-center w-10 h-10 -mr-1 rounded-full border-2 bg-black text-2xl shrink-0">
                                 <i class="fa-brands fa-twitter text-white"></i></div> ecopowerhub&#64;twitter.com
                         </a>
-                        <a  data-aos="fade-up" href="#" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
+                        <a  data-aos="fade-up" href="https://maps.app.goo.gl/CDYoQWuc8uA8jF3AA" class="flex items-center gap-4 text-lg hover:text-[#499DCA] font-semibold">
                             <div class="flex items-center justify-center w-12 h-12 -mr-1  text-4xl shrink-0">
                             <i class="fa-solid fa-location-dot text-black"></i> </div>كيف تجدنا !
                         </a>
    
                 </div>
             </div>
-            
-        <img  data-aos="fade-left" src="/image 114.png" class=" w-xl rounded-lg shadow-md  -mt-32 sm:mr-16 " alt="اتصل بنا">
-
+            <div class="mb-10 observe-image transition-transform duration-700"   [ngClass]="{ 'opacity-100 scale-100': isImageVisible, 'opacity-0 scale-75': !isImageVisible }">
+        <img  data-aos="fade-left" src="/image 114.png" class=" w-xl rounded-lg  shadow-md  -mt-55 pb-5 sm:mr-16 transition-transform duration-300 hover:scale-110  " alt="اتصل بنا">
+</div>
     </div>
 
     
-    <div data-aos="fade-up" class="block items-center  md:w-1/2 lg:w-2/5 bg-white text-white rounded-3xl px-6 py-6 pr-10  sm:-mt-[760px] ">
-        <form [formGroup]="supportForm" (ngSubmit)="onSubmit()" class="bg-[#022333]  rounded-[25px] w-full px-6 py-6 pr-10 shadow-lg">
+    <div data-aos="fade-up" class="block items-center  md:w-1/2 lg:w-2/5 text-white rounded-3xl px-6 py-6 pr-10  sm:-mt-[760px] observe-form transition-all duration-700" 
+         [ngClass]="{ 'opacity-100 -translate-x-0': isFormVisible, 'opacity-0 -translate-x-20': !isFormVisible }">
+        <form [formGroup]="supportForm" (ngSubmit)="onSubmit()" class="bg-[#022333]  rounded-[25px] w-full px-6 py-6 pr-10 shadow-lg hover:scale-105 transition-transform duration-300">
             <div class="mb-4">
                 <label  for="userName" class="block mb-2 mr-4 text-lg ">الاسم</label>
                 <input  id="userName"  formControlName="userName" lang="ar" dir="rtl" type="text" 
@@ -166,4 +168,4 @@
 
 </body>
 <app-footer></app-footer>
-<!-- </html> -->
+<!-- </html> -->  
