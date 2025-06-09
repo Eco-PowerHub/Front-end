@@ -1,12 +1,33 @@
 <app-header></app-header>
 
 
+<section class=" p-2 flex justify-between items-center">
+    <div class="ml-4  mt-4">
+      <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>
+      <div class="w-40 border-t-4  bg-[#001F2D] my-4"></div>
+  
+    </div>
+    <div>
+    <div class="flex items-center gap-2 mr-4 ">
+      <span class="mt-5 mr-4 cursor-pointer">
+        <img src="assets/cart.png" alt="" class="w-15 h-15 pb-1" />
+      </span>
+      <span class="txt font-bold text-black  tracking-tight  text-[40px] px-3">عربة التسوق</span>
+  
+  
+    </div>
+    <div class="w-52 border-t-4  bg-[#001F2D]   ml-25 mt-[1px]"></div>
+  
+  </div>
+  </section>
+
+
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-6">
   <!-- الجانب الأيسر: تفاصيل السلة -->
   <div class="col-span-1 bg-white rounded-lg shadow-lg p-6 text-right">
     <h2 class="text-lg font-semibold mb-4">الإجمالي:</h2>
-    <p class="text-3xl font-bold text-green-900 mb-6">{{ totalPrice | number }} L.E</p>
-    <button class="bg-green-900 text-white font-bold py-2 px-4 rounded w-full text-lg">
+    <p class="text-3xl font-bold text[#022333] mb-6">{{ totalPrice | number }} L.E</p>
+    <button class="bg-[#022333] text-white font-bold py-2 px-4 rounded w-full text-lg">
       ← متابعة الطلب والتأكيد
     </button>
   </div>
@@ -14,13 +35,10 @@
   <!-- الجانب الأيمن: عناصر السلة -->
   <div class="col-span-2 space-y-6">
     <div class="flex items-center justify-between border-b pb-2">
-      <h2 class="text-2xl font-bold">عربة التسوق</h2>
+      <h2 class="text-2xl font-bold"></h2>
       <div class="flex items-center gap-2">
-        <span class="text-lg">منتج {{ cartItems.length }} في عربة التسوق</span>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7h13L17 13M7 13l-4-8m0 0h16m-2 8v8m-4-8v8" />
-        </svg>
+        <span class="text-xl font-bold">منتج {{ cartItems.length }} في عربة التسوق</span>
+
       </div>
     </div>
 
@@ -50,25 +68,7 @@
 </div>
 
 
-<!-- <section class=" p-2 flex justify-between items-center">
-    <div class="ml-4  mt-4">
-      <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>
-      <div class="w-40 border-t-4  bg-[#001F2D] my-4"></div>
-  
-    </div>
-    <div>
-    <div class="flex items-center gap-2 mr-4 ">
-      <span class="mt-5 mr-4 cursor-pointer">
-        <img src="assets/cart.png" alt="" class="w-15 h-15 pb-1" />
-      </span>
-      <span class="txt font-bold text-black  tracking-tight  text-[40px] px-3">عربة التسوق</span>
-  
-  
-    </div>
-    <div class="w-52 border-t-4  bg-[#001F2D]   ml-25 mt-[1px]"></div>
-  
-  </div>
-  </section>
+<!-- 
     @if (cartItems.length > 0) {
       <p class="text-right font-semibold text-lg mb-4">{{ cartItems.length }} منتج في عربة التسوق</p>
 
