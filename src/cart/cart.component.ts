@@ -6,6 +6,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 
+interface CartItem {
+  id: number;
+  quantity: number;
+  cartId: number;
+  productId: number;
+}
 @Component({
   selector: 'app-cart',
   imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent],
@@ -13,43 +19,54 @@ import { FooterComponent } from "../footer/footer.component";
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
-  cartItems: IProduct[] = [];
+  cartItems: CartItem[] = [];
+  cartId: number | null = null;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.loadCart();
-  }
-
-  loadCart() {
-    this.cartService.getCartItems().subscribe((data) => {
-      this.cartItems = data;
-    });
-  }
-
-  increase(product: IProduct) {
-    product.amount++;
-    this.update(product);
-  }
-
-  decrease(product: IProduct) {
-    if (product.amount > 1) {
-      product.amount--;
-      this.update(product);
+    const storedCartId = localStorage.getItem('cartId');
+    if (storedCartId) {
+      this.cartId = parseInt(storedCartId, 10);
+      this.getCartItems();
     }
   }
 
-  update(product: IProduct) {
-    this.cartService.updateQuantity(product.id, product.amount).subscribe();
+  getCartItems(): void {
+    if (this.cartId !== null) {
+      this.cartService.getCartItems(this.cartId).subscribe({
+        next: (res) => {
+          if (res.isSucceeded) {
+            this.cartItems = res.data;
+          }
+        },
+        error: (err) => {
+          console.error('فشل في جلب عناصر السلة:', err);
+        }
+      });
+    }
   }
 
-  remove(productId: number) {
-    this.cartService.removeItem(productId).subscribe(() => {
-      this.cartItems = this.cartItems.filter((p) => p.id !== productId);
+  updateItemQuantity(itemId: number, newQuantity: number): void {
+    this.cartService.updateItem(itemId, newQuantity).subscribe({
+      next: () => {
+        const item = this.cartItems.find(i => i.id === itemId);
+        if (item) item.quantity = newQuantity;
+      },
+      error: (err) => {
+        console.error('فشل في تحديث الكمية:', err);
+      }
     });
   }
 
-  getTotal(): number {
-    return this.cartItems.reduce((sum, item) => sum + item.price * item.amount, 0);
+  removeItem(itemId: number): void {
+    this.cartService.deleteItem(itemId).subscribe({
+      next: () => {
+        this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+      },
+      error: (err) => {
+        console.error('فشل في حذف العنصر من السلة:', err);
+      }
+    });
   }
 }

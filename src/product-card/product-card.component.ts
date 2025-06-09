@@ -23,6 +23,11 @@ export class ProductCardComponent {
     private router: Router
   ) {}
 
+ ngOnInit() {
+    const storedCartId = localStorage.getItem('cartId');
+    this.cartId = storedCartId ? +storedCartId : null;
+  }
+
   handleAddToCart() {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -30,25 +35,47 @@ export class ProductCardComponent {
       return;
     }
 
-    // هل الكارت معمول بالفعل؟
-    const existingCartId = localStorage.getItem('cartId');
-    if (existingCartId) {
-      console.log('الكارت موجود بالفعل:', existingCartId);
-      return;
+    if (!this.cartId) {
+      // لو مفيش كارت، ننشئ واحد
+      this.cartService.addCart().subscribe({
+        next: (res) => {
+          if (res.isSucceeded && res.data?.id) {
+            this.cartId = res.data.id;
+            localStorage.setItem('cartId', `${this.cartId}`);
+            this.addProductToCart();
+          } else {
+            console.error('فشل في إنشاء الكارت:', res.message);
+          }
+        },
+        error: (err) => console.error('خطأ في إنشاء الكارت', err),
+      });
+    } else {
+      this.addProductToCart();
     }
-
-    // فيتش لإنشاء كارت جديد
-    this.cartService.addCart().subscribe({
-      next: (res) => {
-        const newCartId = res.data?.id || res.cartId || res.id;
-        if (newCartId) {
-          localStorage.setItem('cartId', newCartId);
-          console.log('تم إنشاء الكارت بنجاح، ID:', newCartId);
-        }
-      },
-      error: (err) => {
-        console.error('فشل في إنشاء الكارت:', err);
-      }
-    });
   }
+
+  addProductToCart() {
+  if (!this.cartId) return;
+
+  this.cartService.addItem(this.cartId, this.product.id, 1).subscribe({
+    next: (res) => {
+      if (res.isSucceeded) {
+        console.log('تم إضافة المنتج للسلة');
+        // نحدث عدد المنتجات بالسلة بعمل fetch لعدد العناصر
+        this.cartService.getCartItems(this.cartId!).subscribe({
+          next: (cartRes) => {
+            if (cartRes.isSucceeded && cartRes.data?.items) {
+              const count = cartRes.data.items.reduce((acc: number, item: any) => acc + item.quantity, 0);
+              this.cartService.updateCartCount(count);
+            }
+          }
+        });
+      } else {
+        console.error('فشل في إضافة المنتج:', res.message);
+      }
+    },
+    error: (err) => console.error('خطأ في إضافة المنتج', err),
+  });
+}
+
 }
