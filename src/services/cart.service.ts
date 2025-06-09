@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProduct } from '../models/iproduct';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 
 export interface CartResponse {
   isSucceeded: boolean;
@@ -12,36 +14,53 @@ export interface CartResponse {
   providedIn: 'root'
 })
 export class CartService {
+  
+  private baseUrl = 'http://157.175.182.159:8080/api';
+  private cartId = localStorage.getItem('cartId');
 
-  private apiUrl = 'http://157.175.182.159:8080/api';
-  private cart = `${this.apiUrl}/Cart`;
-  private cartItemsCount = new BehaviorSubject<number>(0);
-  cartItemsCount$ = this.cartItemsCount.asObservable();
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    addCart(): Observable<CartResponse> {
-    return this.http.post<CartResponse>(`${this.cart}/AddCart`, {});
+  private cartCount = new BehaviorSubject<number>(0);
+  cartCount$ = this.cartCount.asObservable();
+
+  // بعد ما تجيب عناصر السلة:
+  getCartItems() {
+    return this.http.get<any>(`${this.baseUrl}/CartItem/Items`).pipe(
+      tap(res => this.cartCount.next(res.data?.length || 0))
+    );
   }
 
-  addItem(cartId: number, productId: number, quantity: number): Observable<CartResponse> {
-    const body = { cartId, productId, quantity };
-    return this.http.post<CartResponse>(`${this.apiUrl}/CartItem/AddItem`, body);
+  // لما تضيف أو تحذف أو تحدث:
+  refreshCartCount() {
+    this.getCartItems().subscribe(); // عشان يتم التحديث
   }
 
-  updateItem(itemId: number, quantity: number): Observable<CartResponse> {
-    const body = { quantity };
-    return this.http.put<CartResponse>(`${this.apiUrl}/CartItem/UpdateItem/${itemId}`, body);
+  addItem(productId: number, userId: string) {
+    const body = {
+      quantity: 1,
+      cartId: Number(this.cartId),
+      productId,
+      userId
+    };
+    return this.http.post<any>(`${this.baseUrl}/CartItem/AddItem`, body);
   }
 
-  deleteItem(itemId: number): Observable<CartResponse> {
-    return this.http.delete<CartResponse>(`${this.apiUrl}/CartItem/DeleteItem/${itemId}`);
+  updateItem(itemId: number, quantity: number, productId: number) {
+    const body = {
+      id: itemId,
+      quantity,
+      cartId: Number(this.cartId),
+      productId
+    };
+    return this.http.put<any>(`${this.baseUrl}/CartItem/UpdateItem`, body);
   }
 
-  getCartItems(cartId: number): Observable<CartResponse> {
-    return this.http.get<CartResponse>(`${this.apiUrl}/CartItem/Items/${cartId}`);
+  deleteItem(itemId: number) {
+    return this.http.delete<any>(`${this.baseUrl}/CartItem/DeleteItem/${itemId}`);
   }
 
-  updateCartCount(count: number) {
-    this.cartItemsCount.next(count);
+  checkout() {
+    return this.http.post<any>(`${this.baseUrl}/Order/Checkout`, {});
   }
+  
 }

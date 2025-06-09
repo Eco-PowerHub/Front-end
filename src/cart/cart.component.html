@@ -1,5 +1,55 @@
 <app-header></app-header>
 
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-6">
+  <!-- الجانب الأيسر: تفاصيل السلة -->
+  <div class="col-span-1 bg-white rounded-lg shadow-lg p-6 text-right">
+    <h2 class="text-lg font-semibold mb-4">الإجمالي:</h2>
+    <p class="text-3xl font-bold text-green-900 mb-6">{{ totalPrice | number }} L.E</p>
+    <button class="bg-green-900 text-white font-bold py-2 px-4 rounded w-full text-lg">
+      ← متابعة الطلب والتأكيد
+    </button>
+  </div>
+
+  <!-- الجانب الأيمن: عناصر السلة -->
+  <div class="col-span-2 space-y-6">
+    <div class="flex items-center justify-between border-b pb-2">
+      <h2 class="text-2xl font-bold">عربة التسوق</h2>
+      <div class="flex items-center gap-2">
+        <span class="text-lg">منتج {{ cartItems.length }} في عربة التسوق</span>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 7h13L17 13M7 13l-4-8m0 0h16m-2 8v8m-4-8v8" />
+        </svg>
+      </div>
+    </div>
+
+    <div *ngFor="let item of cartItems" class="flex flex-col md:flex-row items-center border-b pb-4 gap-4">
+      <!-- صورة المنتج -->
+      <img [src]="item.product.image" class="w-32 h-32 object-cover rounded" />
+
+      <!-- تفاصيل المنتج -->
+      <div class="flex-1 text-right space-y-2">
+        <h3 class="text-xl font-bold">{{ item.product.name }}</h3>
+        <p class="text-sm text-gray-600">كفاءة: {{ item.product.efficiency }}% | قدرة تقديرية: {{ item.product.estimatedPower }} وات</p>
+        <p class="text-sm text-green-600 font-semibold">شحن مجاني</p>
+      </div>
+
+      <!-- السعر والكمية -->
+      <div class="text-center space-y-2">
+        <p class="font-bold text-lg">{{ item.product.price }} L.E</p>
+        <div class="flex items-center justify-center gap-2 border rounded px-2 py-1">
+          <button (click)="updateQuantity(item, item.quantity - 1)" class="px-2 text-xl font-bold">-</button>
+          <span class="px-2">{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item, item.quantity + 1)" class="px-2 text-xl font-bold">+</button>
+        </div>
+        <button (click)="deleteItem(item.id)" class="bg-red-600 text-white rounded px-4 py-1 text-sm">حذف من السلة</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- <section class=" p-2 flex justify-between items-center">
     <div class="ml-4  mt-4">
       <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>

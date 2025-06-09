@@ -47,21 +47,9 @@ export class HeaderComponent implements OnInit {
     // تحميل بيانات المستخدم من التخزين المحلي عند تحديث الصفحة
     // this.authService.loadUserFromStorage();
 
-    this.cartService.cartItemsCount$.subscribe(count => {
+    this.cartService.cartCount$.subscribe(count => {
       this.cartCount = count;
     });
-
-    const cartId = localStorage.getItem('cartId');
-    if (cartId) {
-      this.cartService.getCartItems(+cartId).subscribe({
-        next: (res) => {
-          if (res.isSucceeded && res.data?.items) {
-            const count = res.data.items.reduce((acc: number, item: any) => acc + item.quantity, 0);
-            this.cartService.updateCartCount(count);
-          }
-        }
-      });
-    }
   }
 
   toggleMenu() {

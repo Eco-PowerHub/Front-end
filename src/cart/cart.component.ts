@@ -19,53 +19,43 @@ interface CartItem {
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
-  cartItems: CartItem[] = [];
-  cartId: number | null = null;
+  cartItems: any[] = [];
+  totalPrice: number = 0;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    const storedCartId = localStorage.getItem('cartId');
-    if (storedCartId) {
-      this.cartId = parseInt(storedCartId, 10);
-      this.getCartItems();
-    }
+    this.loadCart();
   }
 
-  getCartItems(): void {
-    if (this.cartId !== null) {
-      this.cartService.getCartItems(this.cartId).subscribe({
-        next: (res) => {
-          if (res.isSucceeded) {
-            this.cartItems = res.data;
-          }
-        },
-        error: (err) => {
-          console.error('فشل في جلب عناصر السلة:', err);
-        }
-      });
-    }
-  }
-
-  updateItemQuantity(itemId: number, newQuantity: number): void {
-    this.cartService.updateItem(itemId, newQuantity).subscribe({
-      next: () => {
-        const item = this.cartItems.find(i => i.id === itemId);
-        if (item) item.quantity = newQuantity;
-      },
-      error: (err) => {
-        console.error('فشل في تحديث الكمية:', err);
+  loadCart() {
+    this.cartService.getCartItems().subscribe({
+      next: res => {
+        this.cartItems = res.data || [];
+        this.totalPrice = this.cartItems.reduce((sum, item) => sum + item.quantity * item.product.price, 0);
       }
     });
   }
 
-  removeItem(itemId: number): void {
+  updateQuantity(item: any, newQuantity: number) {
+    if (newQuantity < 1) return;
+
+    this.cartService.updateItem(item.id, newQuantity, item.productId).subscribe({
+      next: () => this.loadCart()
+    });
+  }
+
+  deleteItem(itemId: number) {
     this.cartService.deleteItem(itemId).subscribe({
-      next: () => {
-        this.cartItems = this.cartItems.filter(item => item.id !== itemId);
-      },
-      error: (err) => {
-        console.error('فشل في حذف العنصر من السلة:', err);
+      next: () => this.loadCart()
+    });
+  }
+
+  checkout() {
+    this.cartService.checkout().subscribe({
+      next: res => {
+        alert('تم تأكيد الطلب بنجاح!');
+        this.loadCart();
       }
     });
   }
