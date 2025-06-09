@@ -24,6 +24,31 @@ export class SupportComponent implements OnInit{
 isLoading: boolean = false;
 showModal: boolean = false;
 modalMessage: string = '';
+//animation
+isLinksVisible = false;
+isFormVisible = false;
+isImageVisible = false;
+ngAfterViewInit(): void {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target as HTMLElement;
+
+        if (target.classList.contains('observe-links')) this.isLinksVisible = true;
+        if (target.classList.contains('observe-form')) this.isFormVisible = true;
+        if (target.classList.contains('observe-image')) this.isImageVisible = true;
+
+        observer.unobserve(entry.target); // لمنع تكرار التفاعل
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  const elements = document.querySelectorAll('.observe-links, .observe-form, .observe-image');
+  elements.forEach(el => observer.observe(el));
+}
+
    constructor(private fb: FormBuilder , private router: Router, private authservice: AuthService) {}
 
   ngOnInit(): void {
@@ -33,6 +58,9 @@ modalMessage: string = '';
       phoneNumber: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
       subject: ['', Validators.required]
     });
+    
+    // تهيئة AOS
+    
  
   }
   private customEmailValidator(control: AbstractControl): ValidationErrors | null {
