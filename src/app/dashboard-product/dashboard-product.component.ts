@@ -46,22 +46,44 @@ newProduct: any = {
   efficiency: 0,
   estimatedPower: 0,
   categoryId: 1,
-  companyId: 1
+  companyId: 1,
+  companyName: '' // ← أضيفي ده
 };
 
 addProduct(form: any) {
   if (form.valid) {
-    this.AuthService.addProduct(this.newProduct).subscribe({
+    // نجهز المنتج الجديد بالقيم المطلوبة فقط من الفورم
+    const submittedProduct = {
+      name: this.newProduct.name,
+      categoryId: Number(this.newProduct.categoryId) || 0,  // خليه نفس الكمية أو 0
+      stock: Number(this.newProduct.stock) || 0, // اختياري لو مطلوب
+      price: Number(this.newProduct.price) || 0,
+            companyName: this.newProduct.companyName,
+
+      // القيم الافتراضية للباقي
+      image: 'default.png',
+      model: 'N/A',
+      efficiency: 0,
+      estimatedPower: 0,
+      amount: 0,
+      companyId: 1
+    };
+
+    this.AuthService.addProduct(submittedProduct).subscribe({
       next: (res) => {
-        this.products.push(this.newProduct); // يضيف المنتج الجديد للجدول مباشرة
-        form.resetForm(); // ينظف الفورم بعد الإضافة
+        this.products.push(submittedProduct); // عرض المنتج مباشرة
+        form.resetForm();
       },
-      error: (err) => {
-        console.error('فشل في إضافة المنتج:', err);
-      }
+error: (err) => {
+  console.error('فشل في إضافة المنتج:', err);
+  console.log('تفاصيل الخطأ من السيرفر:', err.error);
+  console.log('أخطاء الحقول:', err.error.errors); // السطر الجديد ده
+}
+
     });
   }
 }
+
 
 getProducts() {
   this.http.get<any>('http://157.175.182.159:8080/api/Product/Products').subscribe({
@@ -74,20 +96,37 @@ getProducts() {
   });
 }
 
-getCompanyName(companyId: number): string {
-  const company = this.companies.find((c: any) => c.products.some((p: any) => p.companyId === companyId));
-  return company ? company.name : 'غير معروف';
-}
+deleteProduct(productIdInput: HTMLInputElement) {
+  const id = productIdInput.value;
 
-getCompanyRate(companyId: number): number {
-  // تأكدي هنا إن الشركة موجودة فعلاً في الداتا
-  const company = this.companies.find(c => c.id === companyId);
-  return company ? company.rate : 0; // لو مش لاقي الشركة يرجع 0
-}
+  if (!id) {
+    console.warn("⚠️ الرجاء إدخال رقم المنتج");
+    return;
+  }
 
-getRateArray(companyId: number): number[] {
-  const rate = this.getCompanyRate(companyId);
-  return Array(rate).fill(0); // مثلاً لو rate = 3 → [0, 0, 0]
+  // تأكد المنتج موجود في القائمة
+  const existingProduct = this.products.find(p => p.id == id);
+
+  if (!existingProduct) {
+    console.warn("⚠️ المنتج غير موجود");
+    alert("⚠️ المنتج غير موجود في قاعدة البيانات");
+    return;
+  }
+
+  // لو موجود كمل الحذف
+  this.http.delete(`http://157.175.182.159:8080/api/Product/DeleteProduct/${id}`)
+    .subscribe({
+      next: (res) => {
+        console.log('✅ تم حذف المنتج بنجاح:', res);
+        alert("✅ تم حذف المنتج بنجاح");
+        // نحذف المنتج من القائمة المعروضة
+        this.products = this.products.filter(p => p.id != id);
+      },
+      error: (err) => {
+        console.error('❌ فشل في حذف المنتج:', err);
+        alert("❌ فشل في حذف المنتج");
+      }
+    });
 }
 
 

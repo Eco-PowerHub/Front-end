@@ -97,7 +97,7 @@ ngAfterViewInit(): void {
       return;
     }
 
- this.authservice.supportform(supportform,token).subscribe({
+this.authservice.supportForm(supportform, token).subscribe({
     next: (res:any) => {
       console.log('تم الإرسال بنجاح', res);
       this.modalMessage = 'شكراً لتواصلك معنا! تم إرسال رسالتك.';
