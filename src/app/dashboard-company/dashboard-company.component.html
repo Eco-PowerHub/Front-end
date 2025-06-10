@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+
 <body dir="rtl" class="bg-white">
       
     <header dir="ltr" class="navbar bg-[#022333] p-4 shadow-md w-full z-60 relative" x-data="{ open: false }">
@@ -103,6 +104,17 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
       
         </div>
     
+        <div class="modal-overlay" *ngIf="showModal">
+  <div class="modal-content">
+    <div class="modal-icon shake">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#051C2F" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+      </svg>
+    </div>
+    <p>{{ modalMessage }}</p>
+    <button class="modal-btn" (click)="closeModal()">حسنًا</button>
+  </div>
+</div>
         <!-- العنوان + صورة -->
         <div class="flex flex-col items-end">
           <div class="flex items-center gap-2 ">
@@ -119,11 +131,11 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
           </div>
         
     
-  <div dir="rtl" class="p-4 flex flex-col ml-auto gap-6 w-1/2">
-
-
+<div class="flex flex-row w-full gap-6 px-4">
   <!-- النموذج الثاني لحذف المنتج -->
-  <form  #deleteProductForm="ngForm" (ngSubmit)="deleteCompany()" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
+   
+   <div dir="rtl" class="p-4 flex flex-col ml-auto gap-6 w-1/2">
+ <form  #deleteProductForm="ngForm" (ngSubmit)="deleteCompany()" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
     <div class="bg-white w-1/2 flex items-center justify-between p-2 rounded-[25px] mb-6">
       <span class="font-extrabold text-2xl text-black"> حذف الشركات</span>
       <img src="/image 127.png" alt="User" class="w-6 h-6" />
@@ -143,7 +155,101 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
       <button type="submit" class="w-[100%] sm:w-1/3 p-2 rounded-[25px] bg-white text-black font-cairo">تأكيد</button>
     </div>
   </form>
+  </div> 
+  
+
+ 
+
+  <!-- اضافة شركة -->
+  <div dir="rtl" class="p-4 flex flex-col ml-auto gap-6 w-1/2">
+  <form  #addCompanyForm="ngForm"(ngSubmit)="addCompany()"  class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
+    <div class="bg-white w-1/2 flex items-center justify-between p-2 rounded-[25px] mb-6">
+      <span class="font-extrabold text-2xl text-black"> اضافة الشركات</span>
+      <img src="/plus.png" alt="User" class="w-6 h-6" />
+    </div>
+    <div class="flex flex-col gap-4 mb-4">
+    
+      <div class="w-full">
+        <label class="block mb-2 text-lg">اسم الشركة</label>
+        <input lang="ar" dir="rtl"  name="companyNameToDelete" [(ngModel)]="companyNameToDelete" type="text" class="bg-white w-full text-black p-2 border border-gray-300 rounded-[25px]" placeholder=" ادخل اسم الشركة التي تريد اضافتها " required />
+      </div>
+      <div class="w-full">
+       <label class="block mb-2 text-lg">إيميل الشركة</label>
+  <input
+    lang="ar"
+    dir="rtl"
+    name="companyEmail"
+    [(ngModel)]="companyEmail"
+    type="email"
+    class="bg-white w-full text-black p-2 border border-gray-300 rounded-[25px]"
+    placeholder="ادخل بريد الشركة الإلكتروني"
+    required
+  />
+      </div>
+      <div class="w-full">
+  <label class="block mb-2 text-lg">عنوان الشركة</label>
+  <input
+    lang="ar"
+    dir="rtl"
+    name="companyAddress"
+    [(ngModel)]="companyAddress"
+    type="text"
+    class="bg-white w-full text-black p-2 border border-gray-300 rounded-[25px]"
+    placeholder="ادخل عنوان الشركة"
+    required
+  />
 </div>
+
+<div class="w-full">
+  <label class="block mb-2 text-lg">رقم الهاتف</label>
+  <input
+    lang="ar"
+    dir="rtl"
+    name="companyPhone"
+    [(ngModel)]="companyPhone"
+    type="tel"
+    class="bg-white w-full text-black p-2 border border-gray-300 rounded-[25px]"
+    placeholder="ادخل رقم الهاتف"
+    required
+  />
+</div>
+<div class="w-full flex items-end gap-4 mt-4">
+  <!-- اختيار الصورة -->
+  <div class="w-1/2">
+  <label class="block mb-2 text-lg">صورة الشركة</label>
+
+  <!-- الزر المخصص لاختيار الصورة -->
+  <label
+    for="companyImage"
+    class="cursor-pointer bg-white text-black px-4 py-2 rounded-[25px] border border-gray-300 inline-block text-center w-full"
+  >
+    اختر صورة الشركة
+  </label>
+
+  <!-- input file مخفي -->
+  <input
+    id="companyImage"
+    type="file"
+    (change)="onFileSelected($event)"
+    accept="image/*"
+    class="hidden"
+  />
+</div>
+
+  <!-- زر التأكيد -->
+  <div class="w-1/2">
+    <label class="block mb-2 text-lg invisible">زر</label> <!-- للتوازن في الارتفاع -->
+    <button type="submit" class="w-full p-2 rounded-[25px] bg-white text-black font-cairo">
+      تأكيد
+    </button>
+  </div>
+</div>
+</div>
+</form>
+</div>
+
+</div>
+
 <div dir="rtl" class="bg-[#022333] w-52 p-2 rounded-[25px] ml-auto mr-8 -mb-6">
     <span class="font-extrabold text-2xl text-center text-white block w-full">جميع الشركات</span>
   </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth/auth.service';
 
 interface Product {
   name: string;
@@ -29,14 +30,15 @@ interface Company {
 @Component({
   selector: 'app-dashboard-company',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule ,ReactiveFormsModule],
   templateUrl: './dashboard-company.component.html',
   styleUrl: './dashboard-company.component.css'
 })
 export class DashboardCompanyComponent implements OnInit {
   companies: Company[] = [];
-
-  constructor(private http: HttpClient) {}
+showModal: boolean = false;
+modalMessage: string = '';
+  constructor(private http: HttpClient,  private router: Router, private authservice: AuthService) {}
 
   ngOnInit(): void {
     this.getCompanies();
@@ -45,16 +47,71 @@ export class DashboardCompanyComponent implements OnInit {
   getCompanies() {
     this.http.get<any>('http://157.175.182.159:8080/api/Company/Companies')
       .subscribe({
-        next: (res) => {
+        next: (res:any) => {
           this.companies = res.data;
         },
-        error: (err) => {
+        error: (err:any) => {
           console.error('Error fetching companies:', err);
         }
       });
   }
+  
+
   companyNameToDelete: string = '';
 companyIdToDelete: string = '';
+  companyEmail: string = '';
+  companyAddress: string = '';
+    companyPhone: string = '';
+imageFile: File | null = null;
+imageURL: string = '';
+
+onFileSelected(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    this.imageFile = file;
+    this.authservice.uploadImage(file).subscribe({
+      next: (res: any) => {
+        console.log('✔️ الاستجابة الكاملة:', res);
+   this.imageURL = res.imageUrl || ''; // تأكد من القيمة
+        console.log('✔️ تم رفع الصورة:'  , this.imageURL);
+      },
+      error: (err: any) => {
+        console.error('❌ فشل رفع الصورة:', err);
+      }
+    });
+  }
+}
+
+   addCompany() {
+  // فحص إضافي للتأكد من تحديث imageURL
+  setTimeout(() => {
+    if (!this.imageURL || this.imageURL.trim() === '') {
+      this.modalMessage = '❗ الرجاء رفع صورة الشركة قبل الإرسال';
+      this.showModal = true;
+      return;
+    }
+
+    const companyData = {
+      name: this.companyNameToDelete,
+      email: this.companyEmail,
+      location: this.companyAddress,
+      phoneNumber: this.companyPhone,
+      image: this.imageURL,
+      rate: 0
+    };
+
+    this.authservice.addCompany(companyData).subscribe({
+      next: (res: any) => {
+        console.log('✅ تم إضافة الشركة:', res);
+        this.getCompanies();
+      },
+      error: (err: any) => {
+        console.error('❌ فشل إضافة الشركة:', err);
+      }
+    });
+  }, 1000); // انتظار ثانية واحدة للتأكد من تحديث imageURL
+}
+
 
 deleteCompany() {
   const id = this.companyIdToDelete;
@@ -67,14 +124,20 @@ deleteCompany() {
         this.companies = this.companies.filter(c =>
           !(c.products.length > 0 && c.products[0].companyId.toString() === id)
         );
-        alert('تم حذف الشركة بنجاح');
+        this.modalMessage = 'تم حذف الشركة بنجاح';
+          this.showModal = true;
       },
       error: (err) => {
         console.error('Error deleting company:', err);
-        alert('فشل في حذف الشركة');
+        
+        this.modalMessage = 'فشل في حذف الشركة';
+          this.showModal = true;
       }
     });
 }
+ closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
+  }
+    }
 
-}
- ""

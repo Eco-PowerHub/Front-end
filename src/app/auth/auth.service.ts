@@ -36,6 +36,9 @@ private loginUrl=`${this.apiUrl}/Account/Login`;
      private support = `${this.apiUrl}/UserSupport/Supports`;
        private getProduct=`${this.apiUrl}/Product/Products`;
        private addProducts=`${this.apiUrl}/Product/AddProduct`;
+       private addcompany=`${this.apiUrl}/Company/AddCompany`;
+              private FileUpload=`${this.apiUrl}/FileUpload/upload-image`;
+
 
 
   constructor(private http:HttpClient) { }
@@ -161,6 +164,13 @@ getcompany(): Observable<ApiResponse> {
   return this.http.get(`${this.apiUrl}/User/Me`, { headers });
 }
 
-
+  uploadImage(file: File): Observable<{ fileUrl: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<{ fileUrl: string }>(this.FileUpload, formData);
+  }
+addCompany(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/Company/AddCompany`, data);
+  }
 
 }
