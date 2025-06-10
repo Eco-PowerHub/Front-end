@@ -84,37 +84,45 @@ error: (err) => {
 getProducts() {
   this.http.get<any>('http://157.175.182.159:8080/api/Product/Products').subscribe({
     next: (res) => {
-      console.log("📥 Response كامل:", res); // ← شوفي شكل الـ response
-      this.products = res.data || []; // ← تأكدي إنه فعلاً بيمليها
-console.log("🟢 عدد المنتجات:", this.products.length);
-console.log("📦 أول منتج:", this.products[0]);
-
+      this.products = res.data;
     },
     error: (err) => {
       console.error('Error fetching products:', err);
     }
   });
-  
 }
 
 deleteProduct(productIdInput: HTMLInputElement) {
   const id = productIdInput.value;
 
-  if (id) {
-    this.http.delete(`http://157.175.182.159:8080/api/Product/DeleteProduct/${id}`)
-      .subscribe({
-        next: (res) => {
-          console.log('✅ تم حذف المنتج بنجاح:', res);
-          this.getProducts();         // ← يحدث الجدول بعد الحذف
-          productIdInput.value = '';  // ← ينظف الـ input
-        },
-        error: (err) => {
-          console.error('❌ فشل في حذف المنتج:', err);
-        }
-      });
-  } else {
+  if (!id) {
     console.warn("⚠️ الرجاء إدخال رقم المنتج");
+    return;
   }
+
+  // تأكد المنتج موجود في القائمة
+  const existingProduct = this.products.find(p => p.id == id);
+
+  if (!existingProduct) {
+    console.warn("⚠️ المنتج غير موجود");
+    alert("⚠️ المنتج غير موجود في قاعدة البيانات");
+    return;
+  }
+
+  // لو موجود كمل الحذف
+  this.http.delete(`http://157.175.182.159:8080/api/Product/DeleteProduct/${id}`)
+    .subscribe({
+      next: (res) => {
+        console.log('✅ تم حذف المنتج بنجاح:', res);
+        alert("✅ تم حذف المنتج بنجاح");
+        // نحذف المنتج من القائمة المعروضة
+        this.products = this.products.filter(p => p.id != id);
+      },
+      error: (err) => {
+        console.error('❌ فشل في حذف المنتج:', err);
+        alert("❌ فشل في حذف المنتج");
+      }
+    });
 }
 
 

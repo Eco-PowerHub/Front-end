@@ -101,7 +101,7 @@
     
   <div dir="rtl" class="p-4 flex flex-col md:flex-row gap-6 w-full">
   <!-- النموذج الأول لإضافة المنتج -->
-  <form (ngSubmit)="addProduct()" #addProductForm="ngForm" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
+  <form (ngSubmit)="addProduct()"#addProductForm="ngForm" class="bg-[#022333] w-full md:w-1/2 rounded-[25px] px-6 py-6 shadow-lg text-white">
     <div class="bg-white w-1/2 flex items-center justify-between p-2 rounded-[25px] mb-6">
       <span class="font-extrabold text-2xl text-black">أضف منتج جديد</span>
       <img src="/image 122.png" alt="User" class="w-6 h-6" />
@@ -110,28 +110,23 @@
     <div class="flex flex-col md:flex-row gap-4 mb-4">
       <div class="w-full">
         <label class="block mb-2 text-lg">اسم المنتج</label>
-        <input lang="ar" dir="rtl" [(ngModel)]="newProduct.name" name="name" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل اسم المنتج" required />
+        <input lang="ar" dir="rtl" [(ngModel)]="newProduct.name" name="name" type="text" class="bg-white w-full p-2 border text-slate-700  border-gray-300 rounded-[25px]" placeholder="ادخل اسم المنتج" required />
       </div>
-      <div class="w-full">
-        <label class="block mb-2 text-lg">صنف المنتج</label>
-        <select lang="ar" dir="rtl"  [(ngModel)]="newProduct.category" class="bg-white w-full p-3 border border-gray-300 rounded-[25px] text-right" required>
-          <option disabled selected>اختر صنف المنتج</option>
-          <option>لوح شمسي</option>
-          <option>بطارية</option>
-          <option>عاكس</option>
-          <option>أسلاك</option>
-        </select>
-      </div>
+       <div class="w-full">
+      <label class="block mb-2 text-lg">صنف المنتج</label>
+       <input lang="ar" dir="rtl" [(ngModel)]="newProduct.stock" name="quantity"  type="text" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder=" الصنف" required />
+
+    </div>
    
     </div>
     <div class="flex flex-col md:flex-row gap-4 mb-4">
       <div class="w-full">
         <label class="block mb-2 text-lg">الكمية</label>
-        <input lang="ar" dir="rtl" [(ngModel)]="newProduct.quantity" name="quantity" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل الكمية لهذا المنتج" required />
+        <input lang="ar" dir="rtl" [(ngModel)]="newProduct.stock" name="quantity" type="text" class="bg-white w-full p-2 border text-slate-700  border-gray-300 rounded-[25px]" placeholder="ادخل الكمية لهذا المنتج" required />
       </div>
       <div class="w-full">
         <label class="block mb-2 text-lg">السعر</label>
-        <input lang="ar" dir="rtl" [(ngModel)]="newProduct.price" name="price" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="كم سعر المنتج؟" required />
+        <input lang="ar" dir="rtl" [(ngModel)]="newProduct.price" name="price" type="text" class="bg-white w-full p-2 border text-slate-700  border-gray-300 rounded-[25px]" placeholder="كم سعر المنتج؟" required />
       </div>
     </div>
 
@@ -149,15 +144,10 @@
     </div>
     <div class="flex flex-col gap-4 mb-4">
       <div class="w-full">
-        <label class="block mb-2 text-lg">صنف المنتج</label>
-        <select lang="ar" dir="rtl"  [(ngModel)]="newProduct.category" class="bg-white w-full p-3 border border-gray-300 rounded-[25px] text-right" required>
-          <option disabled selected>اختر صنف المنتج</option>
-          <option>لوح شمسي</option>
-          <option>بطارية</option>
-          <option>عاكس</option>
-          <option>أسلاك</option>
-        </select>
-      </div>
+      <label class="block mb-2 text-lg">صنف المنتج</label>
+       <input lang="ar" dir="rtl" name="quantity"  type="text" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder=" الصنف" required />
+
+    </div>
       <div class="w-full">
         <label class="block mb-2 text-lg">رقم المنتج (ID)</label>
         <input lang="ar" dir="rtl" [(ngModel)]="productIdToDelete" name="productIdToDelete" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل رقم المنتج" required />
@@ -188,9 +178,9 @@
     <tbody class="text-sm bg-white text-slate-800">
       <tr *ngFor="let product of products">
         <td class="px-4 py-2 text-yellow-500">★★★☆☆</td>
-        <td class="px-4 py-2">منتج</td>
+        <td class="px-4 py-2">{{ product.stock }}</td>
         <td class="px-4 py-2">{{ product.price }}</td>
-        <td class="px-4 py-2">{{ product.category }}</td>
+        <td class="px-4 py-2">{{ product.model }}</td>
         <td class="px-4 py-2">{{ product.id }}</td>
         <td class="px-4 py-2">{{ product.name }}</td>
       </tr>
