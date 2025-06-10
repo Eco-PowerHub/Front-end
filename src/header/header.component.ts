@@ -45,7 +45,11 @@ export class HeaderComponent implements OnInit {
     // });
 
     // تحميل بيانات المستخدم من التخزين المحلي عند تحديث الصفحة
+
     // this.authService.loadUserFromStorage();
+
+    this.authService.loadUserFromStorage();
+
 
     this.cartService.cartCount$.subscribe(count => {
       this.cartCount = count;

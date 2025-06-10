@@ -25,6 +25,10 @@ export class ProductCardComponent {
 
     this.cartService.addItem(this.product.id, userId).subscribe({
       next: res => {
+        const itemId = res.data?.id;
+        this.product.itemId = itemId;
+            console.log(`✔️ Added to cart - productId: ${this.product.id}, itemId: ${itemId}`);
+
         alert('تمت الإضافة إلى السلة بنجاح!');
       },
       error: () => {

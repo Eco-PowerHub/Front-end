@@ -7,7 +7,7 @@
 
     <div class="flex flex-col md:flex-row gap-48 items-start mb-6">
       <!-- صورة الباقة -->
-      <img src="/package.png" alt="package" class="w-full md:w-1/3 max-w-xs">
+      <img [src]="pkg.image" alt="package" class="w-full md:w-1/3 max-w-xs">
 
       <!-- مكونات الحزمة -->
       <ul class="text-black text-xl font-medium leading-relaxed space-y-2 text-right">
@@ -59,7 +59,7 @@
           <span class="text-l font-bold">{{ pkg.packagePrice | number }} L.E</span>
         </div>
         <div class="bg-white border border-gray-300 p-3 ml-15 shadow-sm">
-          مبلغ التوفير خلال {{ pkg.totalYearsGuarantee }} عام<br>
+          مبلغ التوفير خلال {{ pkg.totalYearsSaving }} عام<br>
           <span class="text-l font-bold">{{ pkg.savingCost | number }} L.E</span>
         </div>
       <div class="bg-white border border-gray-300 p-3 mr-15 shadow-sm">
@@ -71,7 +71,7 @@
   </div>
     <!-- زر الطلب -->
     <div class="text-2xl text-center mt-6">
-      <button routerLink="/cart" class="px-5 py-3 mr-8 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">
+      <button (click)="addToCart(pkg)" class="px-5 py-3 mr-8 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">
         اطلبها الآن
       </button>
     </div>
