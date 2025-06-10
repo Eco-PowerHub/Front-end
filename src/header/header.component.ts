@@ -1,10 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../app/auth/auth.service';
 import { Observable } from 'rxjs';
+import { CartService } from '../services/cart.service';
 
 
 @Component({
@@ -13,7 +14,10 @@ import { Observable } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+
+  cartCount: number = 0;
+
   user$: Observable<any>; // بس تعريف بدون تهيئة فورية
   open: boolean = false;         // للقائمة الجانبية
   showLogout: boolean = false;   // لزر تسجيل الخروج
@@ -27,7 +31,7 @@ export class HeaderComponent {
   ];
   filteredRoutes: any[] = [];
 
-  constructor(private router: Router, public authService: AuthService) {
+  constructor(private router: Router, public authService: AuthService, private cartService: CartService) {
     this.user$ = this.authService.user$;
 
   }
@@ -42,6 +46,10 @@ export class HeaderComponent {
 
     // تحميل بيانات المستخدم من التخزين المحلي عند تحديث الصفحة
     // this.authService.loadUserFromStorage();
+
+    this.cartService.cartCount$.subscribe(count => {
+      this.cartCount = count;
+    });
   }
 
   toggleMenu() {

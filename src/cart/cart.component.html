@@ -1,5 +1,6 @@
 <app-header></app-header>
 
+
 <section class=" p-2 flex justify-between items-center">
     <div class="ml-4  mt-4">
       <span class="txt bg-[#001F2D] text-[35px] text-white font-bold px-3 ">Eco Power Hub</span>
@@ -19,15 +20,64 @@
   
   </div>
   </section>
+
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-6">
+  <!-- الجانب الأيسر: تفاصيل السلة -->
+  <div class="col-span-1 bg-white rounded-lg shadow-lg p-6 text-right">
+    <h2 class="text-lg font-semibold mb-4">الإجمالي:</h2>
+    <p class="text-3xl font-bold text[#022333] mb-6">{{ totalPrice | number }} L.E</p>
+    <button class="bg-[#022333] text-white font-bold py-2 px-4 rounded w-full text-lg">
+      ← متابعة الطلب والتأكيد
+    </button>
+  </div>
+
+  <!-- الجانب الأيمن: عناصر السلة -->
+  <div class="col-span-2 space-y-6">
+    <div class="flex items-center justify-between border-b pb-2">
+      <h2 class="text-2xl font-bold"></h2>
+      <div class="flex items-center gap-2">
+        <span class="text-xl font-bold">منتج {{ cartItems.length }} في عربة التسوق</span>
+
+      </div>
+    </div>
+
+    <div *ngFor="let item of cartItems" class="flex flex-col md:flex-row items-center border-b pb-4 gap-4">
+      <!-- صورة المنتج -->
+      <img [src]="item.product.image" class="w-32 h-32 object-cover rounded" />
+
+      <!-- تفاصيل المنتج -->
+      <div class="flex-1 text-right space-y-2">
+        <h3 class="text-xl font-bold">{{ item.product.name }}</h3>
+        <p class="text-sm text-gray-600">كفاءة: {{ item.product.efficiency }}% | قدرة تقديرية: {{ item.product.estimatedPower }} وات</p>
+        <p class="text-sm text-green-600 font-semibold">شحن مجاني</p>
+      </div>
+
+      <!-- السعر والكمية -->
+      <div class="text-center space-y-2">
+        <p class="font-bold text-lg">{{ item.product.price }} L.E</p>
+        <div class="flex items-center justify-center gap-2 border rounded px-2 py-1">
+          <button (click)="updateQuantity(item, item.quantity - 1)" class="px-2 text-xl font-bold">-</button>
+          <span class="px-2">{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item, item.quantity + 1)" class="px-2 text-xl font-bold">+</button>
+        </div>
+        <button (click)="deleteItem(item.id)" class="bg-red-600 text-white rounded px-4 py-1 text-sm">حذف من السلة</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 
     @if (cartItems.length > 0) {
       <p class="text-right font-semibold text-lg mb-4">{{ cartItems.length }} منتج في عربة التسوق</p>
 
       <div class="space-y-6">
         @for (item of cartItems; track item.id) {
           <div class="border-b pb-6">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4"> -->
               <!-- Info -->
-              <div class="flex-1">
+              <!-- <div class="flex-1">
                 <h2 class="text-xl font-bold text-right">{{ item.name }}</h2>
                 <p class="text-right text-gray-500 text-sm">(232) مراجعات الشركة المصنعة</p>
                 <div class="flex justify-end text-yellow-400">
@@ -49,10 +99,10 @@
                     <button (click)="increase(item)" class="px-2">+</button>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Image -->
-              <div class="w-32 h-32">
+              <!-- <div class="w-32 h-32">
                 <img [src]="item.image" alt="product" class="w-full h-full object-contain">
               </div>
             </div>
@@ -62,7 +112,7 @@
       </div>
     } @else {
       <p class="text-right font-semibold text-lg mb-4">لا توجد منتجات في العربة</p>
-    }
+    } -->
 
 
 <app-footer></app-footer>

@@ -6,6 +6,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 
+interface CartItem {
+  id: number;
+  quantity: number;
+  cartId: number;
+  productId: number;
+}
 @Component({
   selector: 'app-cart',
   imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent],
@@ -13,7 +19,8 @@ import { FooterComponent } from "../footer/footer.component";
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
-  cartItems: IProduct[] = [];
+  cartItems: any[] = [];
+  totalPrice: number = 0;
 
   constructor(private cartService: CartService) {}
 
@@ -22,34 +29,34 @@ export class CartComponent implements OnInit {
   }
 
   loadCart() {
-    this.cartService.getCartItems().subscribe((data) => {
-      this.cartItems = data;
+    this.cartService.getCartItems().subscribe({
+      next: res => {
+        this.cartItems = res.data || [];
+        this.totalPrice = this.cartItems.reduce((sum, item) => sum + item.quantity * item.product.price, 0);
+      }
     });
   }
 
-  increase(product: IProduct) {
-    product.amount++;
-    this.update(product);
-  }
+  updateQuantity(item: any, newQuantity: number) {
+    if (newQuantity < 1) return;
 
-  decrease(product: IProduct) {
-    if (product.amount > 1) {
-      product.amount--;
-      this.update(product);
-    }
-  }
-
-  update(product: IProduct) {
-    this.cartService.updateQuantity(product.id, product.amount).subscribe();
-  }
-
-  remove(productId: number) {
-    this.cartService.removeItem(productId).subscribe(() => {
-      this.cartItems = this.cartItems.filter((p) => p.id !== productId);
+    this.cartService.updateItem(item.id, newQuantity, item.productId).subscribe({
+      next: () => this.loadCart()
     });
   }
 
-  getTotal(): number {
-    return this.cartItems.reduce((sum, item) => sum + item.price * item.amount, 0);
+  deleteItem(itemId: number) {
+    this.cartService.deleteItem(itemId).subscribe({
+      next: () => this.loadCart()
+    });
+  }
+
+  checkout() {
+    this.cartService.checkout().subscribe({
+      next: res => {
+        alert('تم تأكيد الطلب بنجاح!');
+        this.loadCart();
+      }
+    });
   }
 }

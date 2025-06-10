@@ -1,30 +1,66 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProduct } from '../models/iproduct';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
+
+export interface CartResponse {
+  isSucceeded: boolean;
+  data: any;
+  message: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  
+  private baseUrl = 'http://157.175.182.159:8080/api';
+  private cartId = localStorage.getItem('cartId');
 
-  private apiUrl = 'http://157.175.182.159:8080/api';
-  private cart = `${this.apiUrl}/Cart`
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  addCart(): Observable<any> {
-    return this.http.post(`${this.cart}/AddCart`, {});
+  private cartCount = new BehaviorSubject<number>(0);
+  cartCount$ = this.cartCount.asObservable();
+
+  // بعد ما تجيب عناصر السلة:
+  getCartItems() {
+    return this.http.get<any>(`${this.baseUrl}/CartItem/Items`).pipe(
+      tap(res => this.cartCount.next(res.data?.length || 0))
+    );
   }
 
-  getCartItems(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.apiUrl);
+  // لما تضيف أو تحذف أو تحدث:
+  refreshCartCount() {
+    this.getCartItems().subscribe(); // عشان يتم التحديث
   }
 
-  updateQuantity(productId: number, quantity: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${productId}`, { quantity });
+  addItem(productId: number, userId: string) {
+    const body = {
+      quantity: 1,
+      cartId: Number(this.cartId),
+      productId,
+      userId
+    };
+    return this.http.post<any>(`${this.baseUrl}/CartItem/AddItem`, body);
   }
 
-  removeItem(productId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${productId}`);
+  updateItem(itemId: number, quantity: number, productId: number) {
+    const body = {
+      id: itemId,
+      quantity,
+      cartId: Number(this.cartId),
+      productId
+    };
+    return this.http.put<any>(`${this.baseUrl}/CartItem/UpdateItem`, body);
   }
+
+  deleteItem(itemId: number) {
+    return this.http.delete<any>(`${this.baseUrl}/CartItem/DeleteItem/${itemId}`);
+  }
+
+  checkout() {
+    return this.http.post<any>(`${this.baseUrl}/Order/Checkout`, {});
+  }
+  
 }
