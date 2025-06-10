@@ -22,9 +22,16 @@ export class DashboardSettingsComponent implements OnInit {
     confirmPassword: ''
   };
 
+  userName: string | null = '';
+  userPhoto: string | null = '';
+
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+
+    this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
+    
     // لو عندك API لتجيب بيانات المستخدم، ضيفيها هنا
   }
 

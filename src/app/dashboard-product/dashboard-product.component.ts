@@ -25,11 +25,15 @@ export class DashboardProductComponent {
 
    products: any[] = [];
 companies: any[] = [];
+userName: string | null = '';
+  userPhoto: string | null = '';
 
   constructor(private AuthService: AuthService ,private http: HttpClient) {}
 
   ngOnInit(): void {
   this.getProducts();
+  this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
 }
 
 newProduct: any = {

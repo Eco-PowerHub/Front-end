@@ -25,9 +25,15 @@ standalone: true, // 👈 مهم جدًا
 })
 export class DashboardSupportComponent {
   orders: support[] = [];
+
+  userName: string | null = '';
+  userPhoto: string | null = '';
   constructor(private authService: AuthService ,private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
+
+    this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
     this.authService.getSupport().subscribe({
       next: (res) => {
         console.log('Orders response:', res);

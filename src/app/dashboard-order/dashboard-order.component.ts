@@ -21,10 +21,14 @@ interface Order {
 })
 export class DashboardOrderComponent implements OnInit {
   orders: Order[] = [];
-
+  userName: string | null = '';
+  userPhoto: string | null = '';
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+
+    this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
     this.authService.getOrders().subscribe({
       next: (res) => {
         console.log('Orders response:', res);

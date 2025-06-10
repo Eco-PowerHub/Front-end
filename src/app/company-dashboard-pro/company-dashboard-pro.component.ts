@@ -20,6 +20,8 @@ interface Product {
 })
 export class CompanyDashboardProComponent {
   
+  userName: string | null = '';
+  userPhoto: string | null = '';
   // مصفوفة لتخزين المنتجات
   products: Product[] = [];
 
@@ -31,6 +33,12 @@ export class CompanyDashboardProComponent {
     category: '',
     id: ''
   };
+
+  ngOnInit(): void {
+
+    this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
+  }
 
   // رقم المنتج للحذف
   productIdToDelete: string = '';

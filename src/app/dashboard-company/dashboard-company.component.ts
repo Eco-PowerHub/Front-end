@@ -36,10 +36,14 @@ interface Company {
 export class DashboardCompanyComponent implements OnInit {
   companies: Company[] = [];
 
+  userName: string | null = '';
+  userPhoto: string | null = '';
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getCompanies();
+    this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
   }
 
   getCompanies() {
