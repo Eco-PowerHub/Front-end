@@ -1,56 +1,91 @@
-import { Component } from '@angular/core';
-import { OrderService } from '../services/order.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService, Product } from '../auth/auth.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-
-interface Product {
-  name: string;
-  price: string;
-  quantity: string;
-  category: string;
-  id: string;
-}
 @Component({
   selector: 'app-company-dashboard-pro',
-  standalone: true, // 👈 مهم جدًا
-  imports: [FormsModule,RouterModule], 
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './company-dashboard-pro.component.html',
   styleUrl: './company-dashboard-pro.component.css'
 })
-export class CompanyDashboardProComponent {
-  
-  // مصفوفة لتخزين المنتجات
+export class CompanyDashboardProComponent implements OnInit {
+
+  // قائمة المنتجات الحالية
   products: Product[] = [];
 
-  // نموذج منتج جديد
+  // المنتج الجديد الذي سيتم إدخاله من الفورم
   newProduct: Product = {
+    id: 0,
     name: '',
-    price: '',
-    quantity: '',
-    category: '',
-    id: ''
+    stock: 0,
+    amount: 0,
+    price: 0,
+    image: '',
+    model: '',
+    efficiency: 0
   };
 
-  // رقم المنتج للحذف
-  productIdToDelete: string = '';
+  // لتحديد منتج معين للحذف
+  productIdToDelete: number | null = null;
 
-  // دالة لإضافة منتج جديد
-  addProduct(): void {
-    const newProduct = { ...this.newProduct, id: new Date().getTime().toString() }; // إضافة رقم ديناميكي
-    this.products.push(newProduct);
-    this.resetForm();
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.loadCompanyProducts();
   }
 
-  // دالة لحذف منتج
+  // تحميل منتجات الشركة
+  loadCompanyProducts(): void {
+    this.authService.getCompanyProducts('Anker').subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+      error: (err) => {
+        console.error('فشل في جلب المنتجات:', err);
+      }
+    });
+  }
+
+  // حذف منتج
   deleteProduct(): void {
-    this.products = this.products.filter(product => product.id !== this.productIdToDelete);
-    this.productIdToDelete = ''; // مسح القيمة بعد الحذف
+    if (this.productIdToDelete !== null) {
+      this.products = this.products.filter(product => product.id !== this.productIdToDelete);
+      this.productIdToDelete = null;
+    }
   }
 
-  // إعادة تعيين نموذج إضافة المنتج
+  // إعادة ضبط الفورم بعد الإضافة
   resetForm(): void {
-    this.newProduct = { name: '', price: '', quantity: '', category: '', id: '' };
+    this.newProduct = {
+      id: 0,
+      name: '',
+      stock: 0,
+      amount: 0,
+      price: 0,
+      image: '',
+      model: '',
+      efficiency: 0
+    };
   }
 
+  // إضافة منتج جديد
+  addProduct(): void {
+    // تحقق من وجود القيم المطلوبة
+    if (this.newProduct.name && this.newProduct.price > 0) {
+      // توليد id عشوائي مؤقت (يمكن حذفه لو فيه ID من الباك)
+      const tempId = Math.floor(Math.random() * 1000000);
+      const productToAdd = {
+        ...this.newProduct,
+        id: tempId
+      };
+
+      this.products.push(productToAdd);
+      this.resetForm();
+    } else {
+      alert('الرجاء ملء اسم المنتج والسعر.');
+    }
+  }
 }

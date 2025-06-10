@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 interface ApiResponse {
   data: any[];
@@ -8,169 +9,185 @@ interface ApiResponse {
   isSucceeded: boolean;
   statusCode: number;
 }
+
+export interface Product {
+  id: number;
+  name: string;
+  stock: number;
+  amount: number;
+  price: number;
+  image: string;
+  model: string;
+  efficiency: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // isLoggedIn() {
-  //   throw new Error('Method not implemented.');
-  // }
-  // logout() {
-  //   throw new Error('Method not implemented.');
-  // }
+  private userSubject = new BehaviorSubject<any>(null);
+  user$ = this.userSubject.asObservable();
 
-private userSubject = new BehaviorSubject<any>(null);
-user$ = this.userSubject.asObservable();
+  private apiUrl = 'http://157.175.182.159:8080/api';
 
-private apiUrl = 'http://157.175.182.159:8080/api';
+  private endpoints = {
+    register: `${this.apiUrl}/Account/Register`,
+    verifyOtp: `${this.apiUrl}/Account/verify-otp`,
+    login: `${this.apiUrl}/Account/Login`,
+    forgetPassword: `${this.apiUrl}/Account/ForgetPassword`,
+    resetPassword: `${this.apiUrl}/Account/ResetPassword`,
+    editProfile: `${this.apiUrl}/Account/EditProfile`,
+    changePassword: `${this.apiUrl}/Account/ChangePassword`,
+    deleteAccount: `${this.apiUrl}/Account/DeleteAccount`,
+    userProfile: `${this.apiUrl}/User/Me`,
+    support: `${this.apiUrl}/UserSupport/Supports`,
+    addSupport: `${this.apiUrl}/UserSupport/AddSupport`,
+    clients: `${this.apiUrl}/Admin/Users`,
+    orders: `${this.apiUrl}/Order/Orders`,
+    companies: `${this.apiUrl}/Company/Companies`,
+    getProducts: `${this.apiUrl}/Product/Products`,
+    addProduct: `${this.apiUrl}/Product/AddProduct`,
+    addcompany:`${this.apiUrl}/Company/AddCompany`,
+        FileUpload:`${this.apiUrl}/FileUpload/upload-image`,
 
-private  Register=`${this.apiUrl}/Account/Register`;
-private  verifyotp=`${this.apiUrl}/Account/verify-otp`;
-private loginUrl=`${this.apiUrl}/Account/Login`;
- private forgetpass=`${this.apiUrl}/Account/ForgetPassword`;
- private client=`${this.apiUrl}/Admin/Users`;
-   private order = `${this.apiUrl}/Order/Orders`; 
-   private company =`${this.apiUrl}/Company/Companies`;
-   private product=`${this.apiUrl}/Product/Products`;
-     private baseUrl = `${this.apiUrl}/Product`;
-     private support = `${this.apiUrl}/UserSupport/Supports`;
-       private getProduct=`${this.apiUrl}/Product/Products`;
-       private addProducts=`${this.apiUrl}/Product/AddProduct`;
-       private addcompany=`${this.apiUrl}/Company/AddCompany`;
-              private FileUpload=`${this.apiUrl}/FileUpload/upload-image`;
+  };
 
+  constructor(private http: HttpClient) {}
 
+  // 🔐 Authentication
 
-  constructor(private http:HttpClient) { }
   register(userData: any): Observable<any> {
-    return this.http.post(this.Register, userData);
+    return this.http.post(this.endpoints.register, userData);
   }
 
-  // ✅ Verify
-  verifyCode(RequestData: any): Observable<any> {
-    return this.http.post(this.verifyotp, RequestData);
+  verifyCode(requestData: any): Observable<any> {
+    return this.http.post(this.endpoints.verifyOtp, requestData);
   }
 
-  // 🔑 Login
   login(loginData: { email: string; password: string; role: number }) {
-  const headers = { 'Content-Type': 'application/json' };
-  return this.http.post<any>(this.loginUrl, JSON.stringify(loginData), { headers });
-}
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.post<any>(this.endpoints.login, JSON.stringify(loginData), { headers });
+  }
 
-setUser(user: any) {
-  this.userSubject.next(user);
-  localStorage.setItem('user', JSON.stringify(user));
-}
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+  }
 
-isLoggedIn(): boolean {
+  setUser(user: any) {
+    this.userSubject.next(user);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  loadUserFromStorage() {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      this.userSubject.next(parsedUser);
+    }
+  }
+
+  isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
 
-loadUserFromStorage() {
-  const userData = localStorage.getItem('user');
-  if (userData) {
-    const parsedUser = JSON.parse(userData); 
-    this.userSubject.next(parsedUser);  }
-}
+  // 🔄 Password
 
-logout() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
-  this.userSubject.next(null);
-}
-
-
-  // 📧 Forget password
-  sendResetEmail(email: string) {
+  sendResetEmail(email: string): Observable<any> {
     const headers = { 'Content-Type': 'application/json' };
-    return this.http.post(this.forgetpass, JSON.stringify({ email }), { headers });
+    return this.http.post(this.endpoints.forgetPassword, JSON.stringify({ email }), { headers });
   }
 
-  // 🔄 Reset password
-  resetPassword(data: any) {
+  resetPassword(data: any): Observable<any> {
     const headers = { 'Content-Type': 'application/json' };
-    return this.http.post(
-      `${this.apiUrl}/Account/ResetPassword`,
-     data,
-     { headers }
-   
-    );
+    return this.http.post(this.endpoints.resetPassword, data, { headers });
   }
-//support
- supportform(data: any ,token: string  ) {
+
+  // 👤 Profile
+
+  editProfile(data: any): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.put(this.endpoints.editProfile, data, { headers });
+  }
+
+  changePassword(data: any): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.put(this.endpoints.changePassword, data, { headers });
+  }
+
+  deleteAccount(data: any): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.request('delete', this.endpoints.deleteAccount, {
+      body: data,
+      headers
+    });
+  }
+
+  getProfile(): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.get(this.endpoints.userProfile, { headers });
+  }
+
+  // 🛠️ Support
+
+  supportForm(data: any, token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-    return this.http.post(`${this.apiUrl}/UserSupport/AddSupport`, data ,{headers} );
+    return this.http.post(this.endpoints.addSupport, data, { headers });
   }
 
-  //
-
-getCustomers(): Observable<ApiResponse> {
-  return this.http.get<ApiResponse>(this.client);
-}
-  getOrders(): Observable<any> {
-  return this.http.get<any>(this.order);
-}
   getSupport(): Observable<any> {
-  return this.http.get<any>(this.support);
-}
-// auth.service.ts
-editProfile(data: any) {
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('token')}`
-  };
-  return this.http.put(`${this.apiUrl}/Account/EditProfile`, data, { headers });
-}
+    return this.http.get(this.endpoints.support);
+  }
 
-changePassword(data: any) {
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('token')}`
-  };
-  return this.http.put(`${this.apiUrl}/Account/ChangePassword`, data, { headers });
-}
+  // 📦 Products & Companies
 
-deleteAccount(data: any) {
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('token')}`
-  };
-  return this.http.request('delete', `${this.apiUrl}/Account/DeleteAccount`, {
-    body: data,
-    headers
-  });
-}
-getcompany(): Observable<ApiResponse> {
-  return this.http.get<ApiResponse>(this.company);
-}
   getProducts(): Observable<any> {
-    return this.http.get(`${this.getProduct}/Products`);
+    return this.http.get(this.endpoints.getProducts);
   }
 
-  // إضافة منتج
   addProduct(product: any): Observable<any> {
-          return this.http.post('http://157.175.182.159:8080/api/Product/AddProduct',product );
-
+    return this.http.post(this.endpoints.addProduct, product);
   }
 
-  getProfile(): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
-  });
-  return this.http.get(`${this.apiUrl}/User/Me`, { headers });
-}
+  getCompanyProducts(companyName: string): Observable<Product[]> {
+    const url = `${this.apiUrl}/Company/CompanyProducts?companyName=${companyName}`;
+    return this.http.get<any>(url).pipe(
+      map(response => response.data)
+    );
+  }
 
+  getcompany(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.endpoints.companies);
+  }
   uploadImage(file: File): Observable<{ fileUrl: string }> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post<{ fileUrl: string }>(this.FileUpload, formData);
-  }
-addCompany(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Company/AddCompany`, data);
+    return this.http.post<{ fileUrl: string }>(this.endpoints.FileUpload, formData);
   }
 
+addCompany(data: any): Observable<any> {
+    return this.http.post(this.endpoints.addcompany, data);
+  }
+  // 👥 Users & Orders
+
+  getCustomers(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.endpoints.clients);
+  }
+
+  getOrders(): Observable<any> {
+    return this.http.get<any>(this.endpoints.orders);
+  }
+
+  // 🛡️ Helpers
+
+  private getAuthHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+  }
 }
