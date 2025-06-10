@@ -52,11 +52,26 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    this.cartService.checkout().subscribe({
-      next: res => {
-        alert('تم تأكيد الطلب بنجاح!');
-        this.loadCart();
-      }
-    });
+  const userId = localStorage.getItem('userId');
+  console.log('📦 userId being sent:', userId);
+
+  if (!userId) {
+    alert('يجب تسجيل الدخول أولاً');
+    return;
   }
+
+  this.cartService.checkout(userId).subscribe({
+    next: res => {
+      alert('تم تأكيد الطلب بنجاح!');
+      this.loadCart();
+    },
+    error: err => {
+      console.error('❌ خطأ في تأكيد الطلب:', err);
+      console.error('📋 تفاصيل الخطأ:', err.error?.errors);
+      alert('حدث خطأ أثناء تأكيد الطلب');
+    }
+  });
+}
+
+
 }

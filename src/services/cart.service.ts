@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProduct } from '../models/iproduct';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -81,8 +81,19 @@ export class CartService {
     return this.http.delete<any>(`${this.baseUrl}/CartItem/DeleteItem/${itemId}`);
   }
 
-  checkout() {
-    return this.http.post<any>(`${this.baseUrl}/Order/Checkout`, {});
-  }
+  checkout(userId: string): Observable<any> {
+  const body = { userId };
+  return this.http.post(`${this.baseUrl}/Order/Checkout`, body);
+}
   
+
+  checkoutPackage(data: { userId: string; packageId: number; totalPrice: number }): Observable<any> {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  });
+
+  return this.http.post(`${this.baseUrl}/Order/CheckoutPackage`, data, { headers });
+}
+
 }

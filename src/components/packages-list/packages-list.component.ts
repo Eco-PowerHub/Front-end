@@ -34,23 +34,27 @@ export class PackagesListComponent implements OnInit {
   }
 
   const packageId = pkg.packageId;
-  if (!packageId) {
-    alert('لا يمكن إضافة باكيدج بدون رقم تعريف.');
-    return;
-  }
+  const totalPrice = pkg.totalPrice || 0;
 
-  this.cartService.addItem(packageId, userId).subscribe({
+
+  const requestBody = {
+    userId: userId,
+    packageId: packageId,
+    totalPrice: totalPrice
+  };
+
+  this.cartService.checkoutPackage(requestBody).subscribe({
     next: res => {
-      const itemId = res.data?.id;
-      pkg.itemId = itemId;
-      console.log(`✔️ Added to cart - packageId: ${packageId}, itemId: ${itemId}`);
-      alert('تمت الإضافة إلى السلة بنجاح!');
+      console.log(`✔️ الطلب تم بنجاح - packageId: ${packageId}`);
+      alert('✅ تم تأكيد الطلب بنجاح!');
     },
-    error: () => {
-      alert('حدث خطأ أثناء الإضافة');
+    error: err => {
+      console.error('❌ خطأ أثناء تأكيد الطلب:', err);
+      alert('حدث خطأ أثناء تأكيد الطلب.');
     }
   });
 }
+
 
   // اختيار باكيدج
   selectPackage(packageId: number): void {
