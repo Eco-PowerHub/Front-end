@@ -15,6 +15,7 @@ export class CompanyDashboardProComponent implements OnInit {
 
   // قائمة المنتجات الحالية
   products: Product[] = [];
+  
 
   // المنتج الجديد الذي سيتم إدخاله من الفورم
   newProduct: Product = {
@@ -50,12 +51,26 @@ export class CompanyDashboardProComponent implements OnInit {
   }
 
   // حذف منتج
-  deleteProduct(): void {
-    if (this.productIdToDelete !== null) {
-      this.products = this.products.filter(product => product.id !== this.productIdToDelete);
-      this.productIdToDelete = null;
-    }
+deleteProduct(): void {
+  const id = Number(this.productIdToDelete);
+
+  if (!id) {
+    alert('⚠️ من فضلك أدخل رقم المنتج الصحيح');
+    return;
   }
+
+  const existingProduct = this.products.find(p => p.id === id);
+
+  if (!existingProduct) {
+    alert('⚠️ لا يوجد منتج بهذا الرقم');
+    return;
+  }
+
+  this.products = this.products.filter(p => p.id !== id);
+  alert('✅ تم حذف المنتج بنجاح');
+  this.productIdToDelete = null;
+}
+
 
   // إعادة ضبط الفورم بعد الإضافة
   resetForm(): void {

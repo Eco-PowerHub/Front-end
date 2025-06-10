@@ -114,7 +114,7 @@
       </div>
        <div class="w-full">
       <label class="block mb-2 text-lg">صنف المنتج</label>
-       <input lang="ar" dir="rtl" [(ngModel)]="newProduct.stock" name="quantity"  type="text" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder=" الصنف" required />
+       <input lang="ar" dir="rtl" [(ngModel)]="newProduct.model" name="quantity"  type="text" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder=" الصنف" required />
 
     </div>
    
@@ -150,7 +150,7 @@
     </div>
       <div class="w-full">
         <label class="block mb-2 text-lg">رقم المنتج (ID)</label>
-        <input lang="ar" dir="rtl" [(ngModel)]="productIdToDelete" name="productIdToDelete" type="text" class="bg-white w-full p-2 border border-gray-300 rounded-[25px]" placeholder="ادخل رقم المنتج" required />
+        <input lang="ar" dir="rtl" [(ngModel)]="productIdToDelete" name="productIdToDelete" type="number" class="bg-white w-full p-2 border text-slate-700 border-gray-300 rounded-[25px]" placeholder="ادخل رقم المنتج" required />
       </div>
 
     </div>
@@ -175,7 +175,7 @@
         <th class="px-4 py-2">اسم المنتج</th>
       </tr>
     </thead>
-    <tbody class="text-sm bg-white text-slate-800">
+    <tbody class="text-sm bg-white text-black font-bold">
       <tr *ngFor="let product of products">
         <td class="px-4 py-2 text-yellow-500">★★★☆☆</td>
         <td class="px-4 py-2">{{ product.stock }}</td>

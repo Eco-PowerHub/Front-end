@@ -62,11 +62,11 @@ export class LoginComponent {
 
 
           if (role === 1) {
-            this.router.navigate(['/admin-dashboard']);
+            this.router.navigate(['/dashboard-product']);
           } else if (role === 2) {
             this.router.navigate(['/home']);
           } else if (role === 3) {
-            this.router.navigate(['/company-dashboard']);
+            this.router.navigate(['/company-dashboard-pro']);
           } else {
             this.router.navigate(['/']); // fallback
           }

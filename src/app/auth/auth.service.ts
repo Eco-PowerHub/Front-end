@@ -26,7 +26,7 @@ export interface Product {
 })
 export class AuthService {
   private userSubject = new BehaviorSubject<any>(null);
-  user$ = this.userSubject.asObservable();
+  public user$ = this.userSubject.asObservable();
 
   private apiUrl = 'http://157.175.182.159:8080/api';
 
@@ -47,9 +47,8 @@ export class AuthService {
     companies: `${this.apiUrl}/Company/Companies`,
     getProducts: `${this.apiUrl}/Product/Products`,
     addProduct: `${this.apiUrl}/Product/AddProduct`,
-    addcompany:`${this.apiUrl}/Company/AddCompany`,
-        FileUpload:`${this.apiUrl}/FileUpload/upload-image`,
-
+    addcompany: `${this.apiUrl}/Company/AddCompany`,
+    FileUpload: `${this.apiUrl}/FileUpload/upload-image`,
   };
 
   constructor(private http: HttpClient) {}
@@ -81,10 +80,9 @@ export class AuthService {
   }
 
   loadUserFromStorage() {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      const parsedUser = JSON.parse(userData);
-      this.userSubject.next(parsedUser);
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.userSubject.next(JSON.parse(user));
     }
   }
 
@@ -163,15 +161,17 @@ export class AuthService {
   getcompany(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.endpoints.companies);
   }
+
   uploadImage(file: File): Observable<{ fileUrl: string }> {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<{ fileUrl: string }>(this.endpoints.FileUpload, formData);
   }
 
-addCompany(data: any): Observable<any> {
+  addCompany(data: any): Observable<any> {
     return this.http.post(this.endpoints.addcompany, data);
   }
+
   // 👥 Users & Orders
 
   getCustomers(): Observable<ApiResponse> {
