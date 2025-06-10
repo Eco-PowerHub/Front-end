@@ -58,17 +58,17 @@
         </li>
 
         <!-- لوحة التحكم -->
-        <li *ngIf="(user$ | async)?.role === 1" class="flex items-center">
+        <!-- <li *ngIf="(user$ | async)?.role === 1" class="flex items-center">
           <a routerLink="/dashboard-settings" class="p-2 text-white relative font-bold after:block after:mt-2 after:w-0 after:h-[2px] after:bg-blue-500
                    after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">
             لوحة التحكم
           </a>
-        </li>
+        </li> -->
 
         <li *ngIf="user$ | async as user" class="flex items-center relative">
           <a routerLink="/cart" lass="p-2 text-white relative font-bold after:block after:mt-2 after:w-0 after:h-[2px] after:bg-blue-500
                    after:transition-all after:duration-300 hover:text-[#499DCA] hover:after:w-full font-cairo">
-            <img src="/shopping-bag.png">  
+            <img src="/shopping-bag.png" class="mb-3">  
             <span *ngIf="cartCount > 0"
               class="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
               {{ cartCount }}

@@ -1,5 +1,6 @@
 export interface SolarPackage {
     packageId: number;
+    image: string;
     packageName: string;
     totalPrice: number;
     requiredBatteries: number;
@@ -12,7 +13,7 @@ export interface SolarPackage {
     electricityUsageAverage: number;
     pricePerYear: number;
     roiYears: number;
-    totalYearsGuarantee: number;
+    totalYearsSaving: number;
     savingCost: number;
     product?: any;
   }

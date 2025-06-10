@@ -25,7 +25,11 @@ export class CartService {
 
   // بعد ما تجيب عناصر السلة:
   getCartItems() {
-    return this.http.get<any>(`${this.baseUrl}/CartItem/Items`).pipe(
+    const token = localStorage.getItem('token');
+    const headers = {
+    Authorization: `Bearer ${token}`
+  };
+    return this.http.get<any>(`${this.baseUrl}/CartItem/UserItem`, {headers}).pipe(
       tap(res => this.cartCount.next(res.data?.length || 0))
     );
   }
@@ -40,8 +44,24 @@ export class CartService {
       quantity: 1,
       cartId: Number(this.cartId),
       productId,
-      userId
+      userId,
+      cartPrice: 0,
+    product: {
+    id: 0,
+    name: "string",
+    stock: 0,
+    amount: 0,
+    price: 0,
+    image: "string",
+    model: "string",
+    efficiency: 0,
+    estimatedPower: 0,
+    categoryId: 0,
+    companyName: "string",
+    companyId: 0
+    }
     };
+    console.log('Sending to AddItem:', body);
     return this.http.post<any>(`${this.baseUrl}/CartItem/AddItem`, body);
   }
 
@@ -52,6 +72,8 @@ export class CartService {
       cartId: Number(this.cartId),
       productId
     };
+      console.log('Sending updateItem:', body);
+
     return this.http.put<any>(`${this.baseUrl}/CartItem/UpdateItem`, body);
   }
 

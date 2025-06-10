@@ -27,8 +27,8 @@
   <div class="col-span-1 bg-white rounded-lg shadow-lg p-6 text-right">
     <h2 class="text-lg font-semibold mb-4">الإجمالي:</h2>
     <p class="text-3xl font-bold text[#022333] mb-6">{{ totalPrice | number }} L.E</p>
-    <button class="bg-[#022333] text-white font-bold py-2 px-4 rounded w-full text-lg">
-      ← متابعة الطلب والتأكيد
+    <button (click)="checkout()" class="bg-[#022333] text-white font-bold py-2 px-4 rounded w-full text-lg">
+      ← تأكيد الطلب 
     </button>
   </div>
 

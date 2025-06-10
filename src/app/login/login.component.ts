@@ -44,19 +44,40 @@ export class LoginComponent {
     const loginData = this.loginForm.value;
 
     this.authService.login(loginData).subscribe({
-    next: (res: any) => {
-    const token = res.data.token;
-    localStorage.setItem('token', token);
+    next: (response) => {
+        if (response.isSucceeded) {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('userId', response.data.userId);
+          localStorage.setItem('cartId', response.data.cartId);
+          localStorage.setItem('role', response.data.role); 
 
-    this.authService.getProfile().subscribe(user => {
-      this.authService.setUser(user.data); // تحديث BehaviorSubject
-      this.router.navigate(['/home']);
+          const role = response.data.role;
+
+          this.authService.setUser({
+            username: response.data.userName,
+            profilePicture: response.data.profilePicture,
+            role: response.data.role
+          });
+          // console.log('User info:', response.data);
+
+
+          if (role === 1) {
+            this.router.navigate(['/admin-dashboard']);
+          } else if (role === 2) {
+            this.router.navigate(['/home']);
+          } else if (role === 3) {
+            this.router.navigate(['/company-dashboard']);
+          } else {
+            this.router.navigate(['/']); // fallback
+          }
+        } else {
+          this.errorMessage = 'فشل في تسجيل الدخول. تأكد من البيانات.';
+        }
+      },
+      error: () => {
+        this.errorMessage = 'حدث خطأ أثناء محاولة تسجيل الدخول.';
+      }
     });
-  },
-  error: () => {
-    this.errorMessage = 'فشل تسجيل الدخول، برجاء التأكد من البيانات';
-  }
-});
 
   }
   
