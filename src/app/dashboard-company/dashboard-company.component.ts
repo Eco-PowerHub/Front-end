@@ -38,14 +38,15 @@ export class DashboardCompanyComponent implements OnInit {
   companies: Company[] = [];
 showModal: boolean = false;
 modalMessage: string = '';
-userName: string | null = '';
-  userPhoto: string | null = '';
+user: any = null;
   constructor(private http: HttpClient,  private router: Router, private authservice: AuthService) {}
 
   ngOnInit(): void {
     this.getCompanies();
-    this.userName = localStorage.getItem('userName');
-    this.userPhoto = localStorage.getItem('profilePicture');
+    this.authservice.loadUserFromStorage(); // تحميل بيانات المستخدم من localStorage عند الدخول
+    this.authservice.user$.subscribe(user => {
+      this.user = user;
+    });
   }
 
   getCompanies() {

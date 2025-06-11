@@ -25,6 +25,7 @@ export class DashboardSettingsComponent implements OnInit {
 
   userName: string | null = '';
   userPhoto: string | null = '';
+  usr: any = null;
 
   selectedImageFile: File | null = null;
 
@@ -33,42 +34,45 @@ export class DashboardSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.userName = localStorage.getItem('userName');
     this.userPhoto = localStorage.getItem('profilePicture');
-    // ممكن هنا تجيبي بيانات المستخدم من الباكند لو متاحة
+
+    this.authService.loadUserFromStorage();
+    this.authService.user$.subscribe(usr => {
+      this.usr = usr;
+    });
   }
 
   saveProfileChanges() {
-  const updatedInfo = {
-    username: this.user.username,
-    phoneNumder: this.user.phoneNumder,
-    email: this.user.email,
-    profilePicture: this.user.profilePicture
-  };
+    const updatedInfo = {
+      username: this.user.username,
+      phoneNumder: this.user.phoneNumder,
+      email: this.user.email,
+      profilePicture: this.user.profilePicture
+    };
 
-  console.log('Data being sent to API:', updatedInfo); // ✅ كونسول مهم
+    console.log('Data being sent to API:', updatedInfo);
 
-  this.authService.editProfile(updatedInfo).subscribe({
-    next: () => alert('تم حفظ التعديلات'),
-    error: (err: any) => {
-      console.error('Error updating profile:', err);
-      alert('حدث خطأ أثناء التحديث. تأكدي من صحة البيانات.');
-    }
-  });
-}
+    this.authService.editProfile(updatedInfo).subscribe({
+      next: () => alert('تم حفظ التعديلات'),
+      error: (err: any) => {
+        console.error('Error updating profile:', err);
+        alert('حدث خطأ أثناء التحديث. تأكدي من صحة البيانات.');
+      }
+    });
+  }
 
   onImageSelected(event: Event) {
-  const input = event.target as HTMLInputElement;
-  if (input.files && input.files[0]) {
-    const file = input.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.user.profilePicture = reader.result as string; // ✅ هنا نحفظها في الـ user
-      this.userPhoto = this.user.profilePicture;
-      localStorage.setItem('profilePicture', this.userPhoto);
-    };
-    reader.readAsDataURL(file);
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.user.profilePicture = reader.result as string;
+        this.userPhoto = this.user.profilePicture;
+        localStorage.setItem('profilePicture', this.userPhoto);
+      };
+      reader.readAsDataURL(file);
+    }
   }
-}
-
 
   savePasswordChanges() {
     const passwordInfo = {

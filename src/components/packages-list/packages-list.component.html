@@ -1,3 +1,16 @@
+<!-- Modal لعرض الرسائل -->
+<div class="modal-overlay" *ngIf="showModal">
+  <div class="modal-content">
+    <div class="modal-icon shake">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#051C2F" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+      </svg>
+    </div>
+    <p>{{ modalMessage }}</p>
+    <button class="modal-btn" (click)="closeModal()">حسنًا</button>
+  </div>
+</div>
+
 <div class="flex flex-col gap-6 p-4">
   <div *ngFor="let pkg of packages" class="bg-white shadow-lg p-6 border-[2px] border-black">
     <!-- عنوان الباقة -->
@@ -72,7 +85,7 @@
     <!-- زر الطلب -->
     <div class="text-2xl text-center mt-6">
       <button (click)="addToCart(pkg)" class="px-5 py-3 mr-8 rounded-full bg-[#022333] text-white transition duration-300 ease-in-out hover:bg-[#499DCA] hover:shadow-[0px_0px_20px_#162229] hover:scale-105">
-        اطلبها الآن
+        طلب الحزمة
       </button>
     </div>
   </div>

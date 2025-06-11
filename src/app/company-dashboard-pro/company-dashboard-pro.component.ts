@@ -15,9 +15,7 @@ export class CompanyDashboardProComponent implements OnInit {
 
   // قائمة المنتجات الحالية
   products: Product[] = [];
-
-  userName: string | null = '';
-  userPhoto: string | null = '';
+  user: any = null;
   
 
   // المنتج الجديد الذي سيتم إدخاله من الفورم
@@ -39,8 +37,12 @@ export class CompanyDashboardProComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userName = localStorage.getItem('userName');
-    this.userPhoto = localStorage.getItem('profilePicture');
+
+    this.authService.loadUserFromStorage(); // تحميل بيانات المستخدم من localStorage عند الدخول
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+    
     this.loadCompanyProducts();
   }
 

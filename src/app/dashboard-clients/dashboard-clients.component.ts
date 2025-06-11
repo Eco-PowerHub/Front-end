@@ -20,15 +20,16 @@ export interface Customer {
 export class DashboardClientsComponent implements OnInit {
   customers: Customer[] = [];
 
-  userName: string | null = '';
-  userPhoto: string | null = '';
+  user: any = null;
 
   constructor(private AuthService: AuthService) {}
 
   ngOnInit(): void {
 
-    this.userName = localStorage.getItem('userName');
-    this.userPhoto = localStorage.getItem('profilePicture');
+    this.AuthService.loadUserFromStorage(); // تحميل بيانات المستخدم من localStorage عند الدخول
+    this.AuthService.user$.subscribe(user => {
+      this.user = user;
+    });
     this.AuthService.getCustomers().subscribe({
       next: (res) => {
         if (Array.isArray(res.data)) {

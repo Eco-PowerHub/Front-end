@@ -12,6 +12,8 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './packages-list.component.css'
 })
 export class PackagesListComponent implements OnInit {
+    showModal: boolean = false;
+    modalMessage: string = '';
   @Input() packages: SolarPackage[] = [];
   selectedPackageId: number | null = null;
 
@@ -28,29 +30,35 @@ export class PackagesListComponent implements OnInit {
   addToCart(pkg: any) {
   const userId = localStorage.getItem('userId');
   if (!userId) {
-    alert('يجب تسجيل الدخول أولاً');
-    this.router.navigate(['/login']);
+      this.modalMessage = 'يجب تسجيل الدخول أولاً';
+      this.showModal = true;
+      this.router.navigate(['/login']);
     return;
   }
 
   const packageId = pkg.packageId;
-  if (!packageId) {
-    alert('لا يمكن إضافة باكيدج بدون رقم تعريف.');
-    return;
-  }
+  const totalPrice = pkg.totalPrice || 0;
 
-  this.cartService.addItem(packageId, userId).subscribe({
+
+  const requestBody = {
+    userId: userId,
+    packageId: packageId,
+    totalPrice: totalPrice
+  };
+
+  this.cartService.checkoutPackage(requestBody).subscribe({
     next: res => {
-      const itemId = res.data?.id;
-      pkg.itemId = itemId;
-      console.log(`✔️ Added to cart - packageId: ${packageId}, itemId: ${itemId}`);
-      alert('تمت الإضافة إلى السلة بنجاح!');
+      console.log(`✔️ الطلب تم بنجاح - packageId: ${packageId}`);
+      this.modalMessage =' تم استلام طلبك بنجاح ✅ سوف يتم التواصل معك من قبل المختصين عبر الإيميل';
+      this.showModal = true;    
     },
-    error: () => {
-      alert('حدث خطأ أثناء الإضافة');
-    }
+    error: err => {
+      console.error('❌ خطأ أثناء تأكيد الطلب:', err);
+      this.modalMessage = 'حدث خطأ أثناء تأكيد الطلب.';
+      this.showModal = true;    }
   });
 }
+
 
   // اختيار باكيدج
   selectPackage(packageId: number): void {
@@ -60,5 +68,9 @@ export class PackagesListComponent implements OnInit {
   // الحصول على تفاصيل الباكيدج المختار
   getSelectedPackage(): SolarPackage | undefined {
     return this.packages.find(pkg => pkg.packageId === this.selectedPackageId);
+  }
+  closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
   }
 }

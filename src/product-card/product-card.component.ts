@@ -3,14 +3,19 @@ import { IProduct } from '../models/iproduct';
 import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { AuthService } from '../app/auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
+
+  showModal: boolean = false;
+  modalMessage: string = '';
+
   @Input() product: any;
 
   constructor(private cartService: CartService, private router: Router) {}
@@ -18,8 +23,9 @@ export class ProductCardComponent {
   addToCart() {
     const userId = localStorage.getItem('userId');
     if (!userId) {
-      alert('يجب تسجيل الدخول أولاً');
-    this.router.navigate(['/login']);
+        this.modalMessage = 'يجب تسجيل الدخول أولاً';
+        this.showModal = true;
+        this.router.navigate(['/login']);
       return;
     }
 
@@ -29,11 +35,17 @@ export class ProductCardComponent {
         this.product.itemId = itemId;
             console.log(`✔️ Added to cart - productId: ${this.product.id}, itemId: ${itemId}`);
 
-        alert('تمت الإضافة إلى السلة بنجاح!');
+            this.modalMessage = '✅ تمت الإضافة إلى السلة بنجاح!';
+            this.showModal = true;      
       },
       error: () => {
-        alert('حدث خطأ أثناء الإضافة');
+        this.modalMessage = 'حدث خطأ أثناء الإضافة';
+        this.showModal = true;
       }
     });
+  }
+  closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
   }
 }
