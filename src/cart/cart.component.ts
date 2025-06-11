@@ -19,6 +19,8 @@ interface CartItem {
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
+  showModal: boolean = false;
+  modalMessage: string = '';
   cartItems: any[] = [];
   totalPrice: number = 0;
 
@@ -56,22 +58,30 @@ export class CartComponent implements OnInit {
   console.log('📦 userId being sent:', userId);
 
   if (!userId) {
-    alert('يجب تسجيل الدخول أولاً');
-    return;
+      this.modalMessage = 'يجب تسجيل الدخول أولاً';
+      this.showModal = true;
+      return;
   }
 
   this.cartService.checkout(userId).subscribe({
     next: res => {
-      alert('تم تأكيد الطلب بنجاح!');
+      this.modalMessage = '✅ تم تأكيد الطلب بنجاح!';
+      this.showModal = true;
       this.loadCart();
     },
     error: err => {
       console.error('❌ خطأ في تأكيد الطلب:', err);
       console.error('📋 تفاصيل الخطأ:', err.error?.errors);
-      alert('حدث خطأ أثناء تأكيد الطلب');
+      this.modalMessage = '❌ حدث خطأ أثناء تأكيد الطلب';
+      this.showModal = true;
     }
   });
 }
+
+closeModal() {
+    this.showModal = false;
+    this.modalMessage = '';
+  }
 
 
 }
