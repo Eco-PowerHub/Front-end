@@ -23,14 +23,14 @@ export class CompanyDashboardSetComponent implements OnInit {
     confirmPassword: ''
   };
 
-  // userName: string | null = '';
+ userName: string | null = '';
   userPhoto: string | null = '';
 
   constructor(private OrderService: OrderService) {}
 
   ngOnInit(): void {
 
-    // this.userName = localStorage.getItem('userName');
+   this.userName = localStorage.getItem('userName');
     this.userPhoto = localStorage.getItem('profilePicture');
     this.OrderService.getUser().subscribe({
       next: (data) => this.user = { ...this.user, ...data },

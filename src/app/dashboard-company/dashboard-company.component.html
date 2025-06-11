@@ -28,13 +28,13 @@
                 <div class="flex items-center space-x-2 mr-14 ">
                     <img src="/R.jpeg" alt="Country" class="w-6 h-6 rounded-full object-cover">
                   </div>
-                    <button 
+                   <button 
                    
-                    class="  text-[16px]  font-bold text-white -mr-5
+                    class="  text-[14px]  font-bold text-white -mr-4 
                            font-cairo transition duration-300 ease-in-out 
                            hover:shadow-[0px_0px_20px_#162229] hover:scale-110 flex items-center justify-center">
-                           {{userName}}
-                           <img [src]='userPhoto' alt="User" class="w-8 h-8 ml-3 rounded-full object-cover">
+                           {{userName ||'Admin' }}
+                           <img [src]="userPhoto" alt="User" class="w-6 h-6 ml-4 rounded-full object-cover">
 
                   </button>
               </div>
@@ -58,7 +58,7 @@
       routerLinkActive="bg-white text-black"
       [routerLinkActiveOptions]="{ exact: true }"
       class="w-full border-t border-white px-4 py-3 hover:bg-white hover:text-black cursor-pointer flex items-center justify-center gap-3 h-20 relative">
-      <img src="/image 119.png" alt="User" class="w-5 h-5 absolute right-10 object-cover">
+      <img src="/image 119.png" alt="User" class="w-5 h-5 absolute right-8 object-cover">
       <span class="font-bold">المنتجات</span>
     </a>
     
@@ -152,7 +152,7 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
       </div>
     </div>
     <div class="flex justify-center mt-4">
-      <button type="submit" class="w-[100%] sm:w-1/3 p-2 rounded-[25px] bg-white text-black font-cairo">تأكيد</button>
+      <button type="submit" class="w-[100%]  sm:w-1/3 p-2 rounded-[25px] bg-white text-black hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#162229] hover:scale-110 font-cairo">تأكيد</button>
     </div>
   </form>
   </div> 
@@ -239,7 +239,7 @@ routerLinkActive="bg-white text-black" class="w-full border-t-1 border-white px-
   <!-- زر التأكيد -->
   <div class="w-1/2">
     <label class="block mb-2 text-lg invisible">زر</label> <!-- للتوازن في الارتفاع -->
-    <button type="submit" class="w-full p-2 rounded-[25px] bg-white text-black font-cairo">
+    <button type="submit" class="w-full p-2 rounded-[25px] bg-white text-black hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#162229] hover:scale-110 font-cairo">
       تأكيد
     </button>
   </div>

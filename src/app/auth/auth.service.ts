@@ -104,10 +104,11 @@ export class AuthService {
 
   // 👤 Profile
 
-  editProfile(data: any): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.put(this.endpoints.editProfile, data, { headers });
-  }
+editProfile(data: any): Observable<any> {
+  const headers = this.getAuthHeaders();
+  return this.http.put(this.endpoints.editProfile, data, { headers });
+}
+
 
   changePassword(data: any): Observable<any> {
     const headers = this.getAuthHeaders();
@@ -190,4 +191,5 @@ export class AuthService {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
   }
+
 }
