@@ -89,10 +89,10 @@
     <h2 lang="ar" dir="rtl" class="font-bold font-cairo text-2xl sm:text-3xl md:text-4xl  text-[#022333] text-center  mb-8 mt-10">
         لماذا تستخدم Eco PowerHub؟
     </h2>
-    <div lang="ar" dir="rtl" class="flex flex-col lg:grid lg:grid-cols-2 items-center font-cairo justify-center rtl gap-10 px-10 md:px-10">
+    <div lang="ar" dir="rtl" class="flex flex-col lg:grid lg:grid-cols-2 items-center font-cairo justify-center rtl  gap-10 px-10 md:px-10 animate-fade-in-right">
     
         <!-- النص والمحتوى -->
-        <div class="w-full max-w-[600px]">
+        <div class="w-full mr-10 max-w-[600px]">
       
     
             <ul class="list-none rtl">
@@ -164,9 +164,7 @@
             </div>
           </li>
           <li class="flex flex-col  items-center p-5 sm:w-[800px]">
-              <div class="w-full sm:w-1/2 flex justify-center animate-fade-in-left">
-  <img src="/homeThree.png" alt="حلول الطاقة الشمسية" class="w-full max-w-[450px] h-auto mb-10 top-10 rounded-[35px] shadow-lg">
-</div>
+  <img src="/homeThree.png" alt="حلول الطاقة الشمسية" class="w-full animate-fade-in-left max-w-[450px] h-auto mb-10 top-10 rounded-[35px] shadow-lg">
 
               <div class="p flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <div class="flex flex-col items-center  p-5 w-full  text-black bg-white shadow-md rounded-xl  hover:bg-[#022333] hover:text-white hover:shadow-[0px_0px_20px_#499DCA] 
@@ -207,9 +205,13 @@
         <p class="md:w-[550px] w-[400px] text-2xl text-right mr-8 font-cairo text-[#022333]">
           نحن نؤمن بمستقبل مدعوم بالطاقة النظيفة والمتجددة، لهذا السبب نحن ملتزمون بتقديم حلول مبتكرة تجعل الانتقال إلى مصادر الطاقة المستدامة أسهل وبأسعار معقولة على الأفراد والشركات.
         </p>
-        <img src="/img3.jpg" alt="img3" class="w-full max-w-[400px] rounded-[35px] bg-white shadow-xl">
-
-      </div>
+                <!-- الصورة -->
+      <img 
+        src="/img3.jpg" 
+        alt="img3" 
+        class="w-full max-w-[500px] animate-fade-in-left  sm:max-w-[500px] lg:max-w-[400px] rounded-[35px] bg-white shadow-xl transition-transform duration-300 hover:scale-105 object-cover"
+      />
+  </div>
       
       <div lang="ar" dir="rtl" class="part5 flex justify-center items-center gap-6 md:gap-8 mb-10 mt-8 text-center  px-4">
     
@@ -218,18 +220,18 @@
             <span class="font-cairo font-bold text-[#051C2F]">Eco PowerHub</span>، اضغط هنا
         </p>
         
-        <button routerLink="/property" type="submit"
-        class="w-[120px] sm:w-[150px] sm:h-[45px] h-[25px] sm:text-[24px] text-[10px] flex items-center ml-5 justify-center gap-2
-               bg-[#051C2F] text-white font-cairo font-bold 
-               rounded-[25px] shadow-md transition-all 
-               hover:bg-[rgba(255,255,255,0.9)] hover:text-black hover:shadow-[0px_0px_20px_#499DCA] 
-               hover:scale-105 focus:outline-none border-none">
-              
-        ابدأ الآن
-        <svg xmlns="http://www.w3.org/2000/svg" class="sm:w-5 sm:h-5 w-2 h-2 transform scale-x-[-1]" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-      </button>
+   <button  (click)="navigateBasedOnAuth()" type="button"
+  class="w-[120px] sm:w-[150px] sm:h-[45px] h-[25px] sm:text-[24px] text-[10px] flex items-center ml-5 justify-center gap-2
+         bg-[#051C2F] text-white font-cairo font-bold 
+         rounded-[25px] shadow-md transition-all 
+         hover:bg-[rgba(255,255,255,0.9)] hover:text-black hover:shadow-[0px_0px_20px_#499DCA] 
+         hover:scale-105 focus:outline-none border-none">
+  ابدأ الآن
+  <svg xmlns="http://www.w3.org/2000/svg" class="sm:w-12 sm:h-5 w-6 h-6 transform scale-x-[-1]" fill="currentColor" viewBox="0 0 20 20">
+    <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+  </svg>
+</button>
+
     </div>
     
     <app-footer></app-footer>   

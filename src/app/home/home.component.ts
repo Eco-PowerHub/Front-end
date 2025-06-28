@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   currentIndex: number = 0;
   autoSlideInterval: any;
   userInteractionTimeout: any;
+  isLoggedIn = false;
 
   userName: string = ''; // لتخزين اسم المستخدم
 
@@ -91,4 +92,12 @@ export class HomeComponent implements OnInit {
   //   this.router.navigate(['/']);
   // }
 
+  navigateBasedOnAuth() {
+    const isLoggedIn = this.authService.isLoggedIn(); // غيريها حسب اسم الدالة اللي عندك
+    if (isLoggedIn) {
+      this.router.navigate(['/property']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 }

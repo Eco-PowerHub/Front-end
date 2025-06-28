@@ -16,37 +16,62 @@ export class DashboardSettingsComponent implements OnInit {
   user = {
     username: '',
     email: '',
-    phoneNumber: '',
+    phoneNumder: '',
+    profilePicture: '',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   };
 
+  userName: string | null = '';
+  userPhoto: string | null = '';
   usr: any = null;
+
+  selectedImageFile: File | null = null;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
 
-    this.authService.loadUserFromStorage(); // تحميل بيانات المستخدم من localStorage عند الدخول
+    this.authService.loadUserFromStorage();
     this.authService.user$.subscribe(usr => {
       this.usr = usr;
     });
-    
-    // لو عندك API لتجيب بيانات المستخدم، ضيفيها هنا
   }
 
   saveProfileChanges() {
     const updatedInfo = {
       username: this.user.username,
+      phoneNumder: this.user.phoneNumder,
       email: this.user.email,
-      phoneNumber: this.user.phoneNumber
+      profilePicture: this.user.profilePicture
     };
+
+    console.log('Data being sent to API:', updatedInfo);
 
     this.authService.editProfile(updatedInfo).subscribe({
       next: () => alert('تم حفظ التعديلات'),
-      error: (err) => console.error('Error updating profile:', err)
+      error: (err: any) => {
+        console.error('Error updating profile:', err);
+        alert('حدث خطأ أثناء التحديث. تأكدي من صحة البيانات.');
+      }
     });
+  }
+
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.user.profilePicture = reader.result as string;
+        this.userPhoto = this.user.profilePicture;
+        localStorage.setItem('profilePicture', this.userPhoto);
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   savePasswordChanges() {
@@ -58,7 +83,7 @@ export class DashboardSettingsComponent implements OnInit {
 
     this.authService.changePassword(passwordInfo).subscribe({
       next: () => alert('تم تغيير كلمة المرور'),
-      error: (err) => console.error('Error changing password:', err)
+      error: (err: any) => console.error('Error changing password:', err)
     });
   }
 
@@ -74,10 +99,11 @@ export class DashboardSettingsComponent implements OnInit {
         alert('تم حذف الحساب');
         // Redirect if needed
       },
-      error: (err) => console.error('Error deleting account:', err)
+      error: (err: any) => console.error('Error deleting account:', err)
     });
   }
+
   showCurrentPassword = false;
-showNewPassword = false;
-showConfirmPassword = false;
+  showNewPassword = false;
+  showConfirmPassword = false;
 }

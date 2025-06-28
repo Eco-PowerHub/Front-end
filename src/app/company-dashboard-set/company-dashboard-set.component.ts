@@ -24,20 +24,25 @@ export class CompanyDashboardSetComponent implements OnInit {
     confirmPassword: ''
   };
 
+
+ userName: string | null = '';
+  userPhoto: string | null = '';
+
  usr: any = null;
 
   constructor(private OrderService: OrderService, private authService: AuthService ) {}
 
   ngOnInit(): void {
 
+
+   this.userName = localStorage.getItem('userName');
+    this.userPhoto = localStorage.getItem('profilePicture');
+
     this.authService.loadUserFromStorage(); // تحميل بيانات المستخدم من localStorage عند الدخول
     this.authService.user$.subscribe(user => {
       this.user = user;
     });
-    this.OrderService.getUser().subscribe({
-      next: (data) => this.user = { ...this.user, ...data },
-      error: (err) => console.error('Error fetching user', err)
-    });
+    
   }
 
   saveProfileChanges() {
@@ -47,10 +52,7 @@ export class CompanyDashboardSetComponent implements OnInit {
       phone: this.user.phone
     };
 
-    this.OrderService.updateUser(updatedInfo).subscribe({
-      next: () => alert('تم حفظ التعديلات'),
-      error: (err) => console.error('Error updating user', err)
-    });
+ 
   }
 
   savePasswordChanges() {
