@@ -7,7 +7,7 @@ import { IProduct } from '../models/iproduct';
   providedIn: 'root'
 })
 export class CategoriesService {
-  private apiUrl = 'http://157.175.182.159:8080/api';
+  private apiUrl = 'http://ecopower-hub.runasp.net/api';
   private category = `${this.apiUrl}/Category`;
 
   constructor(private http: HttpClient) { }

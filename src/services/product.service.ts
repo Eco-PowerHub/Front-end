@@ -16,7 +16,7 @@ interface ApiResponse {
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://157.175.182.159:8080/api';
+  private baseUrl = 'http://ecopower-hub.runasp.net/api';
   private products = `${this.baseUrl}/Product/Products`;
 
   constructor(private http: HttpClient) {}

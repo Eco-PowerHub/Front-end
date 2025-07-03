@@ -22,6 +22,10 @@ interface Order {
 export class DashboardOrderComponent implements OnInit {
   orders: Order[] = [];
   user: any = null;
+
+  userName: string = '';
+  userPhoto: string = '';
+
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {

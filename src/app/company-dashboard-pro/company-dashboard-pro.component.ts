@@ -16,7 +16,9 @@ export class CompanyDashboardProComponent implements OnInit {
   // قائمة المنتجات الحالية
   products: Product[] = [];
   user: any = null;
-  
+  userName: string = '';
+  userPhoto: string = '';
+
 
   // المنتج الجديد الذي سيتم إدخاله من الفورم
   newProduct: Product = {

@@ -27,6 +27,9 @@ export class DashboardSupportComponent {
   orders: support[] = [];
 
   user: any = null;
+  userName: string = '';
+  userPhoto: string = '';
+
   constructor(private authService: AuthService ,private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {

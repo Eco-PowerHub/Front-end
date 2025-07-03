@@ -26,6 +26,9 @@ export class DashboardProductComponent {
    products: any[] = [];
 companies: any[] = [];
 user: any = null;
+userName: string = '';
+userPhoto: string = '';
+
 
   constructor(private AuthService: AuthService ,private http: HttpClient) {}
 

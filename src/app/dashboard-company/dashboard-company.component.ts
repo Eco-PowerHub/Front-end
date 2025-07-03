@@ -39,6 +39,10 @@ export class DashboardCompanyComponent implements OnInit {
 showModal: boolean = false;
 modalMessage: string = '';
 user: any = null;
+
+userName: string = '';
+userPhoto: string = '';
+
   constructor(private http: HttpClient,  private router: Router, private authservice: AuthService) {}
 
   ngOnInit(): void {

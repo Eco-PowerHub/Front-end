@@ -22,6 +22,9 @@ export class DashboardClientsComponent implements OnInit {
 
   user: any = null;
 
+  userName: string = '';
+  userPhoto: string = '';
+
   constructor(private AuthService: AuthService) {}
 
   ngOnInit(): void {
