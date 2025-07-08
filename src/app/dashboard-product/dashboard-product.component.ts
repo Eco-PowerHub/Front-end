@@ -90,7 +90,7 @@ error: (err) => {
 
 
 getProducts() {
-  this.http.get<any>('http://157.175.182.159:8080/api/Product/Products').subscribe({
+  this.http.get<any>('https://ecopower-hub.runasp.net/api/Product/Products').subscribe({
     next: (res) => {
       this.products = res.data;
     },
@@ -118,7 +118,7 @@ deleteProduct(productIdInput: HTMLInputElement) {
   }
 
   // لو موجود كمل الحذف
-  this.http.delete(`http://157.175.182.159:8080/api/Product/DeleteProduct/${id}`)
+  this.http.delete(`https://ecopower-hub.runasp.net/api/Product/DeleteProduct/${id}`)
     .subscribe({
       next: (res) => {
         console.log('✅ تم حذف المنتج بنجاح:', res);

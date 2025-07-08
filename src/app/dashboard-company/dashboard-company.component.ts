@@ -54,7 +54,7 @@ userPhoto: string = '';
   }
 
   getCompanies() {
-    this.http.get<any>('http://157.175.182.159:8080/api/Company/Companies')
+    this.http.get<any>('https://ecopower-hub.runasp.net/api/Company/Companies')
       .subscribe({
         next: (res:any) => {
           this.companies = res.data;
@@ -125,7 +125,7 @@ onFileSelected(event: any) {
 deleteCompany() {
   const id = this.companyIdToDelete;
 
-  this.http.delete(`http://157.175.182.159:8080/api/Company/DeleteCompany/2`)
+  this.http.delete(`https://ecopower-hub.runasp.net/api/Company/DeleteCompany/2`)
     .subscribe({
       next: (res) => {
         console.log('Company deleted:', res);
