@@ -15,7 +15,7 @@ export interface CartResponse {
 })
 export class CartService {
   
-  private baseUrl = 'http://ecopower-hub.runasp.net/api';
+  private baseUrl = 'https://ecopower-hub.runasp.net/api';
   private cartId = localStorage.getItem('cartId');
 
   constructor(private http: HttpClient) {}

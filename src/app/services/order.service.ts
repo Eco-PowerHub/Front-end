@@ -15,8 +15,8 @@ export interface Product {
   providedIn: 'root',
 })
 export class OrderService {
-  private apiUrl = 'http://ecopower-hub.runasp.net/api/Order/GetAllOrders'; 
-  private getpro= 'http://ecopower-hub.runasp.net/api/Product/Products';
+  private apiUrl = 'https://ecopower-hub.runasp.net/api/Order/GetAllOrders'; 
+  private getpro= 'https://ecopower-hub.runasp.net/api/Product/Products';
   products: Product[] = [];
 
   constructor(private http: HttpClient) {}

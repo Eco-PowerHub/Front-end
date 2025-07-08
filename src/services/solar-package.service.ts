@@ -34,7 +34,7 @@ export interface PropertyFormData {
 })
 export class SolarPackageService {
 
-  private apiUrl ='http://ecopower-hub.runasp.net/api';
+  private apiUrl ='https://ecopower-hub.runasp.net/api';
   private packages = `${this.apiUrl}/Property/AddProperty`;
 
   constructor(private http: HttpClient) {}

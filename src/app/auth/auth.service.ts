@@ -28,7 +28,7 @@ export class AuthService {
   private userSubject = new BehaviorSubject<any>(null);
   public user$ = this.userSubject.asObservable();
 
-  private apiUrl = 'http://ecopower-hub.runasp.net/api';
+  private apiUrl = 'https://ecopower-hub.runasp.net/api';
 
   private endpoints = {
     register: `${this.apiUrl}/Account/Register`,
